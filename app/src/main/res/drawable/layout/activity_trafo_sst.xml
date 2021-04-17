@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sst_coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Preventive Maintenance Transformer"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/product_sans_reguler"
+            android:text="Tanggal Hari Ini" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/SstTrafo11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="Station Service Transformer GT 1.2" />
+
+                        <TextView
+                            android:id="@+id/kksbbt12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="12 BBT 20" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:id="@+id/textIndi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Indikator Level Minyak :" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Oil Temperature            :" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Winding Temperature :" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Silica Gel                          :" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Breather Glass Oil         :" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Cooler Fan                       :" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Level Bushing Oil           :" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Grounding                       :" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/levelMinyak11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="8dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Level Minyak"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/oilTemp11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Temperature Oil"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/windTemp11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Temperature Winding"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/silicaGel11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Kondisi Silica Gel"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/breatherOil11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Kebersihan Breather Glass Oil"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/coolerFan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Cooler Fan (Suara / Kondisi)"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/levelMInyakBushing11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Cek Level Minyak pada Bushing"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/grounding11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Cek Kekencangan Grounding"
+                                    android:textAlignment="center"
+                                    android:textColor="#0022ff"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/nfc_12bbt20"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="NFC >>" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#0c4a9b"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/MainTrafo13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="Station Service Transformer GT 1.3"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/kksbbt13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="13 BBT 20"
+                            android:textColor="#ffffff" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Indikator Level Minyak :"
+                                    android:textColor="#ffffff" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Oil Temperature            :"
+                                    android:textColor="#ffffff" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Winding Temperature :"
+                                    android:textColor="#ffffff" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Silica Gel                          :"
+                                    android:textColor="#ffffff" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Breather Glass Oil         :"
+                                    android:textColor="#ffffff" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Cooler Fan                       :"
+                                    android:textColor="#ffffff" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Level Bushing Oil           :"
+                                    android:textColor="#ffffff" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:text="Grounding                       :"
+                                    android:textColor="#ffffff" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/levelMinyak21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="8dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Level Minyak"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/oilTemp21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Temperature Oil"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/windTemp21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Temperature Winding"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/silicaGel21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Kondisi Silica Gel"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/breatherOil21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Kebersihan Breather Glass Oil"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/coolerFan21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Cooler Fan (Suara / Kondisi)"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/levelMInyakBushing21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Cek Level Minyak pada Bushing"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                                <EditText
+                                    android:id="@+id/grounding21"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:fontFamily="@font/product_sans_reguler"
+                                    android:hint="Cek Kekencangan Grounding"
+                                    android:textAlignment="center"
+                                    android:textColor="#ffffff"
+                                    android:textColorHint="#ffffff"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/nfc_11"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="NFC >>" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/savetrafo"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Saved" />
+
+                    <Button
+                        android:id="@+id/temuantrafo"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="temuan" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fab_multiple_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="15dp"
+        fab:fab_addButtonColorNormal="@color/colorPrimary"
+        fab:fab_addButtonColorPressed="@color/blue_semi_transparent_pressed"
+        fab:fab_labelStyle="@style/menu_labels_style">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_addButtonColorNormal="@color/colorPrimary"
+            fab:fab_addButtonColorPressed="@color/blue_semi_transparent_pressed"
+            fab:fab_icon="@drawable/flash"
+            fab:fab_title="Main Transformer" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_uat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="#ff0004"
+            fab:fab_colorPressed="#ffa4a4"
+            fab:fab_icon="@drawable/flash"
+            fab:fab_title="Unit Auxilirary Transformer" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_sst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="#008183"
+            fab:fab_colorPressed="#5bd6ff"
+            fab:fab_icon="@drawable/flash"
+            fab:fab_title="Station Service Transformer" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="#ffffff"
+        app:cardCornerRadius="3dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="SIGN OF OPERATOR"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="40dp"
+            android:textSize="15dp"
+            android:fontFamily="@font/product_sans_reguler"
+            android:text="Name   :" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="70dp"
+            android:textSize="15dp"
+            android:fontFamily="@font/product_sans_reguler"
+            android:text="NID       :" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/product_sans_reguler"
+            android:text="Group   :" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/nama_operator"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="30dp"
+            android:hint="Herwin Januardi"
+            android:textSize="15dp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/nid_operator"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="60dp"
+            android:hint="9115238ZJY"
+            android:textSize="15dp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/regu_operator"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="90dp"
+            android:hint="A"
+            android:textSize="15dp" />
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:background="#FF448AFF"
+            android:clickable="true"
+            android:fontFamily="@font/product_sans_bold"
+            android:foreground="?android:attr/selectableItemBackground"
+            tools:ignore="ButtonStyle"
+            android:text="Photo"
+            android:textColor="#ffffff" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_signature"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="180dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:background="#448aff"
+            android:clickable="true"
+            android:fontFamily="@font/product_sans_bold"
+            android:foreground="?android:attr/selectableItemBackground"
+            tools:ignore="ButtonStyle"
+            android:text="SIGN"
+            android:textColor="#ffffff" />
+
+        <ImageView
+            android:id="@+id/iv_camera"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="40dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_sign"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="170dp"
+            />
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

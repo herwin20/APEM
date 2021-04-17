@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayoutEx"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Exitation System"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="18dp" />
+
+
+    <TextView
+        android:id="@+id/tanggal11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:text="Tanggal"
+        android:textColor="#ffffff"
+        android:textAlignment="textEnd"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/nama_gt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="14dp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/product_sans_reguler"
+        android:text="GT 1.2" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="35dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/panel_kontrol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Panel Kontrol"
+                    android:textColor="#ffffff"
+                    android:background="#0026ff"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Item Check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Status" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kondisi Fisik Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="140dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kebersihan Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="100dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Beban Generator" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Arus DC ke Rotor" />
+
+                <CheckBox
+                    android:id="@+id/kondisi_check_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="35dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi_check_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="35dp"
+                    android:text="NOK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi_bersih_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="135dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi_bersih_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="135dp"
+                    android:text="NOK" />
+
+                <EditText
+                    android:id="@+id/alarm1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="51dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/alarm2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="71dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/beban_generator"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="91dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="400 MW"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/arus_rotor"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="111dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="63A"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/panel_2GA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:textColor="#ffffff"
+                    android:background="#005107"
+                    android:text="Converter 2 GA"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Item Check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Status" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kondisi Fisik Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kebersihan Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="100dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Arus Thyristor" />
+
+                <CheckBox
+                    android:id="@+id/kondisi2_check_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="35dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi2_check_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="35dp"
+                    android:text="NOK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi2_bersih_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="115dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi2_bersih_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="115dp"
+                    android:text="NOK" />
+
+                <EditText
+                    android:id="@+id/alarm1GA"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="51dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/alarm2GA"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="71dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+
+                <EditText
+                    android:id="@+id/arus_thy1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="91dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="63A"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/panel_2GB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Converter 2 GB"
+                    android:textColor="#ffffff"
+                    android:background="#940005"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Item Check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Status" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kondisi Fisik Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kebersihan Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="100dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Arus Thyristor" />
+
+                <CheckBox
+                    android:id="@+id/kondisi3_check_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="35dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi3_check_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="35dp"
+                    android:text="NOK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi3_bersih_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="115dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi3_bersih_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="115dp"
+                    android:text="NOK" />
+
+                <EditText
+                    android:id="@+id/alarm1GB"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="51dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/alarm2GB"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="71dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+
+                <EditText
+                    android:id="@+id/arus_thy2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="91dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="63A"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/panel_2GC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Converter 2 GC"
+                    android:textColor="#ffffff"
+                    android:background="#007481"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Item Check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Status" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kondisi Fisik Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Alarm 2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="120dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kebersihan Peralatan" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="100dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Arus Thyristor" />
+
+                <CheckBox
+                    android:id="@+id/kondisi4_check_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="35dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi4_check_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="35dp"
+                    android:text="NOK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi4_bersih_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="115dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi4_bersih_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="115dp"
+                    android:text="NOK" />
+
+                <EditText
+                    android:id="@+id/alarm1GC"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="51dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/alarm2GC"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="71dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="alarm no 2"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+
+                <EditText
+                    android:id="@+id/arus_thy3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="91dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="63A"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/panel_temuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Temuan Rutin"
+                    android:textColor="#ffffff"
+                    android:background="#8e8e00"
+                    android:textAlignment="center" />
+
+                <ImageView
+                    android:id="@+id/temuan1_pic"
+                    android:layout_width="100dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:clickable="true" />
+
+                <ImageView
+                    android:id="@+id/temuan2_pic"
+                    android:layout_width="100dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:clickable="true" />
+
+                <ImageView
+                    android:id="@+id/temuan3_pic"
+                    android:layout_width="100dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="25dp"
+                    android:clickable="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="150dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Temuan 1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="150dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Temuan 2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="295dp"
+                    android:layout_marginTop="150dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Temuan 3" />
+
+                <Button
+                    android:id="@+id/btn_temuan1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="180dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="photo"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/btn_temuan2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="180dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="Photo"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/btn_temuan3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="180dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="Photo"
+                    android:textAlignment="center"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="220dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Catatan"
+                    android:textAlignment="center" />
+
+                <EditText
+                    android:id="@+id/catatan1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="230dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:hint="Isi jika terdapat temuan"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/catatan2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="250dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:hint="Isi jika terdapat temuan"
+                    android:textSize="12sp" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:clickable="true"
+                android:layout_marginBottom="10dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="10dp">
+
+                <TextView
+                    android:id="@+id/panel_enviroment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Enviroment"
+                    android:textColor="#ffffff"
+                    android:background="#9b5000"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Item Check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:text="Status" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Kondisi AC " />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Suhu Ruangan" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="80dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Penerangan" />
+
+
+                <CheckBox
+                    android:id="@+id/kondisiac_check_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="35dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisiac_check_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="35dp"
+                    android:text="NOK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi_lampu_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="75dp"
+                    android:text="OK" />
+
+                <CheckBox
+                    android:id="@+id/kondisi_lampu_not"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="310dp"
+                    android:layout_marginTop="75dp"
+                    android:text="NOK" />
+
+                <EditText
+                    android:id="@+id/suhu"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="250dp"
+                    android:layout_marginTop="51dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_italic"
+                    android:hint="suhu ruangan"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/send"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="110dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="send"
+                    android:textColor="#108b00"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/schematic"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="105dp"
+                    android:layout_marginTop="110dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="schematic"
+                    android:textColor="#0012af"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/list_alarm"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="205dp"
+                    android:layout_marginTop="110dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="alarm"
+                    android:textColor="#c9001e"
+                    android:textSize="10dp" />
+
+                <Button
+                    android:id="@+id/goto_1"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="110dp"
+                    android:clickable="true"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:text="go to"
+                    android:textColor="#765901"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="180dp"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="URL = " />
+
+                <EditText
+                    android:id="@+id/url_address_ex"
+                    android:layout_width="250dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="170dp"
+                    android:ems="10"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:hint="http:// ......."
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textColor="#252525"
+                    android:textSize="12dp" />
+
+                <ProgressBar
+                    android:id="@+id/progress_ex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

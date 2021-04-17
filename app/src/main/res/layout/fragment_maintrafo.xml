@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="Main Transformer GT11-12 (11BAT10)"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:background="@color/colorPrimaryDark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="0dp"
+                            app:startIconDrawable="@drawable/ic_temptrafo"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/oiltemp"
+                                android:layout_width="170dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:gravity="center"
+                                android:hint="Oil Temp." />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="0dp"
+                            app:startIconDrawable="@drawable/ic_temptrafo">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/winding"
+                                android:layout_width="170dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/white"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:gravity="center"
+                                android:hint="Winding Temp." />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        app:startIconDrawable="@drawable/ic_temptrafo">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/indikatorlevel"
+                            android:layout_width="170dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:gravity="center"
+                            android:hint="Oil Level" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="210dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkSilicaGt11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:text="Silica Gel Breather (>70%)" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkOilGt11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:text="Breather Glass Oil (Bersih)" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkFanGt11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:text="Change Over Manual (Ya) " />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkGroundGt11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:text="Grounding (Kencang)" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkBushingGt11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:text="Level Minyak Bushing" />
+
+                            <com.google.android.material.checkbox.MaterialCheckBox
+                                android:id="@+id/checkSumppumpGt11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/product_sans_reguler"
+                                android:text="Kondisi Sump Pump" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/silicaGelGT11"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:fontFamily="@font/product_sans_italic"
+                                android:layout_marginTop="10dp"
+                                android:text="-"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/OilGlassGt11"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:fontFamily="@font/product_sans_italic"
+                                android:layout_marginTop="10dp"
+                                android:text="-"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/fanGt11"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:fontFamily="@font/product_sans_italic"
+                                android:layout_marginTop="10dp"
+                                android:text="-"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/groundGt11"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:fontFamily="@font/product_sans_italic"
+                                android:layout_marginTop="10dp"
+                                android:text="-"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/bushingGt11"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:fontFamily="@font/product_sans_italic"
+                                android:layout_marginTop="10dp"
+                                android:text="-"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                />
+
+                            <TextView
+                                android:id="@+id/sumpPumpGt11"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:fontFamily="@font/product_sans_italic"
+                                android:layout_marginTop="10dp"
+                                android:text="-"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        app:startIconDrawable="@drawable/ic_kettrafo">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/keteranganGT11"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:gravity="center"
+                            android:hint="Keterangan Main Trafo GT 11" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/buttonSavedGT11"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_btn"
+                        android:orientation="horizontal">
+
+                        <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            style="@style/FontTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="SAVE"
+                            android:textAlignment="center"
+                            android:textColor="#ffffff"
+                            android:textSize="16.5sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Main Transformer GT13 (13BAT10)"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:background="@color/frg1Color"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="0dp"
+                            app:startIconDrawable="@drawable/ic_temptrafo"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/oiltempgt13"
+                                android:background="@color/white"
+                                android:layout_width="170dp"
+                                android:layout_height="match_parent"
+                                android:hint="Oil Temp."
+                                android:gravity="center"
+                                android:fontFamily="@font/product_sans_reguler"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="10dp"
+                            app:startIconDrawable="@drawable/ic_temptrafo"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/windinggt13"
+                                android:background="@color/white"
+                                android:layout_width="170dp"
+                                android:layout_height="match_parent"
+                                android:hint="Winding Temp."
+                                android:gravity="center"
+                                android:fontFamily="@font/product_sans_reguler"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        app:startIconDrawable="@drawable/ic_temptrafo"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/indikatorlevelgt13"
+                            android:background="@color/white"
+                            android:layout_width="170dp"
+                            android:layout_height="match_parent"
+                            android:hint="Oil Level"
+                            android:gravity="center"
+                            android:fontFamily="@font/product_sans_reguler"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                  <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="210dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkSilicaGt13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Silica Gel Breather (>70%)"
+                        />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkOilGt13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Breather Glass Oil (Bersih)"
+                        />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkFanGt13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Change Over Manual (Ya) "
+                        />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkGroundGt13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Grounding (Kencang)"
+                        />
+
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/checkBushingGt13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:text="Level Minyak Bushing" />
+
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/checkSumppumpGt13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:text="Kondisi Sump Pump" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/silicaGelGT13"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/OilGlassGt13"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/fanGt13"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/groundGt13"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/bushingGt13"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/sumpPumpGt13"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                    </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        app:startIconDrawable="@drawable/ic_kettrafo">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/keteranganGT13"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:gravity="center"
+                            android:hint="Keterangan Main Trafo GT 13" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/buttonSavedGT13"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_btn"
+                        android:orientation="horizontal">
+
+                        <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            style="@style/FontTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="SAVE"
+                            android:textAlignment="center"
+                            android:textColor="#ffffff"
+                            android:textSize="16.5sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Main Transformer GT21-22 (21BAT10)"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:background="#E53935"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="0dp"
+                            app:startIconDrawable="@drawable/ic_temptrafo"
+
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/oiltempgt21"
+                                android:background="@color/white"
+                                android:layout_width="170dp"
+                                android:layout_height="match_parent"
+                                android:hint="Oil Temp."
+                                android:gravity="center"
+                                android:fontFamily="@font/product_sans_reguler"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginLeft="10dp"
+                            app:startIconDrawable="@drawable/ic_temptrafo"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/windinggt21"
+                                android:background="@color/white"
+                                android:layout_width="170dp"
+                                android:layout_height="match_parent"
+                                android:hint="Winding Temp."
+                                android:gravity="center"
+                                android:fontFamily="@font/product_sans_reguler"
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        app:startIconDrawable="@drawable/ic_temptrafo"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/indikatorlevelgt21"
+                            android:background="@color/white"
+                            android:layout_width="170dp"
+                            android:layout_height="match_parent"
+                            android:hint="Oil Level"
+                            android:gravity="center"
+                            android:fontFamily="@font/product_sans_reguler"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="210dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkSilicaGt21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Silica Gel Breather (>70%)"
+                        />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkOilGt21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Breather Glass Oil (Bersih)"
+                        />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkFanGt21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Change Over Manual (Ya) "
+                        />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkGroundGt21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/product_sans_reguler"
+                        android:text="Grounding (Kencang)"
+                        />
+
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/checkBushingGt21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:text="Level Minyak Bushing" />
+
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/checkSumppumpGt21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:text="Kondisi Sump Pump" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/silicaGelGT21"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/OilGlassGt21"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/fanGt21"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/groundGt21"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/bushingGt21"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/sumpPumpGt21"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:fontFamily="@font/product_sans_italic"
+                            android:layout_marginTop="10dp"
+                            android:text="-"
+                            android:gravity="center"
+                            android:textColor="#000000"
+                            android:textSize="15sp"
+                            />
+
+                    </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        app:startIconDrawable="@drawable/ic_kettrafo">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/keteranganGT21"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:gravity="center"
+                            android:hint="Keterangan Main Trafo GT 21" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:id="@+id/buttonSavedGT21"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_btn"
+                        android:orientation="horizontal">
+
+                        <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            style="@style/FontTextViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="SAVE"
+                            android:textAlignment="center"
+                            android:textColor="#ffffff"
+                            android:textSize="16.5sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

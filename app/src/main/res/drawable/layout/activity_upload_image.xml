@@ -1,0 +1,94 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:cardCornerRadius="5dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="#ffffff"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Upload Image to Database"
+        android:textSize="20dp"
+        android:fontFamily="@font/product_sans_bold"
+        />
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="310dp"
+            android:fontFamily="@font/product_sans_reguler"
+            android:text="URL = " />
+
+        <EditText
+            android:id="@+id/url_address_db"
+            android:layout_width="250dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="300dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_reguler"
+            android:hint="http:// ......."
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="#252525"
+            android:textSize="12dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:text="Choose The File"
+        android:layout_marginTop="360dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textColor="#000fff"
+        android:id="@+id/buttonChoose" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:text="Upload Image"
+        android:layout_marginTop="360dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textColor="#7b031d"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:id="@+id/buttonUpload" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:text="View Image"
+        android:layout_marginTop="360dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textColor="#024608"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:id="@+id/buttonViewImage" />
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.design.widget.CoordinatorLayout>

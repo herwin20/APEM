@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+    <TextView
+        android:padding="10dp"
+        android:text="Update/Delete or Save Data"
+        android:fontFamily="@font/product_sans_bold"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tanggaldialog"
+        android:padding="10dp"
+        android:text="Tanggal"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textColor="#000"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/updateNamabreaker"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:hint="Enter name of breaker" />
+    <EditText
+        android:id="@+id/updateKks"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textSize="15dp"
+        android:hint="Enter No. KKS" />
+    <EditText
+        android:id="@+id/updateUnit"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textSize="15dp"
+        android:hint="Enter name of unit" />
+    <EditText
+        android:id="@+id/updateArusmotor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textSize="15dp"
+        android:hint="Input Arus Motor" />
+    <EditText
+        android:id="@+id/updateKondisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textSize="15dp"
+        android:hint="Enter Kondisi" />
+    <EditText
+        android:id="@+id/updatePemeriksa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textSize="15dp"
+        android:hint="Enter Pemeriksa" />
+    <EditText
+        android:id="@+id/updateOperator"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textSize="15dp"
+        android:hint="Enter Name of Operator" />
+    <EditText
+        android:id="@+id/updateTemuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textSize="15dp"
+        android:hint="Enter Temuan" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/buttonDeleteUser"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/product_sans_bold_italic"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="Delete"
+            android:textColor="#af0000"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/buttonUpdateUser"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/product_sans_bold_italic"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="update"
+            android:textColor="#0012af"
+            android:textSize="12dp" />
+        <Button
+            android:id="@+id/buttonNFCupdate"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/product_sans_bold_italic"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="NFC"
+            android:textColor="#a79a04"
+            android:textSize="12dp" />
+        <Button
+            android:id="@+id/buttonSaveDataBase"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/product_sans_bold_italic"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="database"
+            android:textColor="#08a100"
+            android:textSize="12dp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="400dp"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#ffffff"
+        android:text="Dialog Signature"
+        android:fontFamily="@font/product_sans_bold"
+        android:padding="5dp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:background="@android:color/white">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="cancel"
+            tools:ignore="ButtonStyle"
+            android:textColor="#8c1010"
+            android:background="#ffffff" />
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Clear"
+            tools:ignore="ButtonStyle"
+            android:textColor="#e00f0840"
+            android:background="#ffffff" />
+
+        <Button
+            android:id="@+id/getsign"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Save"
+            tools:ignore="ButtonStyle"
+            android:textColor="#115e1a"
+            android:background="#ffffff" />
+
+    </LinearLayout>
+
+   <com.kyanogen.signatureview.SignatureView
+       xmlns:sign="http://schemas.android.com/apk/res-auto"
+       android:id="@+id/panelSignature"
+       android:layout_width="match_parent"
+       android:layout_height="250dp"
+       sign:penSize="5dp"
+       sign:backgroundColor="#ffffff"
+       sign:penColor="#0037FF"
+       sign:enableSignature="true"
+       />
+
+</LinearLayout>

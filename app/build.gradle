@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.herwinlab.apem"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.ChkBoxSilicaGT11.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.2.0'
+    //implementation 'com.google.android.material:material:1.3.0-alpha02'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.ChkBoxSilicaGT11.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.ChkBoxSilicaGT11.espresso:espresso-core:3.1.1'
+
+    //ViewPAger
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // Library Font Login
+    implementation 'com.pixplicity.letterpress:library:1.0'
+    //implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    //implementation 'com.github.fa-hessari:MaterialEditText:2.1.5'
+    implementation 'com.github.edgar-zigis:materialtextfield:1.2.0'
+
+    //Library FAB
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'com.github.clans:fab:1.6.4'
+
+    //Chart Library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    //Camera
+    implementation 'com.karumi:dexter:4.2.0'
+
+    //Digital Signature
+    implementation 'com.kyanogen.signatureview:signature-view:1.0'
+
+    //Sqlite to Excel
+    implementation 'com.ajts.androidmads.SQLite2Excel:library:1.0.2'
+
+    //WebView
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.2.1'
+}

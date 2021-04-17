@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradisent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/FontTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="32dp"
+        android:layout_gravity="center"
+        android:paddingTop="32dp"
+        android:text="NEW ACCOUNT"
+        android:textColor="#D7FFFFFF"
+        android:textSize="25.5sp"
+        android:textStyle="bold" />
+
+    <com.zigis.materialtextfield.MaterialTextField
+
+        android:id="@+id/editTextUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter No. ID"
+        android:inputType="textPhonetic"
+        android:fontFamily="@font/product_sans_reguler"
+        android:paddingTop="10dp"
+        app:underlineHeight="1.5dp"
+        android:textColor="#FFFFFF"
+        app:defaultHintColor="#858585"
+        app:activeUnderlineColor="#FDD835"
+        app:activeHintColor="#FDD835"
+        />
+
+    <com.zigis.materialtextfield.MaterialTextField
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:fontFamily="@font/product_sans_reguler"
+        android:paddingTop="10dp"
+        android:textColor="#FFFFFF"
+        app:defaultHintColor="#808080"
+        app:underlineHeight="1.5dp"
+        app:activeUnderlineColor="#FDD835"
+        app:activeHintColor="#FDD835"
+        />
+
+    <com.zigis.materialtextfield.MaterialTextField
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:paddingTop="10dp"
+        android:fontFamily="@font/product_sans_reguler"
+        android:textColor="#FFFFFF"
+        app:defaultHintColor="#7E7E7E"
+        app:underlineHeight="1.5dp"
+        app:activeUnderlineColor="#FDD835"
+        app:activeHintColor="#FDD835"
+        />
+
+   <!-- <com.rengwuxian.materialedittext.MaterialEditText xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/editTextUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter No. ID"
+        android:inputType="textPhonetic"
+        android:paddingTop="10dp"
+        app:met_baseColor="#999"
+        app:met_clearButton="true"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelAnimating="true"
+        app:met_textColor="#FFFFFF"
+        app:met_textColorHint="#b1b1b1"
+        app:met_typeface="fonts/Karla-Regular.ttf" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingTop="10dp"
+        app:met_baseColor="#FFFFFF"
+        app:met_clearButton="true"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelAnimating="true"
+        app:met_textColor="#FFFFFF"
+        app:met_textColorHint="#FFFFFF"
+        app:met_typeface="fonts/Karla-Regular.ttf" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:paddingTop="10dp"
+        app:met_baseColor="#999"
+        app:met_clearButton="true"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelAnimating="true"
+        app:met_textColor="#FFFFFF"
+        app:met_textColorHint="#b1b1b1"
+        app:met_typeface="fonts/Karla-Regular.ttf" /> -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp">
+
+        <LinearLayout
+            android:id="@+id/buttonCreateAccount"
+            android:layout_width="150dp"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_btn"
+            android:orientation="horizontal">
+
+            <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/FontTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="REGISTER"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="16.5sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+</RelativeLayout>

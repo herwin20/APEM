@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Camera Activity Preventive"
+        android:textSize="20dp"
+        android:fontFamily="@font/product_sans_reguler"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/namaFolder"
+            android:fontFamily="@font/product_sans_reguler"
+            android:layout_height="wrap_content"
+            android:hint="Nama Folder(sesuai PM)"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="240dp"
+        android:layout_height="320dp"
+        android:id="@+id/previewPhotoBefore"
+        android:layout_marginTop="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Preview"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/namafoto_before"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans_reguler"
+            android:hint="Nama foto before"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/photo_activityBefore"
+        android:layout_width="150dp"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_btn"
+        android:orientation="horizontal">
+
+        <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/FontTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TAKE PHOTO"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16.5sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="240dp"
+        android:layout_height="320dp"
+        android:id="@+id/previewPhotoProcess"
+        android:layout_marginTop="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Preview"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/namafoto_process"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans_reguler"
+            android:hint="Nama foto process"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/photo_activityProcess"
+        android:layout_width="150dp"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_btn"
+        android:orientation="horizontal">
+
+        <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/FontTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TAKE PHOTO"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16.5sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="240dp"
+        android:layout_height="320dp"
+        android:id="@+id/previewPhotoAfter"
+        android:layout_marginTop="20dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Preview"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/namafoto_after"
+            android:layout_height="wrap_content"
+            android:hint="Nama foto after"
+            android:fontFamily="@font/product_sans_reguler"
+            android:inputType="text"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/photo_activityAfter"
+        android:layout_width="150dp"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_btn"
+        android:orientation="horizontal">
+
+        <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/FontTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="TAKE PHOTO"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16.5sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dialogPhotoCreatepdf"
+        android:layout_width="150dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_btn"
+        android:orientation="horizontal">
+
+        <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/FontTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="CREATE PDF"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="16.5sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
