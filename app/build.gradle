@@ -57,4 +57,7 @@ dependencies {
 
     //WebView
     implementation 'com.github.delight-im:Android-AdvancedWebView:v3.2.1'
+
+    // ConstrainLayout
+    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
 }
