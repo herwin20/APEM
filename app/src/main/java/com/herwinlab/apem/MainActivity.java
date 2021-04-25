@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.new_main_activity);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -82,13 +82,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
         //Function IP Address
-        textView = (TextView) findViewById(R.id.ip_address);
+       /* textView = (TextView) findViewById(R.id.ip_address);
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-        textView.setText("IP Address : " + ipAddress);
+        textView.setText("IP Address : " + ipAddress); */
 
         //card view click
-        CardView card1 = (CardView) findViewById(R.id.card1);
+        CardView card1 = (CardView) findViewById(R.id.cardView);
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
         });
 
-        CardView card2 = (CardView) findViewById(R.id.card2);
+        CardView card2 = (CardView) findViewById(R.id.cardView2);
         card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         });
 
         //Contoh Notifikasi
-        CardView card3 = (CardView) findViewById(R.id.card3);
+        CardView card3 = (CardView) findViewById(R.id.cardView3);
         card3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         txt_id = findViewById(R.id.share_user);
         sharedPreferences = getSharedPreferences(LoginActivity.MyPREFERENCES, Context.MODE_PRIVATE);
         String userName = sharedPreferences.getString("userName", null);
-        txt_id.setText("NID User : "+userName);
+        txt_id.setText(userName);
 
         coor = findViewById(R.id.main_coordinator);
     }
@@ -194,8 +194,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            locationText.setText(locationText.getText() + "\n"+addresses.get(0).getAddressLine(0)+", "+
-                    addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2));
+            locationText.setText(locationText.getText()); /* + "\n"+addresses.get(0).getAddressLine(0)+", "+
+                    addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2)); */
         }catch(Exception e)
         {
 
