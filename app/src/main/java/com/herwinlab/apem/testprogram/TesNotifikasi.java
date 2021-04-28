@@ -26,7 +26,7 @@ public class TesNotifikasi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_main_activity);
+        setContentView(R.layout.new_pm_gas_activity);
 
         transparentStatusAndNavigation();
 

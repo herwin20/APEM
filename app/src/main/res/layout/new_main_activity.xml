@@ -85,8 +85,8 @@
 
                     <ImageView
                         android:id="@+id/arrowGas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="18dp"
+                        android:layout_height="25dp"
                         android:layout_marginEnd="16dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
