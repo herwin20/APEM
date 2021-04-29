@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.herwinlab.apem.R;
 import com.herwinlab.apem.TemplatePDF;
@@ -28,16 +29,19 @@ public class PmGasTurbine extends AppCompatActivity {
 
     LinearLayout btnBattery12, btnBattery2;
 
+    public CardView cardToPmGen, cardToPmBatt, cardToPmTrafo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pm_gas_activity);
+        setContentView(R.layout.new_pm_gas_activity);
 
         transparentStatusAndNavigation();
 
-        LinearLayout NewPMgen = findViewById(R.id.create_pmgen);
-        NewPMgen.setOnClickListener(new View.OnClickListener() {
+        //LinearLayout NewPMgen = findViewById(R.id.create_pmgen);
+        cardToPmGen = findViewById(R.id.cardGen);
+        cardToPmGen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PmGasTurbine.this, PmGenerator.class);
@@ -45,17 +49,18 @@ public class PmGasTurbine extends AppCompatActivity {
             }
         });
 
-        LinearLayout MergeBtn = findViewById(R.id.merge_btn);
+       /** LinearLayout MergeBtn = findViewById(R.id.merge_btn);
         MergeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PmGasTurbine.this, MergePdfWeb.class);
                 startActivity(intent);
             }
-        });
+        }); */
 
-        LinearLayout NewPMbatt = findViewById(R.id.create_pmeexc);
-        NewPMbatt.setOnClickListener(new View.OnClickListener() {
+        //LinearLayout NewPMbatt = findViewById(R.id.create_pmeexc);
+        cardToPmBatt = findViewById(R.id.cardBatt);
+        cardToPmBatt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(PmGasTurbine.this, R.style.CustomAlertDialog);
@@ -86,8 +91,9 @@ public class PmGasTurbine extends AppCompatActivity {
             }
         });
 
-        LinearLayout NewPMTrans = findViewById(R.id.create_pmtrans);
-        NewPMTrans.setOnClickListener(new View.OnClickListener() {
+        //LinearLayout NewPMTrans = findViewById(R.id.create_pmtrans);
+        cardToPmTrafo = findViewById(R.id.cardTrafo);
+        cardToPmTrafo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PmGasTurbine.this, MainPmTrafo.class);
@@ -109,6 +115,7 @@ public class PmGasTurbine extends AppCompatActivity {
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             );
         }
         if (Build.VERSION.SDK_INT >= 21) {

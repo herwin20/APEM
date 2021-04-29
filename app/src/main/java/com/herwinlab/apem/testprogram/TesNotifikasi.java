@@ -53,6 +53,7 @@ public class TesNotifikasi extends AppCompatActivity {
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR  // Untuk status bar light
             );
         }
         if (Build.VERSION.SDK_INT >= 21) {
