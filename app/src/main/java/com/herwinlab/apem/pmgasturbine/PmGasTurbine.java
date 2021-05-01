@@ -83,7 +83,8 @@ public class PmGasTurbine extends AppCompatActivity {
                 btnBattery12.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(PmGasTurbine.this, "Battery 12 V", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PmGasTurbine.this, PmBattery12V.class);
+                        startActivity(intent);
                     }
                 });
 

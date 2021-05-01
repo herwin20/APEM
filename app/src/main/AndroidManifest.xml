@@ -102,6 +102,11 @@
 
         </activity>
 
+        <activity android:name=".pmgasturbine.PmBattery12V"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
