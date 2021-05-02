@@ -82,37 +82,4 @@
 
     </androidx.viewpager.widget.ViewPager>
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/fab_multiple_actions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pager"
-        android:layout_marginRight="15dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="15dp"
-        app:fab_addButtonColorNormal="@color/colorPrimary"
-        app:fab_expandDirection="left"
-        app:fab_addButtonColorPressed="@color/blue_semi_transparent_pressed"
-        >
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_pdf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="#950003"
-            app:fab_icon="@drawable/ic_pdf"
-            app:fab_title="Logout"
-            app:fab_colorPressed="#B53939"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_icon="@drawable/ic_delete"
-            app:fab_colorNormal="#AE8200"
-            app:fab_title="Contact Us"
-            app:fab_colorPressed="#BDAF2D"/>
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
 </RelativeLayout>

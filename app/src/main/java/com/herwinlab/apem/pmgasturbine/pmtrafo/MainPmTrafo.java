@@ -93,7 +93,7 @@ public class MainPmTrafo extends AppCompatActivity {
         Intent intent = getIntent();
         Test = intent.getStringExtra("Test");
 
-        FabTrafoPDF = findViewById(R.id.fab_pdf);
+       /* FabTrafoPDF = findViewById(R.id.fab_pdf);
         FabTrafoPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class MainPmTrafo extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(MainPmTrafo.this, "Delete", Toast.LENGTH_SHORT).show();
             }
-        });
+        }); */
 
         /**
          Menambahkan Listener yang akan dipanggil kapan pun halaman berubah atau

@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coor_batt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_app4">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/judul_pmbatt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/product_sans_bold"
         android:text="Pemeliharaan Battery Bank 12VDC"
-        android:textColor="#ffffff"
         android:textAlignment="center"
+        android:textColor="@color/penRoyalBlue"
         android:textSize="20dp" />
 
     <androidx.core.widget.NestedScrollView
@@ -30,11 +29,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginRight="5dp"
-                app:cardCornerRadius="15dp"
-                >
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,23 +42,21 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/unit"
                                 android:layout_width="120dp"
                                 android:layout_height="match_parent"
-                                android:hint="Unit dan Bank"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="Unit dan Bank" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,11 +64,11 @@
                             android:id="@+id/tanggalpmbatt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Tanggal"
-                            android:gravity="center"
-                            android:textColor="#3949AB"
                             android:fontFamily="@font/product_sans_reguler"
-                            android:textSize="15dp"/>
+                            android:gravity="center"
+                            android:text="Tanggal"
+                            android:textColor="#3949AB"
+                            android:textSize="15dp" />
 
 
                     </LinearLayout>
@@ -80,97 +76,86 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_1"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="1"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="1"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_2"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="2"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="2"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_3"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="3"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="3"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_4"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="4"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="4"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_5"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="5"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="5"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,97 +164,86 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_6"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="6"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="6"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_7"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="7"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="7"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_8"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="8"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="8"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_9"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="9"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="9"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_10"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="10"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="10"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -278,97 +252,86 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_11"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="11"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="11"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_12"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="12"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="12"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_13"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="13"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="13"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_14"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="14"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="14"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_15"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="15"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="15"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -377,97 +340,86 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_16"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="16"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="16"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_17"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="17"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="17"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_18"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="18"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="18"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_19"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="19"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="19"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_20"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="20"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="20"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -476,97 +428,86 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_21"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="21"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="21"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_22"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="22"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="22"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_23"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="23"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="23"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_24"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="24"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="24"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_25"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="25"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="25"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -575,97 +516,86 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_26"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="26"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="26"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_27"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="27"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="27"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_28"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="28"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="28"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_29"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="29"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="29"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_30"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="30"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="30"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -674,97 +604,86 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_31"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="31"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="31"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_32"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="32"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="32"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_33"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="33"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="33"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_34"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="34"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="34"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_35"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="35"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="35"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -773,43 +692,38 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/no_36"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
-                                android:hint="36"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="36"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            >
+                            android:layout_marginTop="5dp">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/voltage"
                                 android:layout_width="160dp"
                                 android:layout_height="match_parent"
-                                android:hint="Voltage"
-                                android:inputType="numberDecimal"
-                                android:gravity="center"
                                 android:fontFamily="@font/product_sans_reguler"
-                                />
+                                android:gravity="center"
+                                android:hint="Voltage"
+                                android:inputType="numberDecimal" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -818,54 +732,50 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:gravity="center"
-                        >
+                        android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="15dp"
-                            android:text="Voltage (Calculation) : "
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/product_sans_reguler"
-                            />
+                            android:text="Voltage (Calculation) : "
+                            android:textSize="15dp" />
 
                         <TextView
                             android:id="@+id/voltageCalculation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#9A0400"
-                            android:textSize="15dp"
-                            android:text="---"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:fontFamily="@font/product_sans_reguler"
-                            />
+                            android:text="---"
+                            android:textColor="#9A0400"
+                            android:textSize="15dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#9A0400"
-                            android:textSize="15dp"
-                            android:text="VDC"
                             android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
                             android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
                             android:fontFamily="@font/product_sans_reguler"
-                            />
+                            android:text="VDC"
+                            android:textColor="#9A0400"
+                            android:textSize="15dp" />
 
                         <LinearLayout
                             android:id="@+id/buttonResult"
                             android:layout_width="120dp"
-                            android:gravity="center"
-                            android:layout_marginRight="15dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
                             android:background="@drawable/round_btn"
+                            android:gravity="center"
                             android:orientation="horizontal">
 
                             <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -897,7 +807,7 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:id="@+id/linear_ket"
@@ -974,7 +884,7 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -999,8 +909,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="center|top"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/temuan1_pic"
@@ -1013,8 +922,8 @@
                         android:id="@+id/temuan2_pic"
                         android:layout_width="100dp"
                         android:layout_height="120dp"
-                        android:layout_marginTop="30dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginRight="20dp"
                         android:clickable="true" />
 
@@ -1031,32 +940,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="220dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BEFORE"
                         android:fontFamily="@font/product_sans_bold"
-                        />
+                        android:text="BEFORE" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PROCESS"
                         android:layout_marginLeft="70dp"
                         android:layout_marginRight="70dp"
                         android:fontFamily="@font/product_sans_bold"
-                        />
+                        android:text="PROCESS" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="AFTER"
                         android:fontFamily="@font/product_sans_bold"
-                        />
+                        android:text="AFTER" />
 
                 </LinearLayout>
 
@@ -1064,18 +969,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="250dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
-                    >
+                    android:orientation="horizontal">
 
 
                     <Button
                         android:id="@+id/takePhotoActivity"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
-                        android:clickable="true"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
+                        android:clickable="true"
                         android:fontFamily="@font/product_sans_reguler"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="photo"
@@ -1088,18 +992,16 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="350dp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
-                        android:text="Pelaksana PM"
-                        android:textSize="20dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:text="Pelaksana PM"
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_pm1"
@@ -1108,10 +1010,9 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_pm2"
@@ -1119,10 +1020,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_pm3"
@@ -1130,32 +1030,29 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="350dp"
                     android:layout_marginLeft="200dp"
-                    android:orientation="vertical"
+                    android:layout_marginTop="350dp"
                     android:gravity="center"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/ttd_operator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
-                        android:id="@+id/ttd_operator"
-                        android:text="Operator"
-                        android:textSize="20dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:text="Operator"
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_operator"
@@ -1164,19 +1061,18 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <LinearLayout
                         android:id="@+id/buttonSignatureSPVBatt"
                         android:layout_width="150dp"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="15dp"
-                        android:layout_height="wrap_content"
                         android:background="@drawable/round_btn"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1196,11 +1092,11 @@
                     <LinearLayout
                         android:id="@+id/buttonSignatureOPSBatt"
                         android:layout_width="150dp"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
-                        android:layout_height="wrap_content"
                         android:background="@drawable/round_btn"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1220,12 +1116,12 @@
                     <LinearLayout
                         android:id="@+id/buttonCreatepdf"
                         android:layout_width="150dp"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/round_btn"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"

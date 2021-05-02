@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coor_pm"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_card1">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/judul_pm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/product_sans_bold"
         android:text="Pemeliharaan Generator"
-        android:textColor="#ffffff"
         android:textAlignment="center"
+        android:textColor="@color/penRoyalBlue"
         android:textSize="20dp" />
 
 
@@ -32,8 +32,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="10dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
 
                 <TextView
                     android:id="@+id/tanggalpm"
@@ -48,18 +50,17 @@
                     android:textSize="15sp" />
 
                 <com.zigis.materialtextfield.MaterialTextField
+                    android:id="@+id/no_wo"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:layout_gravity="left"
-                    android:layout_marginRight="5dp"
                     android:layout_marginTop="40dp"
-                    android:id="@+id/no_wo"
-                    android:textSize="10sp"
+                    android:layout_marginRight="5dp"
                     android:fontFamily="@font/product_sans_reguler"
                     android:hint="NO WO"
-                    app:activeUnderlineColor="#E53935"
+                    android:textSize="10sp"
                     app:activeHintColor="#404040"
-                    />
+                    app:activeUnderlineColor="#E53935" />
 
                 <TextView
                     android:id="@+id/gps"
@@ -74,19 +75,18 @@
                     android:textSize="15sp" />
 
                 <com.zigis.materialtextfield.MaterialTextField
+                    android:id="@+id/namaGT"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:layout_gravity="left"
-                    android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp"
-                    android:id="@+id/namaGT"
-                    android:textSize="10sp"
                     android:fontFamily="@font/product_sans_reguler"
                     android:hint="Nama GT"
-                    app:activeUnderlineColor="#E53935"
+                    android:textSize="10sp"
                     app:activeHintColor="#404040"
-                    />
+                    app:activeUnderlineColor="#E53935" />
 
             </androidx.cardview.widget.CardView>
 
@@ -99,7 +99,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:id="@+id/linear_a"
@@ -243,7 +244,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:id="@+id/linear_b"
@@ -387,7 +389,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:id="@+id/linear_c"
@@ -531,7 +534,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:id="@+id/linear_d"
@@ -674,7 +678,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:id="@+id/linear_e"
@@ -818,7 +823,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:id="@+id/linear_ket"
@@ -897,7 +903,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1031,20 +1038,18 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="200dp"
                     android:layout_marginTop="50dp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/inlet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="10dp"
-                        android:textSize="15dp"
-                        android:textAlignment="center"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/oulet"
@@ -1052,22 +1057,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:textSize="15dp"
-                        android:textAlignment="center"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/lampu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="10dp"
-                        android:textAlignment="center"
-                        android:textSize="15dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/shaftbrush"
@@ -1075,34 +1078,31 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:textAlignment="center"
-                        android:textSize="15dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/minyak"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:textSize="15dp"
                         android:layout_marginTop="5dp"
-                        android:textAlignment="center"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/sarang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:textAlignment="center"
                         android:layout_marginTop="5dp"
-                        android:textSize="15dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/kebersihan"
@@ -1110,10 +1110,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:textAlignment="center"
-                        android:textSize="15dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -1128,7 +1127,8 @@
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="#ffffff"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1153,8 +1153,7 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="center|top"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/temuan1_pic"
@@ -1167,8 +1166,8 @@
                         android:id="@+id/temuan2_pic"
                         android:layout_width="100dp"
                         android:layout_height="120dp"
-                        android:layout_marginTop="30dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginRight="20dp"
                         android:clickable="true" />
 
@@ -1185,32 +1184,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="220dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="BEFORE"
                         android:fontFamily="@font/product_sans_bold"
-                        />
+                        android:text="BEFORE" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PROCESS"
                         android:layout_marginLeft="70dp"
                         android:layout_marginRight="70dp"
                         android:fontFamily="@font/product_sans_bold"
-                        />
+                        android:text="PROCESS" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="AFTER"
                         android:fontFamily="@font/product_sans_bold"
-                        />
+                        android:text="AFTER" />
 
                 </LinearLayout>
 
@@ -1218,18 +1213,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="250dp"
-                    android:orientation="horizontal"
                     android:gravity="center"
-                    >
+                    android:orientation="horizontal">
 
 
                     <Button
                         android:id="@+id/btn_process"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
-                        android:clickable="true"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
+                        android:clickable="true"
                         android:fontFamily="@font/product_sans_reguler"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="photo"
@@ -1242,18 +1236,16 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="350dp"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
-                        android:text="Pelaksana PM"
-                        android:textSize="20dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:text="Pelaksana PM"
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_pm1"
@@ -1262,10 +1254,9 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_pm2"
@@ -1273,10 +1264,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_pm3"
@@ -1284,32 +1274,29 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="350dp"
                     android:layout_marginLeft="200dp"
-                    android:orientation="vertical"
+                    android:layout_marginTop="350dp"
                     android:gravity="center"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/ttd_operator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textAlignment="center"
-                        android:id="@+id/ttd_operator"
-                        android:text="Operator"
-                        android:textSize="20dp"
                         android:fontFamily="@font/product_sans_reguler"
-                        />
+                        android:text="Operator"
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <EditText
                         android:id="@+id/nama_operator"
@@ -1318,19 +1305,18 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:textAlignment="center"
-                        android:textSize="20dp"
                         android:layout_marginBottom="10dp"
-                        />
+                        android:textAlignment="center"
+                        android:textSize="20dp" />
 
                     <LinearLayout
                         android:id="@+id/buttonSignatureSPV"
                         android:layout_width="150dp"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
                         android:layout_marginRight="15dp"
-                        android:layout_height="wrap_content"
                         android:background="@drawable/round_btn"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1350,11 +1336,11 @@
                     <LinearLayout
                         android:id="@+id/buttonSignatureOPS"
                         android:layout_width="150dp"
-                        android:gravity="center"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
-                        android:layout_height="wrap_content"
                         android:background="@drawable/round_btn"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1374,12 +1360,12 @@
                     <LinearLayout
                         android:id="@+id/buttonCreatepdf"
                         android:layout_width="150dp"
-                        android:gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:layout_marginRight="15dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@drawable/round_btn"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
