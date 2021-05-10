@@ -1,7 +1,17 @@
 package com.herwinlab.apem.pmgasturbine.pmtrafo;
 
+import android.app.Notification;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +23,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.herwinlab.apem.R;
+import com.herwinlab.apem.notification.NotificationUtils;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -34,7 +54,7 @@ public class SSTFragment extends Fragment {
     public TextView ketSilicaSst12, ketOilSst12, ketFanSst12, ketGroundSst12, ketBucholzSst12, ketSumppumpSst12; // GT 12
     public TextView ketSilicaSst13, ketOilSst13, ketFanSst13, ketGroundSst13, ketBucholzSst13, ketSumppumpSst13; // GT 13
     //LinearButton
-    public LinearLayout savedButtonGT12, savedButtonGT13;
+    public LinearLayout savedButtonGT12, savedButtonGT13, createdPDFSST, dialogCreatedPDF;
 
     public SharedPreferences pref;
     //GT 12
@@ -60,7 +80,20 @@ public class SSTFragment extends Fragment {
     private final String BucholzSST13_KEY = "BucholzSST13";
     private final String SumppumpSST13_KEY = "SumppumpSST13";
 
+    // Creating Separate Directory for Signature and Image
+    String DIRECTORY = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Signature/";
 
+    //PDF
+    Bitmap bitmap, scaleBitmap, PJBscale, IPJBway, accuImg, bitmapTTD, turbineImg;
+    int pageWidth = 1200;
+    Date dateTime;
+    DateFormat dateFormat;
+
+    //Notifikasi
+    private NotificationUtils mNotificationUtils;
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_sst, container, false);
@@ -106,6 +139,7 @@ public class SSTFragment extends Fragment {
 
         savedButtonGT12 = v.findViewById(R.id.buttonSavedSst12);
         savedButtonGT13 = v.findViewById(R.id.buttonSavedSst13);
+        createdPDFSST = v.findViewById(R.id.createdPDFsst);
 
         //SharePreference TextVIew
         pref = this.getActivity().getPreferences(MODE_PRIVATE);
@@ -131,6 +165,18 @@ public class SSTFragment extends Fragment {
         EditOillevelSst13.setText(pref.getString(OilLevelSST13_KEY, ""));
         EditKeteranganSst13.setText(pref.getString(KeteranganSST13_KEY, ""));
 
+        mNotificationUtils = new NotificationUtils(getActivity());
+
+        //Logo PJB
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_pjb);
+        PJBscale = Bitmap.createScaledBitmap(bitmap,200, 100, false);
+        //Logo IPJB
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_ipjb);
+        IPJBway = Bitmap.createScaledBitmap(bitmap,260, 100, false);
+        //Logo Turbine
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.turbine);
+        turbineImg = Bitmap.createScaledBitmap(bitmap, 514, 500, false);
+
         checkBoxSharedPrefSST();
 
         savedButtonGT12.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +194,35 @@ public class SSTFragment extends Fragment {
                 Toast.makeText(getActivity(), "Saved", Toast.LENGTH_SHORT).show();
             }
         });
+
+        createdPDFSST.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.CustomAlertDialog);
+                ViewGroup viewGroup = v.findViewById(R.id.content);
+                final View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_createdpdf, viewGroup, false);
+                builder.setView(dialogView);
+                final AlertDialog alertDialog = builder.create();
+
+                dialogCreatedPDF = dialogView.findViewById(R.id.dialogCreatepdf);
+                dialogCreatedPDF.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onClick(View v) {
+                        sharedPref();
+                        checkBoxSharedPrefSST();
+                        createdPDF();
+                        Notification.Builder notifPDF = mNotificationUtils.getAndroidChannelNotification("PDF Notification", "PDF telah berhasil disimpan di Storage");
+                        mNotificationUtils.getManager().notify(101, notifPDF.build());
+                        alertDialog.dismiss();
+                    }
+                });
+
+                alertDialog.show();
+            }
+        });
+
+
 
         return v;
     }
@@ -267,7 +342,7 @@ public class SSTFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (ChkBucholzSst12.isChecked()) {
                     ketBucholzSst12.setText("OK");
-                    editor.putBoolean("checkedBushingSst12", true);
+                    editor.putBoolean("checkedBucholzSst12", true);
                     editor.apply();
                     sharedPref();
                 } else {
@@ -381,7 +456,7 @@ public class SSTFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (ChkBucholzSst13.isChecked()) {
                     ketBucholzSst13.setText("OK");
-                    editor.putBoolean("checkedBushingSst13", true);
+                    editor.putBoolean("checkedBucholzSst13", true);
                     editor.apply();
                     sharedPref();
                 } else {
@@ -410,5 +485,187 @@ public class SSTFragment extends Fragment {
             }
         });
 
+    }
+
+    public void createdPDF()
+    {
+        //Image ttd tangan OPS
+        String ImageFileOPS = DIRECTORY+"ttdOperatorPMtrafo.jpg";
+        Bitmap bitmapImageOPS = BitmapFactory.decodeFile(ImageFileOPS);
+        //Image ttd tangan SPV
+        String ImageFileSPV = DIRECTORY+"ttdSPVPMgen.jpg";
+        Bitmap bitmapImageSPV = BitmapFactory.decodeFile(ImageFileSPV);
+
+        dateTime = new Date();
+        PdfDocument pdfDocument = new PdfDocument();
+        Paint paint = new Paint();
+        Paint titlePaint = new Paint(); // Untuk Judul Header
+
+        PdfDocument.PageInfo pageInfo
+                = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+        PdfDocument.Page page = pdfDocument.startPage(pageInfo);
+
+        Canvas canvas = page.getCanvas();
+        //canvas.drawBitmap(scaleBitmap, 0, 0, paint);
+        canvas.drawBitmap(PJBscale,50,75, paint); // Logo PJB
+        //canvas.drawBitmap(IPJBway,905,75, paint); // Logo IPJB
+        canvas.drawBitmap(turbineImg,655, 1300, paint );
+
+        //TTD Digital
+        //canvas.drawBitmap(Bitmap.createScaledBitmap(bitmapImageOPS,250,200,false),400,1980-180,paint );
+        //canvas.drawBitmap(Bitmap.createScaledBitmap(bitmapImageSPV,250,200,false),800,1980-180, paint);
+
+        // Garis tepi
+        canvas.drawLine(30, 30, 1170, 30, paint); // Garis Atas
+        canvas.drawLine(30, 30, 30, 1980, paint); // Garis Kiri
+        canvas.drawLine(1170, 30, 1170, 1980, paint); // Garis Kanan
+        canvas.drawLine(30, 1980, 1170, 1980, paint); // Garis Bawah
+
+        //Garis Header
+        canvas.drawLine(30, 220, 1170, 220, paint);
+        canvas.drawLine(30, 230, 1170, 230, paint);
+        canvas.drawLine(265, 30, 265, 220, paint); // Kiri
+        canvas.drawLine(905, 30, 905, 220, paint); // Kanan
+        //Bawah tanggal
+        canvas.drawLine(30, 310, 1170, 310, paint);
+
+        // Garis NO Document
+        canvas.drawLine(905, 90, 1170, 90, paint);
+        canvas.drawLine(905, 160, 1170, 160, paint);
+        canvas.drawLine(905, 230, 1170, 230, paint);
+
+        // Judul Header
+        titlePaint.setTextAlign(Paint.Align.CENTER);
+        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        titlePaint.setColor(Color.BLACK);
+        titlePaint.setTextSize(25f);
+        canvas.drawText("PT PEMBANGKITAN JAWA BALI UP MUARA TAWAR", 1170 / 2, 70, titlePaint);
+        titlePaint.setTextSize(20f);
+        canvas.drawText("PJB INTEGRATED MANAGEMENT SYSTEM", 1170 / 2, 110, titlePaint);
+        titlePaint.setTextSize(25f);
+        canvas.drawText("CEK LIST PREVENTIVE PEMELIHARAAN RUTIN ", 1170 / 2, 155, titlePaint);
+        canvas.drawText("PEMELIHARAAN TRANSFORMER GT", 1170 / 2, 195, titlePaint);
+
+        titlePaint.setTextSize(18f);
+        titlePaint.setTextAlign(Paint.Align.LEFT);
+        canvas.drawText("Nomor Dokumen : FMT-17.2.1", 912,65, titlePaint);
+        canvas.drawText("Revisi : 00", 912,135, titlePaint);
+        canvas.drawText("Tanggal Terbit : 20-08-2013", 912,195, titlePaint);
+
+        // Nama Preventive GT dan Tanggal
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30f);
+        canvas.drawText("Service Station Transformer GT ", 40, 270, paint ); // Judul PM
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30);
+        dateFormat = new SimpleDateFormat("dd/MM/yy");
+        canvas.drawText(dateFormat.format(dateTime), 1170 - 145, 270, paint);
+        dateFormat = new SimpleDateFormat("HH:mm:ss");
+        canvas.drawText(dateFormat.format(dateTime), 1170 - 145, 300, paint);
+
+        /** Isi dari PDF */
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30f);
+
+        //Garis Footer
+        canvas.drawLine(30, 1800, 1170, 1800, paint);
+        canvas.drawLine(390, 1800, 390, 1980, paint);
+        canvas.drawLine(780, 1800, 780, 1980, paint);
+
+        // Tanda Tangan dan Nama Pelaksana
+      /*  paint.setTextSize(25);
+        canvas.drawText("Nama Pelaksana :", 50, 1980-150, paint);
+        canvas.drawText("1. "+orangPm1.getText().toString(), 70, 1980-110, paint);
+        canvas.drawText("2. "+orangPm2.getText().toString(), 70, 1980-70, paint);
+        canvas.drawText("3. "+orangPm3.getText().toString(), 70, 1980-30, paint);
+
+        canvas.drawText("Regu Operasi", 420, 1980-150, paint );
+        canvas.drawText(Operator.getText().toString(), 420, 1980-30, paint);
+
+        canvas.drawText("SPV Listrik 1-2", 800, 1980-150, paint );
+        canvas.drawText("Dammora W", 800, 1980-30, paint); */
+
+        /** Isi PDF */
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30f);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        canvas.drawText("SST GT 12", 1170/2, 380, paint );
+        canvas.drawText("SST GT 13", 1170/2, 780, paint );
+
+        /** GT 11 Main Trafo */
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30f);
+        canvas.drawText("- Winding Temp. : "+EditWindingSst12.getText().toString()+" \u2103", 70, 450, paint);
+        canvas.drawText("- Oil Temp. : "+EditOilTempSst12.getText().toString()+" \u2103", 70, 500, paint);
+        canvas.drawText("- Oil Level : "+EditOillevelSst12.getText().toString()+" \u2103", 70, 550, paint);
+
+        canvas.drawText("- Silica Gel : "+ketSilicaSst12.getText().toString(), 450, 450, paint);
+        canvas.drawText("- Glass Oil : "+ketOilSst12.getText().toString(), 450, 500, paint);
+        canvas.drawText("- Fan SST : "+ketFanSst12.getText().toString(), 450, 550, paint);
+
+        canvas.drawText("- Grounding : "+ketGroundSst12.getText().toString(), 830, 450, paint);
+        canvas.drawText("- Bucholz : "+ketBucholzSst12.getText().toString(), 830, 500, paint);
+        canvas.drawText("- Sump Pump : "+ketSumppumpSst12.getText().toString(), 830, 550, paint);
+
+        canvas.drawText("Keterangan : "+EditKeteranganSst12.getText().toString(), 70, 620, paint);
+
+        // Border Table
+        canvas.drawLine(50, 330, 1150, 330, paint); // Top
+        canvas.drawLine(50, 400, 1150, 400, paint); // Top Bottom Header
+        canvas.drawLine(50, 330, 50, 650, paint); // Left
+        canvas.drawLine(420, 400, 420, 580, paint); // Left after Temp
+        canvas.drawLine(1150, 330, 1150, 650, paint); // Right
+        canvas.drawLine(800, 400, 800, 580, paint); // Right after Silica
+        canvas.drawLine(50, 650, 1150, 650, paint); // Bottom
+        canvas.drawLine(50, 580, 1150, 580, paint); // Bottom Upper Ket
+
+        /** GT 13 Main Trafo */
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30f);
+        canvas.drawText("- Winding Temp. : "+EditWindingSst13.getText().toString()+" \u2103", 70, 850, paint);
+        canvas.drawText("- Oil Temp. : "+EditOilTempSst13.getText().toString()+" \u2103", 70, 900, paint);
+        canvas.drawText("- Oil Level : "+EditOillevelSst13.getText().toString()+" \u2103", 70, 950, paint);
+
+        canvas.drawText("- Silica Gel : "+ketSilicaSst13.getText().toString(), 450, 850, paint);
+        canvas.drawText("- Glass Oil : "+ketOilSst13.getText().toString(), 450, 900, paint);
+        canvas.drawText("- Fan SST : "+ketFanSst13.getText().toString(), 450, 950, paint);
+
+        canvas.drawText("- Grounding : "+ketGroundSst13.getText().toString(), 830, 850, paint);
+        canvas.drawText("- Bucholz : "+ketBucholzSst13.getText().toString(), 830, 900, paint);
+        canvas.drawText("- Sump Pump : "+ketSumppumpSst13.getText().toString(), 830, 950, paint);
+
+        canvas.drawText("Keterangan : "+EditKeteranganSst13.getText().toString(), 70, 1020, paint);
+
+        // Border Table 780
+        canvas.drawLine(50, 730, 1150, 730, paint); // Top
+        canvas.drawLine(50, 800, 1150, 800, paint); // Top Bottom Header
+        canvas.drawLine(50, 730, 50, 1050, paint); // Left
+        canvas.drawLine(420, 800, 420, 980, paint); // Left after Temp
+        canvas.drawLine(1150, 730, 1150, 1050, paint); // Right
+        canvas.drawLine(800, 800, 800, 980, paint); // Right after Silica
+        canvas.drawLine(50, 1050, 1150, 1050, paint); // Bottom
+        canvas.drawLine(50, 980, 1150, 980, paint); // Bottom Upper Ket
+
+        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        pdfDocument.finishPage(page);
+        File file = new File(Environment.getExternalStorageDirectory(), "/PM Trafo SST"+" "+dateFormat.format(dateTime)+".pdf");
+        try {
+            pdfDocument.writeTo(new FileOutputStream(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        pdfDocument.close();
+        Toast.makeText(getActivity(), "PDF has Created", Toast.LENGTH_LONG).show();
+
+
+        dateTime = new Date();
     }
 }
