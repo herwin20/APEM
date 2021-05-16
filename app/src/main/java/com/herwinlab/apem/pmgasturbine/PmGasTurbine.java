@@ -20,6 +20,7 @@ import androidx.cardview.widget.CardView;
 import com.herwinlab.apem.R;
 import com.herwinlab.apem.TemplatePDF;
 import com.herwinlab.apem.mergepdf.MergePdfWeb;
+import com.herwinlab.apem.pmgasturbine.batterybluetooth.SelectBLEbatt;
 import com.herwinlab.apem.pmgasturbine.imagefunction.CameraActivity;
 import com.herwinlab.apem.pmgasturbine.pmtrafo.MainPmTrafo;
 
@@ -27,7 +28,7 @@ public class PmGasTurbine extends AppCompatActivity {
 
     //Button NewPMgen, ViewPMgen;
 
-    LinearLayout btnBattery12, btnBattery2;
+    LinearLayout btnBattery12, btnBattery2, btnBLE12, btnBLE2;
 
     public CardView cardToPmGen, cardToPmBatt, cardToPmTrafo;
 
@@ -71,6 +72,8 @@ public class PmGasTurbine extends AppCompatActivity {
 
                 btnBattery2 = dialogView.findViewById(R.id.battery2);
                 btnBattery12 = dialogView.findViewById(R.id.battery12);
+                btnBLE2 = dialogView.findViewById(R.id.battery2BLE);
+                btnBLE12 = dialogView.findViewById(R.id.battery12BLE);
 
                 btnBattery2.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -84,6 +87,22 @@ public class PmGasTurbine extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(PmGasTurbine.this, PmBattery12V.class);
+                        startActivity(intent);
+                    }
+                });
+
+                btnBLE2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(PmGasTurbine.this, SelectBLEbatt.class);
+                        startActivity(intent);
+                    }
+                });
+
+                btnBLE12.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(PmGasTurbine.this, SelectBLEbatt.class);
                         startActivity(intent);
                     }
                 });

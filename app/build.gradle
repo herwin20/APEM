@@ -60,4 +60,8 @@ dependencies {
 
     // ConstrainLayout
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+
+    // Bluetooth
+    implementation 'me.aflak.libraries:bluetooth:1.2.4'
+    implementation 'me.aflak.libraries:pulltorefresh:1.0'
 }

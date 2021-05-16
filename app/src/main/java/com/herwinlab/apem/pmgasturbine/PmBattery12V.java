@@ -345,6 +345,7 @@ public class PmBattery12V extends AppCompatActivity {
 
     //Fungsi Untuk Jam dan Tanggal
     private final Runnable runnable = new Runnable() {
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void run() {
             Calendar c1 = Calendar.getInstance();

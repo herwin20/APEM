@@ -8,10 +8,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
-    <uses-feature android:name="android.hardware.camera"
-        android:required="false"></uses-feature>
-    <uses-feature android:name="android.hardware.camera.flash"></uses-feature>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.camera.flash"/>
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
@@ -105,6 +108,15 @@
         <activity android:name=".pmgasturbine.PmBattery12V"
             android:theme="@style/AppTheme">
 
+        </activity>
+
+        <activity android:name=".pmgasturbine.batterybluetooth.SelectBLEbatt"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+        <activity android:name=".pmgasturbine.batterybluetooth.ScanBluetooth"
+            android:theme="@style/AppTheme">
         </activity>
 
         <provider
