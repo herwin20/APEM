@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.herwinlab.apem.R;
 
 import java.util.ArrayList;
@@ -149,12 +150,13 @@ public class SelectBLEbatt extends Activity implements PullToRefresh.OnRefreshLi
                                 listViewSelect.setEnabled(false);
                             }
                         });
-                        Toast.makeText(SelectBLEbatt.this, "Turn on bluetooth", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SelectBLEbatt.this, "Bluetooth OFF", Toast.LENGTH_LONG).show();
                         break;
                     case BluetoothAdapter.STATE_ON:
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                Toast.makeText(SelectBLEbatt.this, "Bluetooth ON", Toast.LENGTH_LONG).show();
                                 addDeviceToList();
                                 listViewSelect.setEnabled(true);
                             }
@@ -197,4 +199,5 @@ public class SelectBLEbatt extends Activity implements PullToRefresh.OnRefreshLi
         }
         win.setAttributes(winParams);
     }
+
 }
