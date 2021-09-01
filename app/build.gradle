@@ -21,12 +21,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.android.material:material:1.3.0'
     //implementation 'com.google.android.material:material:1.3.0-alpha02'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.ChkBoxSilicaGT11.ext:junit:1.1.0'
     androidTestImplementation 'androidx.ChkBoxSilicaGT11.espresso:espresso-core:3.1.1'
 
@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
     //Camera
-    implementation 'com.karumi:dexter:4.2.0'
+    implementation 'com.karumi:dexter:6.2.2'
 
     //Digital Signature
     implementation 'com.kyanogen.signatureview:signature-view:1.0'

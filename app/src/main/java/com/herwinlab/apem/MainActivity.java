@@ -189,14 +189,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
-        locationText.setText("Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude());
+        //locationText.setText("Latitude: " + location.getLatitude() + "\nLongitude: " + location.getLongitude());
 
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            locationText.setText(locationText.getText()); /* + "\n"+addresses.get(0).getAddressLine(0)+", "+
-                    addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2)); */
-        }catch(Exception e)
+            locationText.setText(locationText.getText() + "\n"+addresses.get(0).getAddressLine(0));/*+", "+
+                    addresses.get(0).getAddressLine(1)+", "+addresses.get(0).getAddressLine(2));*/
+        }
+        catch(Exception e)
         {
 
         }

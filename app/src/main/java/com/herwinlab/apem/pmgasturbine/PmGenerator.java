@@ -69,6 +69,7 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.kyanogen.signatureview.SignatureView;
+import com.zigis.materialtextfield.MaterialTextField;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -132,7 +133,8 @@ public class PmGenerator extends AppCompatActivity implements LocationListener {
 
     //Edit Text For Noted, Aux, Information
     public EditText Catatan1, Catatan2, InletFilter, OutletFilter, LampuMati, BrushGear, CecerMinyak, FilterSarang, Kebersihan;
-    public EditText orangPm1, orangPm2, orangPm3, Operator, NoWO, namaGT, namaPDF;
+    public EditText orangPm1, orangPm2, orangPm3, Operator;
+    public EditText NoWO, namaGT;
 
     //TextView
     public TextView tanggal_pm, judulPM, gpS, ttdOperator;

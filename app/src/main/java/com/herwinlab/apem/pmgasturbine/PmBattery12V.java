@@ -266,7 +266,7 @@ public class PmBattery12V extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(PmBattery12V.this, R.style.CustomAlertDialog);
-                ViewGroup viewGroup = findViewById(R.id.content);
+                ViewGroup viewGroup = v.findViewById(R.id.content);
                 final View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_createdpdf, viewGroup, false);
                 builder.setView(dialogView);
                 final AlertDialog alertDialog = builder.create();
