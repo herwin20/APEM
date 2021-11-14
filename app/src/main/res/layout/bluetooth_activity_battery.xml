@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -31,7 +32,7 @@
             android:layout_width="180dp"
             android:layout_height="100dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="26dp"
             app:cardBackgroundColor="@color/frg2Color"
             app:cardCornerRadius="20dp"
@@ -47,10 +48,10 @@
                     android:id="@+id/read_voltage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sfuidisplay_light"
-                    android:text="21.45 VDC"
+                    android:fontFamily="@font/sfuidisplay_bold"
+                    android:text="-- V"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +78,7 @@
                     android:id="@+id/condition_batt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sfuidisplay_light"
+                    android:fontFamily="@font/sfuidisplay_bold"
                     android:text="Good !"
                     android:textColor="@color/white"
                     android:textSize="24sp"
@@ -95,7 +96,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/product_sans_bold"
             android:text="Voltage"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/cardView7"
             app:layout_constraintStart_toStartOf="@+id/cardView7"
             app:layout_constraintTop_toBottomOf="@+id/cardView7" />
@@ -107,10 +108,39 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/product_sans_bold"
             android:text="Condition Battery"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/condCard"
             app:layout_constraintStart_toStartOf="@+id/condCard"
             app:layout_constraintTop_toBottomOf="@+id/condCard" />
+
+        <EditText
+            android:id="@+id/namaGTble2"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:fontFamily="@font/product_sans_reguler"
+            android:hint="Nama GT"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView7"
+            app:layout_constraintEnd_toEndOf="@+id/cardView7"
+            app:layout_constraintStart_toStartOf="@+id/cardView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tanggalble2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/product_sans_reguler"
+            android:text="Tanggal"
+            app:layout_constraintBottom_toTopOf="@+id/cardView7"
+            app:layout_constraintEnd_toEndOf="@+id/condCard"
+            app:layout_constraintStart_toStartOf="@+id/condCard"
+            app:layout_constraintTop_toTopOf="@+id/namaGTble2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -126,6 +156,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +164,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -156,7 +192,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt2"
@@ -166,7 +202,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt3"
@@ -176,7 +212,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt4"
@@ -186,7 +222,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt5"
@@ -196,17 +232,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/batt6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/product_sans_bold"
-                        android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -230,7 +256,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt8"
@@ -240,7 +266,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt9"
@@ -250,7 +276,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt10"
@@ -260,7 +286,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt11"
@@ -270,17 +296,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/batt12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/product_sans_bold"
-                        android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -304,7 +320,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt14"
@@ -314,7 +330,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt15"
@@ -324,7 +340,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt16"
@@ -334,7 +350,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt17"
@@ -344,17 +360,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/batt18"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/product_sans_bold"
-                        android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -378,7 +384,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt20"
@@ -388,7 +394,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt21"
@@ -398,7 +404,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt22"
@@ -408,7 +414,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt23"
@@ -418,19 +424,10 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/batt24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/product_sans_bold"
-                        android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearLayout4"
                     android:layout_width="match_parent"
@@ -451,7 +448,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt26"
@@ -461,7 +458,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt27"
@@ -471,7 +468,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt28"
@@ -481,7 +478,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt29"
@@ -491,19 +488,10 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/batt30"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:fontFamily="@font/product_sans_bold"
-                        android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearLayout5"
                     android:layout_width="match_parent"
@@ -524,7 +512,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt32"
@@ -534,7 +522,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt33"
@@ -544,7 +532,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt34"
@@ -554,7 +542,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/batt35"
@@ -564,7 +552,20 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
                     <TextView
                         android:id="@+id/batt36"
@@ -574,10 +575,1318 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
                         android:text="12.21 V"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+                    <TextView
+                        android:id="@+id/batt41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+                    <TextView
+                        android:id="@+id/batt46"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt47"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt48"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt49"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+                    <TextView
+                        android:id="@+id/batt51"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt53"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt54"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt55"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+                    <TextView
+                        android:id="@+id/batt56"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt57"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt58"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt59"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt60"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+
+                    <TextView
+                        android:id="@+id/batt61"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt62"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt63"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt64"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt65"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+
+                    <TextView
+                        android:id="@+id/batt66"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt67"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt68"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt69"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt70"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
+
+                    <TextView
+                        android:id="@+id/batt71"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt72"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt73"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt74"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt75"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
+
+                    <TextView
+                        android:id="@+id/batt76"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt77"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt78"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt79"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt80"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout14">
+
+                    <TextView
+                        android:id="@+id/batt81"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt82"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt83"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt84"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt85"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
+
+                    <TextView
+                        android:id="@+id/batt86"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt87"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt88"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt89"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt90"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
+
+                    <TextView
+                        android:id="@+id/batt91"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt92"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt93"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt94"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt95"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout17">
+
+                    <TextView
+                        android:id="@+id/batt96"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt97"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt98"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt99"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt100"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
+
+                    <TextView
+                        android:id="@+id/batt101"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt102"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt103"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt104"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt105"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearLayout20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout19">
+
+                    <TextView
+                        android:id="@+id/batt106"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt107"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt108"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt109"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt110"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout20">
+
+                    <TextView
+                        android:id="@+id/batt111"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt112"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/batt113"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="12.21 V"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+              </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/totalVoltage"
+                        android:layout_width="150dp"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="20dp"
+                        app:cardBackgroundColor="#00ACC1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="0dp" >
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/product_sans_bold"
+                                android:text="Total Voltage"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/totalvoltageble2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="19dp"
+                                android:fontFamily="@font/product_sans_bold"
+                                android:text="241 V"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/clearAll"
+                        android:layout_width="150dp"
+                        android:layout_height="70dp"
+                        app:cardBackgroundColor="#FB8C00"
+                        app:cardCornerRadius="20dp" >
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/product_sans_bold"
+                                android:text="Clear All"
+                                android:textColor="#FFFFFF"
+                                android:textSize="20sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="20dp">
+
+                    <LinearLayout
+                        android:id="@+id/linear_ket"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="#177702">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="Noted"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20dp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="100dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/ket"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:hint="Catatan jika ada"
+                            android:textAlignment="center"
+                            android:textColor="#252525"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="50dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/ket2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:hint="Catatan jika ada"
+                            android:textAlignment="center"
+                            android:textColor="#252525"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/colorPrimaryDark">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="Information"
+                            android:textAlignment="center"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:text="Pelaksana PM"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:id="@+id/nama_pm1"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:id="@+id/nama_pm2"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:id="@+id/nama_pm3"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="200dp"
+                        android:layout_marginTop="60dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/ttd_operator"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/product_sans_reguler"
+                            android:text="Operator"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                        <EditText
+                            android:id="@+id/nama_operator"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                        <LinearLayout
+                            android:id="@+id/buttonSignatureSPVBatt"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_btn"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                style="@style/FontTextViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="SIGN SPV"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                android:textSize="16.5sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/buttonSignatureOPSBatt"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/round_btn"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                style="@style/FontTextViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="SIGN OPS"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                android:textSize="16.5sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/buttonCreatepdf"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/round_btn"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.pixplicity.fontview.FontAppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                style="@style/FontTextViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="CREATE PDF"
+                                android:textAlignment="center"
+                                android:textColor="#ffffff"
+                                android:textSize="16.5sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

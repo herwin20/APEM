@@ -47,6 +47,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 
@@ -256,7 +257,7 @@ public class PmGenerator extends AppCompatActivity implements LocationListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pmgenerator_activity);
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         transparentStatusAndNavigation();
 
         // Untuk Tanggal
@@ -2256,6 +2257,7 @@ public class PmGenerator extends AppCompatActivity implements LocationListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // if the result is capturing Image
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST_CODE_BEFORE) {
             if (resultCode == RESULT_OK) {
                 // Refreshing the gallery

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
 import com.herwinlab.apem.R;
@@ -37,7 +38,7 @@ public class PmGasTurbine extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_pm_gas_activity);
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         transparentStatusAndNavigation();
 
         //LinearLayout NewPMgen = findViewById(R.id.create_pmgen);
