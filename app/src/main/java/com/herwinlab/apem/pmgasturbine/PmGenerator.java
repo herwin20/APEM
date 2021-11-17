@@ -12,10 +12,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.pdf.PdfDocument;
 import android.location.Address;
 import android.location.Geocoder;
@@ -36,7 +34,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.PermissionRequest;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -60,7 +57,6 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.snackbar.Snackbar;
-import com.herwinlab.apem.MainActivity;
 import com.herwinlab.apem.R;
 import com.herwinlab.apem.notification.NotificationUtils;
 import com.herwinlab.apem.pmgasturbine.imagefunction.CameraActivity;
@@ -70,7 +66,6 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.kyanogen.signatureview.SignatureView;
-import com.zigis.materialtextfield.MaterialTextField;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -83,10 +78,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
-import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
 public class PmGenerator extends AppCompatActivity implements LocationListener {
 
@@ -332,8 +323,8 @@ public class PmGenerator extends AppCompatActivity implements LocationListener {
         E3_de = findViewById(R.id.e3_de);
 
         //Aux Initiated
-        Catatan1 = findViewById(R.id.ket);
-        Catatan2 = findViewById(R.id.ket2);
+        Catatan1 = findViewById(R.id.ket_BLE);
+        Catatan2 = findViewById(R.id.ket2_BLE);
         InletFilter = findViewById(R.id.inlet);
         OutletFilter = findViewById(R.id.oulet);
         LampuMati = findViewById(R.id.lampu);
@@ -614,7 +605,7 @@ public class PmGenerator extends AppCompatActivity implements LocationListener {
 
         mNotificationUtils = new NotificationUtils(this);
 
-        buttonCreatePDF = findViewById(R.id.buttonCreatepdf);
+        buttonCreatePDF = findViewById(R.id.buttonCreatepdfBLE);
         buttonCreatePDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

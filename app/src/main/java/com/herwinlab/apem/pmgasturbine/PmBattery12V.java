@@ -133,8 +133,8 @@ public class PmBattery12V extends AppCompatActivity {
         No_31 = findViewById(R.id.no_31); No_32 = findViewById(R.id.no_32); No_33 = findViewById(R.id.no_33); No_34 = findViewById(R.id.no_34); No_35 = findViewById(R.id.no_35);
         No_36 = findViewById(R.id.no_36);
         //Aux Initiated
-        Catatan1 = findViewById(R.id.ket);
-        Catatan2 = findViewById(R.id.ket2);
+        Catatan1 = findViewById(R.id.ket_BLE);
+        Catatan2 = findViewById(R.id.ket2_BLE);
         orangPm1 = findViewById(R.id.nama_pm1);
         orangPm2 = findViewById(R.id.nama_pm2);
         orangPm3 = findViewById(R.id.nama_pm3);
@@ -185,65 +185,62 @@ public class PmBattery12V extends AppCompatActivity {
         accuImg = Bitmap.createScaledBitmap(bitmap, 200, 180, false);
 
         btnCalculation = findViewById(R.id.buttonResult);
-        btnCalculation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String a1 = No_1.getText().toString(); String a11 = No_11.getText().toString(); String a21 = No_21.getText().toString(); String a31 = No_31.getText().toString();
-                String a2 = No_2.getText().toString(); String a12 = No_12.getText().toString(); String a22 = No_22.getText().toString(); String a32 = No_32.getText().toString();
-                String a3 = No_3.getText().toString(); String a13 = No_13.getText().toString(); String a23 = No_23.getText().toString(); String a33 = No_33.getText().toString();
-                String a4 = No_4.getText().toString(); String a14 = No_14.getText().toString(); String a24 = No_24.getText().toString(); String a34 = No_34.getText().toString();
-                String a5 = No_5.getText().toString(); String a15 = No_15.getText().toString(); String a25 = No_25.getText().toString(); String a35 = No_35.getText().toString();
-                String a6 = No_6.getText().toString(); String a16 = No_16.getText().toString(); String a26 = No_26.getText().toString(); String a36 = No_36.getText().toString();
-                String a7 = No_7.getText().toString(); String a17 = No_17.getText().toString(); String a27 = No_27.getText().toString();
-                String a8 = No_8.getText().toString(); String a18 = No_18.getText().toString(); String a28 = No_28.getText().toString();
-                String a9 = No_9.getText().toString(); String a19 = No_19.getText().toString(); String a29 = No_29.getText().toString();
-                String a10 = No_10.getText().toString(); String a20 = No_20.getText().toString(); String a30 = No_30.getText().toString();
+        btnCalculation.setOnClickListener(v -> {
+            String a1 = No_1.getText().toString(); String a11 = No_11.getText().toString(); String a21 = No_21.getText().toString(); String a31 = No_31.getText().toString();
+            String a2 = No_2.getText().toString(); String a12 = No_12.getText().toString(); String a22 = No_22.getText().toString(); String a32 = No_32.getText().toString();
+            String a3 = No_3.getText().toString(); String a13 = No_13.getText().toString(); String a23 = No_23.getText().toString(); String a33 = No_33.getText().toString();
+            String a4 = No_4.getText().toString(); String a14 = No_14.getText().toString(); String a24 = No_24.getText().toString(); String a34 = No_34.getText().toString();
+            String a5 = No_5.getText().toString(); String a15 = No_15.getText().toString(); String a25 = No_25.getText().toString(); String a35 = No_35.getText().toString();
+            String a6 = No_6.getText().toString(); String a16 = No_16.getText().toString(); String a26 = No_26.getText().toString(); String a36 = No_36.getText().toString();
+            String a7 = No_7.getText().toString(); String a17 = No_17.getText().toString(); String a27 = No_27.getText().toString();
+            String a8 = No_8.getText().toString(); String a18 = No_18.getText().toString(); String a28 = No_28.getText().toString();
+            String a9 = No_9.getText().toString(); String a19 = No_19.getText().toString(); String a29 = No_29.getText().toString();
+            String a10 = No_10.getText().toString(); String a20 = No_20.getText().toString(); String a30 = No_30.getText().toString();
 
 
-                if (a1.isEmpty()){No_1.setError("Field Empty!");No_1.requestFocus();}
-                else if (a2.isEmpty()){No_2.setError("Field Empty!");No_2.requestFocus();}
-                else if (a3.isEmpty()){No_3.setError("Field Empty!");No_3.requestFocus();}
-                else if (a4.isEmpty()){No_4.setError("Field Empty!");No_4.requestFocus();}
-                else if (a5.isEmpty()){No_5.setError("Field Empty!");No_5.requestFocus();}
-                else if (a6.isEmpty()){No_6.setError("Field Empty!");No_6.requestFocus();}
-                else if (a7.isEmpty()){No_7.setError("Field Empty!");No_7.requestFocus();}
-                else if (a8.isEmpty()){No_8.setError("Field Empty!");No_8.requestFocus();}
-                else if (a9.isEmpty()){No_9.setError("Field Empty!");No_9.requestFocus();}
-                else if (a10.isEmpty()){No_10.setError("Field Empty!");No_10.requestFocus();}
-                else if (a11.isEmpty()){No_11.setError("Field Empty!");No_11.requestFocus();}
-                else if (a12.isEmpty()){No_12.setError("Field Empty!");No_12.requestFocus();}
-                else if (a13.isEmpty()){No_13.setError("Field Empty!");No_13.requestFocus();}
-                else if (a14.isEmpty()){No_14.setError("Field Empty!");No_14.requestFocus();}
-                else if (a15.isEmpty()){No_15.setError("Field Empty!");No_15.requestFocus();}
-                else if (a16.isEmpty()){No_16.setError("Field Empty!");No_16.requestFocus();}
-                else if (a17.isEmpty()){No_17.setError("Field Empty!");No_17.requestFocus();}
-                else if (a18.isEmpty()){No_18.setError("Field Empty!");No_18.requestFocus();}
-                else if (a19.isEmpty()){No_19.setError("Field Empty!");No_19.requestFocus();}
-                else if (a20.isEmpty()){No_20.setError("Field Empty!");No_20.requestFocus();}
-                else if (a21.isEmpty()){No_21.setError("Field Empty!");No_21.requestFocus();}
-                else if (a22.isEmpty()){No_22.setError("Field Empty!");No_22.requestFocus();}
-                else if (a23.isEmpty()){No_23.setError("Field Empty!");No_23.requestFocus();}
-                else if (a24.isEmpty()){No_24.setError("Field Empty!");No_24.requestFocus();}
-                else if (a25.isEmpty()){No_25.setError("Field Empty!");No_25.requestFocus();}
-                else if (a26.isEmpty()){No_26.setError("Field Empty!");No_26.requestFocus();}
-                else if (a27.isEmpty()){No_27.setError("Field Empty!");No_27.requestFocus();}
-                else if (a28.isEmpty()){No_28.setError("Field Empty!");No_28.requestFocus();}
-                else if (a29.isEmpty()){No_29.setError("Field Empty!");No_29.requestFocus();}
-                else if (a30.isEmpty()){No_30.setError("Field Empty!");No_30.requestFocus();}
-                else if (a31.isEmpty()){No_31.setError("Field Empty!");No_31.requestFocus();}
-                else if (a32.isEmpty()){No_32.setError("Field Empty!");No_32.requestFocus();}
-                else if (a33.isEmpty()){No_33.setError("Field Empty!");No_33.requestFocus();}
-                else if (a34.isEmpty()){No_34.setError("Field Empty!");No_34.requestFocus();}
-                else if (a35.isEmpty()){No_35.setError("Field Empty!");No_35.requestFocus();}
-                else if (a36.isEmpty()){No_36.setError("Field Empty!");No_36.requestFocus();}
-                else {
-                    calVoltage();
-                    savedPrefs();
-                }
+            if (a1.isEmpty()){No_1.setError("Field Empty!");No_1.requestFocus();}
+            else if (a2.isEmpty()){No_2.setError("Field Empty!");No_2.requestFocus();}
+            else if (a3.isEmpty()){No_3.setError("Field Empty!");No_3.requestFocus();}
+            else if (a4.isEmpty()){No_4.setError("Field Empty!");No_4.requestFocus();}
+            else if (a5.isEmpty()){No_5.setError("Field Empty!");No_5.requestFocus();}
+            else if (a6.isEmpty()){No_6.setError("Field Empty!");No_6.requestFocus();}
+            else if (a7.isEmpty()){No_7.setError("Field Empty!");No_7.requestFocus();}
+            else if (a8.isEmpty()){No_8.setError("Field Empty!");No_8.requestFocus();}
+            else if (a9.isEmpty()){No_9.setError("Field Empty!");No_9.requestFocus();}
+            else if (a10.isEmpty()){No_10.setError("Field Empty!");No_10.requestFocus();}
+            else if (a11.isEmpty()){No_11.setError("Field Empty!");No_11.requestFocus();}
+            else if (a12.isEmpty()){No_12.setError("Field Empty!");No_12.requestFocus();}
+            else if (a13.isEmpty()){No_13.setError("Field Empty!");No_13.requestFocus();}
+            else if (a14.isEmpty()){No_14.setError("Field Empty!");No_14.requestFocus();}
+            else if (a15.isEmpty()){No_15.setError("Field Empty!");No_15.requestFocus();}
+            else if (a16.isEmpty()){No_16.setError("Field Empty!");No_16.requestFocus();}
+            else if (a17.isEmpty()){No_17.setError("Field Empty!");No_17.requestFocus();}
+            else if (a18.isEmpty()){No_18.setError("Field Empty!");No_18.requestFocus();}
+            else if (a19.isEmpty()){No_19.setError("Field Empty!");No_19.requestFocus();}
+            else if (a20.isEmpty()){No_20.setError("Field Empty!");No_20.requestFocus();}
+            else if (a21.isEmpty()){No_21.setError("Field Empty!");No_21.requestFocus();}
+            else if (a22.isEmpty()){No_22.setError("Field Empty!");No_22.requestFocus();}
+            else if (a23.isEmpty()){No_23.setError("Field Empty!");No_23.requestFocus();}
+            else if (a24.isEmpty()){No_24.setError("Field Empty!");No_24.requestFocus();}
+            else if (a25.isEmpty()){No_25.setError("Field Empty!");No_25.requestFocus();}
+            else if (a26.isEmpty()){No_26.setError("Field Empty!");No_26.requestFocus();}
+            else if (a27.isEmpty()){No_27.setError("Field Empty!");No_27.requestFocus();}
+            else if (a28.isEmpty()){No_28.setError("Field Empty!");No_28.requestFocus();}
+            else if (a29.isEmpty()){No_29.setError("Field Empty!");No_29.requestFocus();}
+            else if (a30.isEmpty()){No_30.setError("Field Empty!");No_30.requestFocus();}
+            else if (a31.isEmpty()){No_31.setError("Field Empty!");No_31.requestFocus();}
+            else if (a32.isEmpty()){No_32.setError("Field Empty!");No_32.requestFocus();}
+            else if (a33.isEmpty()){No_33.setError("Field Empty!");No_33.requestFocus();}
+            else if (a34.isEmpty()){No_34.setError("Field Empty!");No_34.requestFocus();}
+            else if (a35.isEmpty()){No_35.setError("Field Empty!");No_35.requestFocus();}
+            else if (a36.isEmpty()){No_36.setError("Field Empty!");No_36.requestFocus();}
+            else {
+                calVoltage();
+                savedPrefs();
             }
         });
 
-        btnSignSPV = findViewById(R.id.buttonSignatureSPVBatt);
+        btnSignSPV = findViewById(R.id.buttonSignatureSPVBattBLE);
         btnSignSPV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,7 +249,7 @@ public class PmBattery12V extends AppCompatActivity {
             }
         });
 
-        btnSignOps = findViewById(R.id.buttonSignatureOPSBatt);
+        btnSignOps = findViewById(R.id.buttonSignatureOPSBattBLE);
         btnSignOps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -261,7 +258,7 @@ public class PmBattery12V extends AppCompatActivity {
             }
         });
 
-        btnCreatedPDF = findViewById(R.id.buttonCreatepdf);
+        btnCreatedPDF = findViewById(R.id.buttonCreatepdfBLE);
         btnCreatedPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

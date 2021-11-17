@@ -2101,7 +2101,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/ket"
+                        android:id="@+id/ket_BLE"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -2123,7 +2123,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/ket2"
+                        android:id="@+id/ket2_BLE"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -2333,7 +2333,7 @@
                         android:textSize="20dp" />
 
                     <LinearLayout
-                        android:id="@+id/buttonSignatureSPVBatt"
+                        android:id="@+id/buttonSignatureSPVBattBLE"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
@@ -2357,7 +2357,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/buttonSignatureOPSBatt"
+                        android:id="@+id/buttonSignatureOPSBattBLE"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -2381,7 +2381,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/buttonCreatepdf"
+                        android:id="@+id/buttonCreatepdfBLE"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

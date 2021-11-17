@@ -853,7 +853,7 @@
 
 
                     <EditText
-                        android:id="@+id/ket"
+                        android:id="@+id/ket_BLE"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -876,7 +876,7 @@
 
 
                     <EditText
-                        android:id="@+id/ket2"
+                        android:id="@+id/ket2_BLE"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -1358,7 +1358,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/buttonCreatepdf"
+                        android:id="@+id/buttonCreatepdfBLE"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

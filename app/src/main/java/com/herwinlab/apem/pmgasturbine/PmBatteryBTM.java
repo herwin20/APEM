@@ -34,7 +34,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.herwinlab.apem.R;
@@ -47,7 +46,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -165,8 +163,8 @@ public class PmBatteryBTM extends AppCompatActivity {
         No_101 = findViewById(R.id.no_101); No_102 = findViewById(R.id.no_102); No_103 = findViewById(R.id.no_103); No_104 = findViewById(R.id.no_104); No_105 = findViewById(R.id.no_105);
         No_106 = findViewById(R.id.no_106); No_107 = findViewById(R.id.no_107); No_108 = findViewById(R.id.no_108);
         //Aux Initiated
-        Catatan1 = findViewById(R.id.ket);
-        Catatan2 = findViewById(R.id.ket2);
+        Catatan1 = findViewById(R.id.ket_BLE);
+        Catatan2 = findViewById(R.id.ket2_BLE);
         orangPm1 = findViewById(R.id.nama_pm1);
         orangPm2 = findViewById(R.id.nama_pm2);
         orangPm3 = findViewById(R.id.nama_pm3);
@@ -376,7 +374,7 @@ public class PmBatteryBTM extends AppCompatActivity {
             }
         });
 
-        btnSignSPV = findViewById(R.id.buttonSignatureSPVBatt);
+        btnSignSPV = findViewById(R.id.buttonSignatureSPVBattBLE);
         btnSignSPV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -385,7 +383,7 @@ public class PmBatteryBTM extends AppCompatActivity {
             }
         });
 
-        btnSignOps = findViewById(R.id.buttonSignatureOPSBatt);
+        btnSignOps = findViewById(R.id.buttonSignatureOPSBattBLE);
         btnSignOps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -394,7 +392,7 @@ public class PmBatteryBTM extends AppCompatActivity {
             }
         });
 
-        btnCreatedPDF = findViewById(R.id.buttonCreatepdf);
+        btnCreatedPDF = findViewById(R.id.buttonCreatepdfBLE);
         btnCreatedPDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,29 +1,55 @@
 package com.herwinlab.apem.pmgasturbine.batterybluetooth;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
+import android.media.MediaScannerConnection;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
 import com.herwinlab.apem.R;
+import com.herwinlab.apem.pmgasturbine.PmBattery12V;
+import com.herwinlab.apem.pmgasturbine.PmBatteryBTM;
+import com.kyanogen.signatureview.SignatureView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import me.aflak.bluetooth.Bluetooth;
 
@@ -34,6 +60,30 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     TextView ReadVoltage, ConditionBattery;
     boolean registered=false;
     CardView cardCondition;
+
+    //Digital Signature
+    SignatureView signatureView;
+    String path;
+    private static final String IMAGE_DIRECTORY = "/Signature";
+
+    //Custom Dialog
+    AlertDialog.Builder dialogCustom, dialogCustomTTD, dialogCustomPDF;
+    LayoutInflater inflater, inflaterTTD, inflaterPDF;
+    View dialogView, dialogViewTTD, view, viewTTD, dialogViewPDF;
+
+    //Button
+    public Button mClear, mGetSign, mCancel;
+
+    //Bitmap
+    Bitmap bitmapTTD;
+
+    // Creating Separate Directory for Signature and Image
+    String DIRECTORY = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Signature/";
+
+    //PDF
+    Date dateTime;
+    Bitmap bitmap, scaleBitmap, PJBscale, IPJBway, accuImg, turbineImg;
+    DateFormat dateFormat;
 
     //Handler
     private final Handler handler = new Handler();
@@ -50,7 +100,11 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     public TextView Batt81, Batt82, Batt83, Batt84, Batt85, Batt86, Batt87, Batt88, Batt89, Batt90;
     public TextView Batt91, Batt92, Batt93, Batt94, Batt95, Batt96, Batt97, Batt98, Batt99, Batt100;
     public TextView Batt101, Batt102, Batt103, Batt104, Batt105, Batt106, Batt107, Batt108;
-    public TextView TanggalNow;
+    public TextView TanggalNow, TotalVoltage;
+    public float tegangan_total;
+    public EditText namaGT, orangPm1, orangPm2, orangPm3, operator, Catatan1, Catatan2;
+
+    public LinearLayout buttonSPVttd, buttonOPSttd, buttonCreatedPDF;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,6 +121,8 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         ConditionBattery = findViewById(R.id.condition_batt);
         cardCondition = findViewById(R.id.condCard);
 
+        TotalVoltage = findViewById(R.id.totalvoltageble2);
+
         btActivity = new Bluetooth(this);
         btActivity.enableBluetooth();
 
@@ -75,6 +131,46 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         name = btActivity.getPairedDevices().get(pos).getName();
 
         btActivity.connectToDevice(btActivity.getPairedDevices().get(pos));
+
+        //Nama
+        namaGT = findViewById(R.id.namaGTble2);
+        orangPm1 = findViewById(R.id.nama_pm1);
+        orangPm2 = findViewById(R.id.nama_pm2);
+        orangPm3 = findViewById(R.id.nama_pm3);
+        operator = findViewById(R.id.nama_operator);
+        Catatan1 = findViewById(R.id.ket_BLE);
+        Catatan2 = findViewById(R.id.ket2_BLE);
+
+        //Logo PJB
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_pjb);
+        PJBscale = Bitmap.createScaledBitmap(bitmap,200, 100, false);
+        //Logo IPJB
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_ipjb);
+        IPJBway = Bitmap.createScaledBitmap(bitmap,260, 100, false);
+        //Logo Turbine
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.turbine);
+        turbineImg = Bitmap.createScaledBitmap(bitmap, 514, 500, false);
+        //Logo Accu
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.accu);
+        accuImg = Bitmap.createScaledBitmap(bitmap, 200, 180, false);
+
+        buttonSPVttd = findViewById(R.id.buttonSignatureSPVBattBLE);
+        buttonSPVttd.setOnClickListener(v -> {
+            digitalSignatureSPV();
+
+        });
+
+        buttonOPSttd = findViewById(R.id.buttonSignatureOPSBattBLE);
+        buttonOPSttd.setOnClickListener(v -> {
+            digitalSignatureOPS();
+
+        });
+
+        buttonCreatedPDF = findViewById(R.id.buttonCreatepdfBLE);
+        buttonCreatedPDF.setOnClickListener(v -> {
+            createdPDF();
+
+        });
 
         // Main Program
         Measure_Battery1();
@@ -88,6 +184,9 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Measure_Battery9();
         Measure_Battery10();
         Measure_Battery11();
+
+        //Click CardView and Clear All
+        //Total_Clear();
 
     }
 
@@ -105,7 +204,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ReadVoltage.setText(data+" V");
+                ReadVoltage.setText(data);
 
                 float Voltage = Float.parseFloat(data);
                 if (Voltage == 0) {
@@ -909,18 +1008,702 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         });
     }
 
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
+    private void Total_Clear() {
+        float a1 = Float.parseFloat(Batt1.getText().toString());
+        float a2 = Float.parseFloat(Batt2.getText().toString());
+        float a3 = Float.parseFloat(Batt3.getText().toString());
+        float a4 = Float.parseFloat(Batt4.getText().toString());
+        float a5 = Float.parseFloat(Batt5.getText().toString());
+        float a6 = Float.parseFloat(Batt6.getText().toString());
+        float a7 = Float.parseFloat(Batt7.getText().toString());
+        float a8 = Float.parseFloat(Batt8.getText().toString());
+        float a9 = Float.parseFloat(Batt9.getText().toString());
+        float a10 = Float.parseFloat(Batt10.getText().toString());
+
+        float a11 = Float.parseFloat(Batt11.getText().toString());
+        float a12 = Float.parseFloat(Batt12.getText().toString());
+        float a13 = Float.parseFloat(Batt13.getText().toString());
+        float a14 = Float.parseFloat(Batt14.getText().toString());
+        float a15 = Float.parseFloat(Batt15.getText().toString());
+        float a16 = Float.parseFloat(Batt16.getText().toString());
+        float a17 = Float.parseFloat(Batt17.getText().toString());
+        float a18 = Float.parseFloat(Batt18.getText().toString());
+        float a19 = Float.parseFloat(Batt19.getText().toString());
+        float a20 = Float.parseFloat(Batt20.getText().toString());
+
+        float a21 = Float.parseFloat(Batt21.getText().toString());
+        float a22 = Float.parseFloat(Batt22.getText().toString());
+        float a23 = Float.parseFloat(Batt23.getText().toString());
+        float a24 = Float.parseFloat(Batt24.getText().toString());
+        float a25 = Float.parseFloat(Batt25.getText().toString());
+        float a26 = Float.parseFloat(Batt26.getText().toString());
+        float a27 = Float.parseFloat(Batt27.getText().toString());
+        float a28 = Float.parseFloat(Batt28.getText().toString());
+        float a29 = Float.parseFloat(Batt29.getText().toString());
+        float a30 = Float.parseFloat(Batt30.getText().toString());
+
+        float a31 = Float.parseFloat(Batt31.getText().toString());
+        float a32 = Float.parseFloat(Batt32.getText().toString());
+        float a33 = Float.parseFloat(Batt33.getText().toString());
+        float a34 = Float.parseFloat(Batt34.getText().toString());
+        float a35 = Float.parseFloat(Batt35.getText().toString());
+        float a36 = Float.parseFloat(Batt36.getText().toString());
+        float a37 = Float.parseFloat(Batt37.getText().toString());
+        float a38 = Float.parseFloat(Batt38.getText().toString());
+        float a39 = Float.parseFloat(Batt39.getText().toString());
+        float a40 = Float.parseFloat(Batt40.getText().toString());
+
+        float a41 = Float.parseFloat(Batt41.getText().toString());
+        float a42 = Float.parseFloat(Batt42.getText().toString());
+        float a43 = Float.parseFloat(Batt43.getText().toString());
+        float a44 = Float.parseFloat(Batt44.getText().toString());
+        float a45 = Float.parseFloat(Batt45.getText().toString());
+        float a46 = Float.parseFloat(Batt46.getText().toString());
+        float a47 = Float.parseFloat(Batt47.getText().toString());
+        float a48 = Float.parseFloat(Batt48.getText().toString());
+        float a49 = Float.parseFloat(Batt49.getText().toString());
+        float a50 = Float.parseFloat(Batt50.getText().toString());
+
+        float a51 = Float.parseFloat(Batt51.getText().toString());
+        float a52 = Float.parseFloat(Batt52.getText().toString());
+        float a53 = Float.parseFloat(Batt53.getText().toString());
+        float a54 = Float.parseFloat(Batt54.getText().toString());
+        float a55 = Float.parseFloat(Batt55.getText().toString());
+        float a56 = Float.parseFloat(Batt56.getText().toString());
+        float a57 = Float.parseFloat(Batt57.getText().toString());
+        float a58 = Float.parseFloat(Batt58.getText().toString());
+        float a59 = Float.parseFloat(Batt59.getText().toString());
+        float a60 = Float.parseFloat(Batt60.getText().toString());
+
+        float a61 = Float.parseFloat(Batt61.getText().toString());
+        float a62 = Float.parseFloat(Batt62.getText().toString());
+        float a63 = Float.parseFloat(Batt63.getText().toString());
+        float a64 = Float.parseFloat(Batt64.getText().toString());
+        float a65 = Float.parseFloat(Batt65.getText().toString());
+        float a66 = Float.parseFloat(Batt66.getText().toString());
+        float a67 = Float.parseFloat(Batt67.getText().toString());
+        float a68 = Float.parseFloat(Batt68.getText().toString());
+        float a69 = Float.parseFloat(Batt69.getText().toString());
+        float a70 = Float.parseFloat(Batt70.getText().toString());
+
+        float a71 = Float.parseFloat(Batt71.getText().toString());
+        float a72 = Float.parseFloat(Batt72.getText().toString());
+        float a73 = Float.parseFloat(Batt73.getText().toString());
+        float a74 = Float.parseFloat(Batt74.getText().toString());
+        float a75 = Float.parseFloat(Batt75.getText().toString());
+        float a76 = Float.parseFloat(Batt76.getText().toString());
+        float a77 = Float.parseFloat(Batt77.getText().toString());
+        float a78 = Float.parseFloat(Batt78.getText().toString());
+        float a79 = Float.parseFloat(Batt79.getText().toString());
+        float a80 = Float.parseFloat(Batt80.getText().toString());
+
+        float a81 = Float.parseFloat(Batt81.getText().toString());
+        float a82 = Float.parseFloat(Batt82.getText().toString());
+        float a83 = Float.parseFloat(Batt83.getText().toString());
+        float a84 = Float.parseFloat(Batt84.getText().toString());
+        float a85 = Float.parseFloat(Batt85.getText().toString());
+        float a86 = Float.parseFloat(Batt86.getText().toString());
+        float a87 = Float.parseFloat(Batt87.getText().toString());
+        float a88 = Float.parseFloat(Batt88.getText().toString());
+        float a89 = Float.parseFloat(Batt89.getText().toString());
+        float a90 = Float.parseFloat(Batt90.getText().toString());
+
+        float a91 = Float.parseFloat(Batt91.getText().toString());
+        float a92 = Float.parseFloat(Batt92.getText().toString());
+        float a93 = Float.parseFloat(Batt93.getText().toString());
+        float a94 = Float.parseFloat(Batt94.getText().toString());
+        float a95 = Float.parseFloat(Batt95.getText().toString());
+        float a96 = Float.parseFloat(Batt96.getText().toString());
+        float a97 = Float.parseFloat(Batt97.getText().toString());
+        float a98 = Float.parseFloat(Batt98.getText().toString());
+        float a99 = Float.parseFloat(Batt99.getText().toString());
+        float a100 = Float.parseFloat(Batt100.getText().toString());
+
+        float a101 = Float.parseFloat(Batt101.getText().toString());
+        float a102 = Float.parseFloat(Batt102.getText().toString());
+        float a103 = Float.parseFloat(Batt103.getText().toString());
+        float a104 = Float.parseFloat(Batt104.getText().toString());
+        float a105 = Float.parseFloat(Batt105.getText().toString());
+        float a106 = Float.parseFloat(Batt106.getText().toString());
+        float a107 = Float.parseFloat(Batt107.getText().toString());
+        float a108 = Float.parseFloat(Batt108.getText().toString());
+
+        tegangan_total = a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8 + a9 + a10 +
+                a11 + a12 + a13 + a14 + a15 + a16 + a17 + a18 + a19 + a20 +
+                a21 + a22 + a23 + a24 + a25 + a26 + a27 + a28 + a29 + a30 +
+                a31 + a32 + a33 + a34 + a35 + a36 + a37 + a38 + a39 + a40 +
+                a41 + a42 + a43 + a44 + a45 + a46 + a47 + a48 + a49 + a50 +
+                a51 + a52 + a53 + a54 + a55 + a56 + a57 + a58 + a59 + a60 +
+                a61 + a62 + a63 + a64 + a65 + a66 + a67 + a68 + a69 + a70 +
+                a71 + a72 + a73 + a74 + a75 + a76 + a77 + a78 + a79 + a80 +
+                a81 + a82 + a83 + a84 + a85 + a86 + a87 + a88 + a89 + a90 +
+                a91 + a92 + a93 + a94 + a95 + a96 + a97 + a98 + a99 + a100 +
+                a101 + a102 + a103 + a104 + a105 + a106 + a107 + a108;
+
+
+        CardView ClearAll =  findViewById(R.id.clearAll);
+        ClearAll.setOnClickListener(v -> {
+            Batt1.setText("0.00");
+            Batt2.setText("0.00");
+            Batt3.setText("0.00");
+            Batt4.setText("0.00");
+            Batt5.setText("0.00");
+            Batt6.setText("0.00");
+            Batt7.setText("0.00");
+            Batt8.setText("0.00");
+            Batt9.setText("0.00");
+            Batt10.setText("0.00");
+
+            Batt11.setText("0.00");
+            Batt12.setText("0.00");
+            Batt13.setText("0.00");
+            Batt14.setText("0.00");
+            Batt15.setText("0.00");
+            Batt16.setText("0.00");
+            Batt17.setText("0.00");
+            Batt18.setText("0.00");
+            Batt19.setText("0.00");
+            Batt20.setText("0.00");
+
+            Batt21.setText("0.00");
+            Batt22.setText("0.00");
+            Batt23.setText("0.00");
+            Batt24.setText("0.00");
+            Batt25.setText("0.00");
+            Batt26.setText("0.00");
+            Batt27.setText("0.00");
+            Batt28.setText("0.00");
+            Batt29.setText("0.00");
+            Batt30.setText("0.00");
+
+            Batt31.setText("0.00");
+            Batt32.setText("0.00");
+            Batt33.setText("0.00");
+            Batt34.setText("0.00");
+            Batt35.setText("0.00");
+            Batt36.setText("0.00");
+            Batt37.setText("0.00");
+            Batt38.setText("0.00");
+            Batt39.setText("0.00");
+            Batt40.setText("0.00");
+
+            Batt41.setText("0.00");
+            Batt42.setText("0.00");
+            Batt43.setText("0.00");
+            Batt44.setText("0.00");
+            Batt45.setText("0.00");
+            Batt46.setText("0.00");
+            Batt47.setText("0.00");
+            Batt48.setText("0.00");
+            Batt49.setText("0.00");
+            Batt50.setText("0.00");
+
+            Batt51.setText("0.00");
+            Batt52.setText("0.00");
+            Batt53.setText("0.00");
+            Batt54.setText("0.00");
+            Batt55.setText("0.00");
+            Batt56.setText("0.00");
+            Batt57.setText("0.00");
+            Batt58.setText("0.00");
+            Batt59.setText("0.00");
+            Batt60.setText("0.00");
+
+            Batt61.setText("0.00");
+            Batt62.setText("0.00");
+            Batt63.setText("0.00");
+            Batt64.setText("0.00");
+            Batt65.setText("0.00");
+            Batt66.setText("0.00");
+            Batt67.setText("0.00");
+            Batt68.setText("0.00");
+            Batt69.setText("0.00");
+            Batt70.setText("0.00");
+
+            Batt71.setText("0.00");
+            Batt72.setText("0.00");
+            Batt73.setText("0.00");
+            Batt74.setText("0.00");
+            Batt75.setText("0.00");
+            Batt76.setText("0.00");
+            Batt77.setText("0.00");
+            Batt78.setText("0.00");
+            Batt79.setText("0.00");
+            Batt80.setText("0.00");
+
+            Batt81.setText("0.00");
+            Batt82.setText("0.00");
+            Batt83.setText("0.00");
+            Batt84.setText("0.00");
+            Batt85.setText("0.00");
+            Batt86.setText("0.00");
+            Batt87.setText("0.00");
+            Batt88.setText("0.00");
+            Batt89.setText("0.00");
+            Batt90.setText("0.00");
+
+            Batt91.setText("0.00");
+            Batt92.setText("0.00");
+            Batt93.setText("0.00");
+            Batt94.setText("0.00");
+            Batt95.setText("0.00");
+            Batt96.setText("0.00");
+            Batt97.setText("0.00");
+            Batt98.setText("0.00");
+            Batt99.setText("0.00");
+            Batt100.setText("0.00");
+
+            Batt101.setText("0.00");
+            Batt102.setText("0.00");
+            Batt103.setText("0.00");
+            Batt104.setText("0.00");
+            Batt105.setText("0.00");
+            Batt106.setText("0.00");
+            Batt107.setText("0.00");
+            Batt108.setText("0.00");
+
+        });
+
+    }
+
+    public void digitalSignatureSPV() {
+        dialogCustomTTD = new AlertDialog.Builder(BluetoothBattery.this);
+        inflaterTTD = getLayoutInflater();
+        dialogViewTTD = inflaterTTD.inflate(R.layout.signature_activity, null);
+        dialogCustomTTD.setView(dialogViewTTD);
+        dialogCustomTTD.setCancelable(true);
+
+        mClear = dialogViewTTD.findViewById(R.id.clear);
+        mGetSign = dialogViewTTD.findViewById(R.id.getsign);
+        //mGetSign.setEnabled(false);
+        mCancel = dialogViewTTD.findViewById(R.id.cancel);
+        signatureView = dialogViewTTD.findViewById(R.id.panelSignature);
+
+        mClear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Cleared");
+                signatureView.clearCanvas();
+            }
+        });
+
+        mGetSign.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Saved");
+                bitmapTTD = signatureView.getSignatureBitmap();
+                path = saveImageSPV(bitmapTTD);
+                //Toast.makeText(PmGenerator.this, "Test", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Canceled");
+
+            }
+        });
+        dialogCustomTTD.show();
+    }
+
+    public String saveImageSPV(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File wallpaperDirectory = new File(
+                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+        // have the object build the directory structure, if needed.
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs();
+            Log.d("Success", wallpaperDirectory.toString());
+        }
+
+        try {
+            File f = new File(wallpaperDirectory, "ttdSPVPMbatteryBLE.jpg"); //Calendar.getInstance().getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(BluetoothBattery.this,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+            Toast.makeText(this, "Saved Berhasil", Toast.LENGTH_SHORT).show();
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+    }
+
+    public void digitalSignatureOPS() {
+        dialogCustomTTD = new AlertDialog.Builder(BluetoothBattery.this);
+        inflaterTTD = getLayoutInflater();
+        dialogViewTTD = inflaterTTD.inflate(R.layout.signature_activity, null);
+        dialogCustomTTD.setView(dialogViewTTD);
+        dialogCustomTTD.setCancelable(true);
+
+        mClear = dialogViewTTD.findViewById(R.id.clear);
+        mGetSign = dialogViewTTD.findViewById(R.id.getsign);
+        //mGetSign.setEnabled(false);
+        mCancel = dialogViewTTD.findViewById(R.id.cancel);
+        signatureView = dialogViewTTD.findViewById(R.id.panelSignature);
+
+        mClear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Cleared");
+                signatureView.clearCanvas();
+            }
+        });
+
+        mGetSign.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Saved");
+                bitmapTTD = signatureView.getSignatureBitmap();
+                path = saveImageOPS(bitmapTTD);
+                //Toast.makeText(PmGenerator.this, "Test", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.v("log_tag", "Panel Canceled");
+
+            }
+        });
+        dialogCustomTTD.show();
+    }
+
+    public String saveImageOPS(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File wallpaperDirectory = new File(
+                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
+        // have the object build the directory structure, if needed.
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs();
+            Log.d("hhhhh",wallpaperDirectory.toString());
+        }
+
+        try {
+            File f = new File(wallpaperDirectory,"ttdOperatorPMbattBLE.jpg"); //Calendar.getInstance().getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(BluetoothBattery.this,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+            Toast.makeText(this, "Saved Berhasil", Toast.LENGTH_SHORT).show();
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+
+    }
+
+    public void createdPDF() {
+
+        String judul = "Pemeliharaan Battery Gas Turbine";
+        //Image ttd tangan OPS
+        String ImageFileOPS = DIRECTORY+"ttdOperatorPMbattBLE.jpg";
+        Bitmap bitmapImageOPS = BitmapFactory.decodeFile(ImageFileOPS);
+        //Image ttd tangan SPV
+        String ImageFileSPV = DIRECTORY+"ttdSPVPMbatteryBLE.jpg";
+        Bitmap bitmapImageSPV = BitmapFactory.decodeFile(ImageFileSPV);
+
+        /*
+        //Photo Before, Process, After
+        String ImageBefore  = DIRECTORY_PHOTO+"PmGenerator_"+namaGT.getText().toString()+"_Before.jpeg";
+        Bitmap bitmapImageBfr = BitmapFactory.decodeFile(ImageBefore);
+        String ImageProcess = DIRECTORY_PHOTO+"PmGenerator_"+namaGT.getText().toString()+"_Process.jpeg";
+        Bitmap bitmapImagePro = BitmapFactory.decodeFile(ImageProcess);
+        String ImageAfter   = DIRECTORY_PHOTO+"PmGenerator_"+namaGT.getText().toString()+"_After.jpeg";
+        Bitmap bitmapImageAft = BitmapFactory.decodeFile(ImageAfter); */
+
+        dateTime = new Date();
+        PdfDocument pdfDocument = new PdfDocument();
+        Paint paint = new Paint();
+        Paint titlePaint = new Paint(); // Untuk Judul Header
+
+        PdfDocument.PageInfo pageInfo
+                = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+        PdfDocument.Page page = pdfDocument.startPage(pageInfo);
+
+        Canvas canvas = page.getCanvas();
+        //canvas.drawBitmap(scaleBitmap, 0, 0, paint);
+        canvas.drawBitmap(PJBscale,50,75, paint); // Logo PJB
+        //canvas.drawBitmap(IPJBway,905,75, paint); // Logo IPJB
+        canvas.drawBitmap(turbineImg,655, 1300, paint );
+        canvas.drawBitmap(accuImg, 480, 1240, paint);
+
+        //TTD Digital
+        canvas.drawBitmap(Bitmap.createScaledBitmap(bitmapImageOPS,250,200,false),400,1980-180,paint );
+        canvas.drawBitmap(Bitmap.createScaledBitmap(bitmapImageSPV,250,200,false),800,1980-180, paint);
+
+        // Garis tepi
+        canvas.drawLine(30, 30, 1170, 30, paint); // Garis Atas
+        canvas.drawLine(30, 30, 30, 1980, paint); // Garis Kiri
+        canvas.drawLine(1170, 30, 1170, 1980, paint); // Garis Kanan
+        canvas.drawLine(30, 1980, 1170, 1980, paint); // Garis Bawah
+
+        //Garis Header
+        canvas.drawLine(30, 220, 1170, 220, paint);
+        canvas.drawLine(30, 230, 1170, 230, paint);
+        canvas.drawLine(265, 30, 265, 220, paint); // Kiri
+        canvas.drawLine(905, 30, 905, 220, paint); // Kanan
+        //Bawah tanggal
+        canvas.drawLine(30, 310, 1170, 310, paint);
+        //diatas Catatan
+        canvas.drawLine(30, 1545, 900, 1545, paint);
+
+
+        // Garis NO Document
+        canvas.drawLine(905, 90, 1170, 90, paint);
+        canvas.drawLine(905, 160, 1170, 160, paint);
+        canvas.drawLine(905, 230, 1170, 230, paint);
+
+        // Judul Header
+        titlePaint.setTextAlign(Paint.Align.CENTER);
+        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        titlePaint.setColor(Color.BLACK);
+        titlePaint.setTextSize(25f);
+        canvas.drawText("PT PEMBANGKITAN JAWA BALI UP MUARA TAWAR", 1170 / 2, 70, titlePaint);
+        titlePaint.setTextSize(20f);
+        canvas.drawText("PJB INTEGRATED MANAGEMENT SYSTEM", 1170 / 2, 110, titlePaint);
+        titlePaint.setTextSize(25f);
+        canvas.drawText("CEK LIST PREVENTIVE PEMELIHARAAN RUTIN ", 1170 / 2, 155, titlePaint);
+        canvas.drawText("BATTERY BANK 220VDC GT", 1170 / 2, 195, titlePaint);
+
+        titlePaint.setTextSize(18f);
+        titlePaint.setTextAlign(Paint.Align.LEFT);
+        canvas.drawText("Nomor Dokumen : FMT-17.2.1", 912,65, titlePaint);
+        canvas.drawText("Revisi : 00", 912,135, titlePaint);
+        canvas.drawText("Tanggal Terbit : 20-08-2013", 912,195, titlePaint);
+
+        // Nama Preventive GT dan Tanggal
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30f);
+        canvas.drawText(judul, 40, 270, paint ); // Judul PM
+//        canvas.drawText(NoWO.getText().toString(),40,310, paint); // No WO
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setColor(Color.BLACK);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        paint.setTextSize(30);
+        canvas.drawText(namaGT.getText().toString(), 1170/2, 270, paint); // Nama GT
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(30);
+        dateFormat = new SimpleDateFormat("dd/MM/yy");
+        canvas.drawText(dateFormat.format(dateTime), 1170 - 145, 270, paint);
+        dateFormat = new SimpleDateFormat("HH:mm:ss");
+        canvas.drawText(dateFormat.format(dateTime), 1170 - 145, 300, paint);
+
+        //Garis Footer
+        canvas.drawLine(30, 1800, 1170, 1800, paint);
+        canvas.drawLine(390, 1800, 390, 1980, paint);
+        canvas.drawLine(780, 1800, 780, 1980, paint);
+
+        // Tanda Tangan dan Nama Pelaksana
+        paint.setTextSize(25);
+        canvas.drawText("Nama Pelaksana :", 50, 1980-150, paint);
+        canvas.drawText("1. "+orangPm1.getText().toString(), 70, 1980-110, paint);
+        canvas.drawText("2. "+orangPm2.getText().toString(), 70, 1980-70, paint);
+        canvas.drawText("3. "+orangPm3.getText().toString(), 70, 1980-30, paint);
+
+        canvas.drawText("Regu Operasi", 420, 1980-150, paint );
+        canvas.drawText(operator.getText().toString(), 420, 1980-30, paint);
+
+        canvas.drawText("SPV Listrik 1-2", 800, 1980-150, paint );
+        canvas.drawText("Dammora W", 800, 1980-30, paint);
+
+        // Content
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(35f);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        canvas.drawText("- Voltage Battery", 50, 350, paint);
+        canvas.drawText("- Catatan - catatan", 50, 1580, paint);
+        canvas.drawText("Voltage Total :", 720, 1280, paint);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        canvas.drawText("1. "+Catatan1.getText().toString(),100, 1630, paint);
+        canvas.drawText("2. "+Catatan2.getText().toString(), 100, 1730, paint);
+
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(35f);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        canvas.drawText("1. ", 80, 400, paint); canvas.drawText("21. ", 280, 400, paint);
+        canvas.drawText("2. ", 80, 440, paint); canvas.drawText("22. ", 280, 440, paint);
+        canvas.drawText("3. ", 80, 480, paint); canvas.drawText("23. ", 280, 480, paint);
+        canvas.drawText("4. ", 80, 520, paint); canvas.drawText("24. ", 280, 520, paint);
+        canvas.drawText("5. ", 80, 560, paint); canvas.drawText("25. ", 280, 560, paint);
+        canvas.drawText("6. ", 80, 600, paint); canvas.drawText("26. ", 280, 600, paint);
+        canvas.drawText("7. ", 80, 640, paint); canvas.drawText("27. ", 280, 640, paint);
+        canvas.drawText("8. ", 80, 680, paint); canvas.drawText("28. ", 280, 680, paint);
+        canvas.drawText("9. ", 80, 720, paint); canvas.drawText("29. ", 280, 720, paint);
+        canvas.drawText("10. ", 80, 760, paint); canvas.drawText("30. ", 280, 760, paint);
+        canvas.drawText("11. ", 80, 800, paint); canvas.drawText("31. ", 280, 800, paint);
+        canvas.drawText("12. ", 80, 840, paint); canvas.drawText("32. ", 280, 840, paint);
+        canvas.drawText("13. ", 80, 880, paint); canvas.drawText("33. ", 280, 880, paint);
+        canvas.drawText("14. ", 80, 920, paint); canvas.drawText("34. ", 280, 920, paint);
+        canvas.drawText("15. ", 80, 960, paint); canvas.drawText("35. ", 280, 960, paint);
+        canvas.drawText("16. ", 80, 1000, paint); canvas.drawText("36. ", 280, 1000, paint);
+        canvas.drawText("17. ", 80, 1040, paint); canvas.drawText("37. ", 280, 1040, paint);
+        canvas.drawText("18. ", 80, 1080, paint); canvas.drawText("38. ", 280, 1080, paint);
+        canvas.drawText("19. ", 80, 1120, paint); canvas.drawText("39. ", 280, 1120, paint);
+        canvas.drawText("20. ", 80, 1160, paint); canvas.drawText("40. ", 280, 1160, paint);
+
+        canvas.drawText("41. ", 480, 400, paint); canvas.drawText("61. ", 680, 400, paint);
+        canvas.drawText("42. ", 480, 440, paint); canvas.drawText("62. ", 680, 440, paint);
+        canvas.drawText("43. ", 480, 480, paint); canvas.drawText("63. ", 680, 480, paint);
+        canvas.drawText("44. ", 480, 520, paint); canvas.drawText("64. ", 680, 520, paint);
+        canvas.drawText("45. ", 480, 560, paint); canvas.drawText("65. ", 680, 560, paint);
+        canvas.drawText("46. ", 480, 600, paint); canvas.drawText("66. ", 680, 600, paint);
+        canvas.drawText("47. ", 480, 640, paint); canvas.drawText("67. ", 680, 640, paint);
+        canvas.drawText("48. ", 480, 680, paint); canvas.drawText("68. ", 680, 680, paint);
+        canvas.drawText("49. ", 480, 720, paint); canvas.drawText("69. ", 680, 720, paint);
+        canvas.drawText("50. ", 480, 760, paint); canvas.drawText("70. ", 680, 760, paint);
+        canvas.drawText("51. ", 480, 800, paint); canvas.drawText("71. ", 680, 800, paint);
+        canvas.drawText("52. ", 480, 840, paint); canvas.drawText("72. ", 680, 840, paint);
+        canvas.drawText("53. ", 480, 880, paint); canvas.drawText("73. ", 680, 880, paint);
+        canvas.drawText("54. ", 480, 920, paint); canvas.drawText("74. ", 680, 920, paint);
+        canvas.drawText("55. ", 480, 960, paint); canvas.drawText("75. ", 680, 960, paint);
+        canvas.drawText("56. ", 480, 1000, paint); canvas.drawText("76. ", 680, 1000, paint);
+        canvas.drawText("57. ", 480, 1040, paint); canvas.drawText("77. ", 680, 1040, paint);
+        canvas.drawText("58. ", 480, 1080, paint); canvas.drawText("78. ", 680, 1080, paint);
+        canvas.drawText("59. ", 480, 1120, paint); canvas.drawText("79. ", 680, 1120, paint);
+        canvas.drawText("60. ", 480, 1160, paint); canvas.drawText("80. ", 680, 1160, paint);
+
+        canvas.drawText("81. ", 880, 400, paint); canvas.drawText("101. ", 80, 1240, paint);
+        canvas.drawText("82. ", 880, 440, paint); canvas.drawText("102. ", 80, 1280, paint);
+        canvas.drawText("83. ", 880, 480, paint); canvas.drawText("103. ", 80, 1320, paint);
+        canvas.drawText("84. ", 880, 520, paint); canvas.drawText("104. ", 80, 1360, paint);
+        canvas.drawText("85. ", 880, 560, paint); canvas.drawText("105. ", 80, 1400, paint);
+        canvas.drawText("86. ", 880, 600, paint); canvas.drawText("106. ", 80, 1440, paint);
+        canvas.drawText("87. ", 880, 640, paint); canvas.drawText("107. ", 80, 1480, paint);
+        canvas.drawText("88. ", 880, 680, paint); canvas.drawText("108. ", 80, 1520, paint);
+        canvas.drawText("89. ", 880, 720, paint);
+        canvas.drawText("90. ", 880, 760, paint);
+        canvas.drawText("91. ", 880, 800, paint);
+        canvas.drawText("92. ", 880, 840, paint);
+        canvas.drawText("93. ", 880, 880, paint);
+        canvas.drawText("94. ", 880, 920, paint);
+        canvas.drawText("95. ", 880, 960, paint);
+        canvas.drawText("96. ", 880, 1000, paint);
+        canvas.drawText("97. ", 880, 1040, paint);
+        canvas.drawText("98. ", 880, 1080, paint);
+        canvas.drawText("99. ", 880, 1120, paint);
+        canvas.drawText("100. ", 880, 1160, paint);
+
+        //Tegangan Battery
+        canvas.drawText(Batt1.getText().toString()+" V", 140, 400, paint); canvas.drawText(Batt21.getText().toString()+" V", 340, 400, paint);
+        canvas.drawText(Batt2.getText().toString()+" V", 140, 440, paint); canvas.drawText(Batt22.getText().toString()+" V", 340, 440, paint);
+        canvas.drawText(Batt3.getText().toString()+" V", 140, 480, paint); canvas.drawText(Batt23.getText().toString()+" V", 340, 480, paint);
+        canvas.drawText(Batt4.getText().toString()+" V", 140, 520, paint); canvas.drawText(Batt24.getText().toString()+" V", 340, 520, paint);
+        canvas.drawText(Batt5.getText().toString()+" V", 140, 560, paint); canvas.drawText(Batt25.getText().toString()+" V", 340, 560, paint);
+        canvas.drawText(Batt6.getText().toString()+" V", 140, 600, paint); canvas.drawText(Batt26.getText().toString()+" V", 340, 600, paint);
+        canvas.drawText(Batt7.getText().toString()+" V", 140, 640, paint); canvas.drawText(Batt27.getText().toString()+" V", 340, 640, paint);
+        canvas.drawText(Batt8.getText().toString()+" V", 140, 680, paint); canvas.drawText(Batt28.getText().toString()+" V", 340, 680, paint);
+        canvas.drawText(Batt9.getText().toString()+" V", 140, 720, paint); canvas.drawText(Batt29.getText().toString()+" V", 340, 720, paint);
+        canvas.drawText(Batt10.getText().toString()+" V", 140, 760, paint); canvas.drawText(Batt30.getText().toString()+" V", 340, 760, paint);
+        canvas.drawText(Batt11.getText().toString()+" V", 140, 800, paint); canvas.drawText(Batt31.getText().toString()+" V", 340, 800, paint);
+        canvas.drawText(Batt12.getText().toString()+" V", 140, 840, paint); canvas.drawText(Batt32.getText().toString()+" V", 340, 840, paint);
+        canvas.drawText(Batt13.getText().toString()+" V", 140, 880, paint); canvas.drawText(Batt33.getText().toString()+" V", 340, 880, paint);
+        canvas.drawText(Batt14.getText().toString()+" V", 140, 920, paint); canvas.drawText(Batt34.getText().toString()+" V", 340, 920, paint);
+        canvas.drawText(Batt15.getText().toString()+" V", 140, 960, paint); canvas.drawText(Batt35.getText().toString()+" V", 340, 960, paint);
+        canvas.drawText(Batt16.getText().toString()+" V", 140, 1000, paint); canvas.drawText(Batt36.getText().toString()+" V", 340, 1000, paint);
+        canvas.drawText(Batt17.getText().toString()+" V", 140, 1040, paint); canvas.drawText(Batt37.getText().toString()+" V", 340, 1040, paint);
+        canvas.drawText(Batt18.getText().toString()+" V", 140, 1080, paint); canvas.drawText(Batt38.getText().toString()+" V", 340, 1080, paint);
+        canvas.drawText(Batt19.getText().toString()+" V", 140, 1120, paint); canvas.drawText(Batt39.getText().toString()+" V", 340, 1120, paint);
+        canvas.drawText(Batt20.getText().toString()+" V", 140, 1160, paint); canvas.drawText(Batt40.getText().toString()+" V", 340, 1160, paint);
+
+        canvas.drawText(Batt41.getText().toString()+" V", 540, 400, paint); canvas.drawText(Batt61.getText().toString()+" V", 740, 400, paint);
+        canvas.drawText(Batt42.getText().toString()+" V", 540, 440, paint); canvas.drawText(Batt62.getText().toString()+" V", 740, 440, paint);
+        canvas.drawText(Batt43.getText().toString()+" V", 540, 480, paint); canvas.drawText(Batt63.getText().toString()+" V", 740, 480, paint);
+        canvas.drawText(Batt44.getText().toString()+" V", 540, 520, paint); canvas.drawText(Batt64.getText().toString()+" V", 740, 520, paint);
+        canvas.drawText(Batt45.getText().toString()+" V", 540, 560, paint); canvas.drawText(Batt65.getText().toString()+" V", 740, 560, paint);
+        canvas.drawText(Batt46.getText().toString()+" V", 540, 600, paint); canvas.drawText(Batt66.getText().toString()+" V", 740, 600, paint);
+        canvas.drawText(Batt47.getText().toString()+" V", 540, 640, paint); canvas.drawText(Batt67.getText().toString()+" V", 740, 640, paint);
+        canvas.drawText(Batt48.getText().toString()+" V", 540, 680, paint); canvas.drawText(Batt68.getText().toString()+" V", 740, 680, paint);
+        canvas.drawText(Batt49.getText().toString()+" V", 540, 720, paint); canvas.drawText(Batt69.getText().toString()+" V", 740, 720, paint);
+        canvas.drawText(Batt50.getText().toString()+" V", 540, 760, paint); canvas.drawText(Batt70.getText().toString()+" V", 740, 760, paint);
+        canvas.drawText(Batt51.getText().toString()+" V", 540, 800, paint); canvas.drawText(Batt71.getText().toString()+" V", 740, 800, paint);
+        canvas.drawText(Batt52.getText().toString()+" V", 540, 840, paint); canvas.drawText(Batt72.getText().toString()+" V", 740, 840, paint);
+        canvas.drawText(Batt53.getText().toString()+" V", 540, 880, paint); canvas.drawText(Batt73.getText().toString()+" V", 740, 880, paint);
+        canvas.drawText(Batt54.getText().toString()+" V", 540, 920, paint); canvas.drawText(Batt74.getText().toString()+" V", 740, 920, paint);
+        canvas.drawText(Batt55.getText().toString()+" V", 540, 960, paint); canvas.drawText(Batt75.getText().toString()+" V", 740, 960, paint);
+        canvas.drawText(Batt56.getText().toString()+" V", 540, 1000, paint); canvas.drawText(Batt76.getText().toString()+" V", 740, 1000, paint);
+        canvas.drawText(Batt57.getText().toString()+" V", 540, 1040, paint); canvas.drawText(Batt77.getText().toString()+" V", 740, 1040, paint);
+        canvas.drawText(Batt58.getText().toString()+" V", 540, 1080, paint); canvas.drawText(Batt78.getText().toString()+" V", 740, 1080, paint);
+        canvas.drawText(Batt59.getText().toString()+" V", 540, 1120, paint); canvas.drawText(Batt79.getText().toString()+" V", 740, 1120, paint);
+        canvas.drawText(Batt60.getText().toString()+" V", 540, 1160, paint); canvas.drawText(Batt80.getText().toString()+" V", 740, 1160, paint);
+
+        canvas.drawText(Batt81.getText().toString()+" V", 940, 400, paint); canvas.drawText(Batt101.getText().toString()+" V", 160, 1240, paint);
+        canvas.drawText(Batt82.getText().toString()+" V", 940, 440, paint); canvas.drawText(Batt102.getText().toString()+" V", 160, 1280, paint);
+        canvas.drawText(Batt83.getText().toString()+" V", 940, 480, paint); canvas.drawText(Batt103.getText().toString()+" V", 160, 1320, paint);
+        canvas.drawText(Batt84.getText().toString()+" V", 940, 520, paint); canvas.drawText(Batt104.getText().toString()+" V", 160, 1360, paint);
+        canvas.drawText(Batt85.getText().toString()+" V", 940, 560, paint); canvas.drawText(Batt105.getText().toString()+" V", 160, 1400, paint);
+        canvas.drawText(Batt86.getText().toString()+" V", 940, 600, paint); canvas.drawText(Batt106.getText().toString()+" V", 160, 1440, paint);
+        canvas.drawText(Batt87.getText().toString()+" V", 940, 640, paint); canvas.drawText(Batt107.getText().toString()+" V", 160, 1480, paint);
+        canvas.drawText(Batt88.getText().toString()+" V", 940, 680, paint); canvas.drawText(Batt108.getText().toString()+" V", 160, 1520, paint);
+        canvas.drawText(Batt89.getText().toString()+" V", 940, 720, paint);
+        canvas.drawText(Batt90.getText().toString()+" V", 940, 760, paint);
+        canvas.drawText(Batt91.getText().toString()+" V", 940, 800, paint);
+        canvas.drawText(Batt92.getText().toString()+" V", 940, 840, paint);
+        canvas.drawText(Batt93.getText().toString()+" V", 940, 880, paint);
+        canvas.drawText(Batt94.getText().toString()+" V", 940, 920, paint);
+        canvas.drawText(Batt95.getText().toString()+" V", 940, 960, paint);
+        canvas.drawText(Batt96.getText().toString()+" V", 940, 1000, paint);
+        canvas.drawText(Batt97.getText().toString()+" V", 940, 1040, paint);
+        canvas.drawText(Batt98.getText().toString()+" V", 940, 1080, paint);
+        canvas.drawText(Batt99.getText().toString()+" V", 940, 1120, paint);
+        canvas.drawText(Batt100.getText().toString()+" V", 950, 1160, paint);
+
+        //Total Voltage
+        paint.setColor(Color.RED);
+        paint.setTextSize(40f);
+        paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        canvas.drawText(TotalVoltage.getText().toString(), 720, 1350, paint);
+        //canvas.drawText(Hasil.getText().toString()+" VDC (Calc)", 720, 1400, paint);
+
+        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        pdfDocument.finishPage(page);
+        File file = new File(Environment.getExternalStorageDirectory(), "/"+judul+" "+namaGT.getText().toString()+" "+dateFormat.format(dateTime)+".pdf");
+        try {
+            pdfDocument.writeTo(new FileOutputStream(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        pdfDocument.close();
+        Toast.makeText(BluetoothBattery.this, "PDF has Created", Toast.LENGTH_LONG).show();
+
+
+        dateTime = new Date();
+    }
+
+    public void chartBattery() {
+
+    }
+
     //Fungsi Untuk Jam dan Tanggal
     private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
             Calendar c1 = Calendar.getInstance();
-            SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/YYYY h:m:s a");
+            @SuppressLint("NewApi") SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/YYYY h:m:s a");
             String strdate1 = sdf1.format(c1.getTime());
             TextView txtdate1 = findViewById(R.id.tanggalble2);
             txtdate1.setText(strdate1);
 
+            //Continue Running
+            Total_Clear();
+            TotalVoltage.setText(String.format("%.2f", tegangan_total)+" V");
             handler.postDelayed(this, 1000);
         }
     };
-
 }
