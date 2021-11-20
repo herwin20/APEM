@@ -1,16 +1,21 @@
 package com.herwinlab.apem.pmgasturbine.batterybluetooth;
 
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
@@ -19,6 +24,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,9 +43,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.herwinlab.apem.R;
 import com.herwinlab.apem.pmgasturbine.PmBattery12V;
 import com.herwinlab.apem.pmgasturbine.PmBatteryBTM;
+import com.herwinlab.apem.pmgasturbine.PmGenerator;
 import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
@@ -48,6 +65,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -102,15 +120,24 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     public TextView Batt101, Batt102, Batt103, Batt104, Batt105, Batt106, Batt107, Batt108;
     public TextView TanggalNow, TotalVoltage;
     public float tegangan_total;
-    public EditText namaGT, orangPm1, orangPm2, orangPm3, operator, Catatan1, Catatan2;
+    public EditText namaGT, orangPm1, orangPm2, orangPm3, operator, Catatan1, Catatan2, unitBatt;
+
+    public CardView graphVolage;
 
     public LinearLayout buttonSPVttd, buttonOPSttd, buttonCreatedPDF;
+
+    ArrayList<Entry> lineEntry;
+    ArrayList<String> lineLabels;
+    LineDataSet lineDataSet;
+    LineData lineData;
+    protected LineChart chartGraphBatt;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bluetooth_activity_battery);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 
         // Untuk Tanggal
         handler.postDelayed(runnable, 1000);
@@ -134,6 +161,9 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
         //Nama
         namaGT = findViewById(R.id.namaGTble2);
+        namaGT.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+        unitBatt = findViewById(R.id.unitbattble2);
+        unitBatt.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         orangPm1 = findViewById(R.id.nama_pm1);
         orangPm2 = findViewById(R.id.nama_pm2);
         orangPm3 = findViewById(R.id.nama_pm3);
@@ -187,6 +217,10 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
         //Click CardView and Clear All
         //Total_Clear();
+        graphVolage =  findViewById(R.id.totalVoltage);
+        graphVolage.setOnClickListener(view -> {
+            DialogGraphBatt();
+        });
 
     }
 
@@ -1496,7 +1530,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
         paint.setColor(Color.BLACK);
         paint.setTextSize(30);
-        dateFormat = new SimpleDateFormat("dd/MM/yy");
+        dateFormat = new SimpleDateFormat("dd-MM-yy");
         canvas.drawText(dateFormat.format(dateTime), 1170 - 145, 270, paint);
         dateFormat = new SimpleDateFormat("HH:mm:ss");
         canvas.drawText(dateFormat.format(dateTime), 1170 - 145, 300, paint);
@@ -1670,8 +1704,71 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         //canvas.drawText(Hasil.getText().toString()+" VDC (Calc)", 720, 1400, paint);
 
         dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
         pdfDocument.finishPage(page);
+
+        //Pages 2 for Graph battery
+        PdfDocument.PageInfo pageInfo2
+                = new PdfDocument.PageInfo.Builder(1200, 2010, 1).create();
+        PdfDocument.Page page2 = pdfDocument.startPage(pageInfo2);
+        Canvas canvas2 = page2.getCanvas();
+
+        canvas2.drawBitmap(PJBscale,50,75, paint); // Logo PJB
+        //warna awal
+        paint.setColor(Color.BLACK);
+        // Garis tepi
+        canvas2.drawLine(30, 30, 1170, 30, paint); // Garis Atas
+        canvas2.drawLine(30, 30, 30, 1980, paint); // Garis Kiri
+        canvas2.drawLine(1170, 30, 1170, 1980, paint); // Garis Kanan
+        canvas2.drawLine(30, 1980, 1170, 1980, paint); // Garis Bawah
+
+        //Garis Header
+        canvas2.drawLine(30, 220, 1170, 220, paint);
+        canvas2.drawLine(30, 230, 1170, 230, paint);
+        canvas2.drawLine(265, 30, 265, 220, paint); // Kiri
+        canvas2.drawLine(905, 30, 905, 220, paint); // Kanan
+
+        // Garis NO Document
+        canvas2.drawLine(905, 90, 1170, 90, paint);
+        canvas2.drawLine(905, 160, 1170, 160, paint);
+        canvas2.drawLine(905, 230, 1170, 230, paint);
+
+        // Judul Header
+        titlePaint.setTextAlign(Paint.Align.CENTER);
+        titlePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        titlePaint.setColor(Color.BLACK);
+        titlePaint.setTextSize(25f);
+        canvas2.drawText("PT PEMBANGKITAN JAWA BALI UP MUARA TAWAR", 1170 / 2, 70, titlePaint);
+        titlePaint.setTextSize(20f);
+        canvas2.drawText("PJB INTEGRATED MANAGEMENT SYSTEM", 1170 / 2, 110, titlePaint);
+        titlePaint.setTextSize(25f);
+        canvas2.drawText("CEK LIST PREVENTIVE PEMELIHARAAN RUTIN ", 1170 / 2, 155, titlePaint);
+        canvas2.drawText("BATTERY BANK 220VDC GT", 1170 / 2, 195, titlePaint);
+
+        titlePaint.setTextSize(50f);
+        titlePaint.setTextAlign(Paint.Align.LEFT);
+        canvas2.save();
+        canvas2.rotate(90f, 0, 1000);
+        canvas2.drawText("Grafik Tegangan Battery " + namaGT.getText().toString(), -200, 0, titlePaint);
+        canvas2.restore();
+
+        titlePaint.setTextSize(18f);
+        titlePaint.setTextAlign(Paint.Align.LEFT);
+        canvas2.drawText("Nomor Dokumen : FMT-17.2.1", 912,65, titlePaint);
+        canvas2.drawText("Revisi : 00", 912,135, titlePaint);
+        canvas2.drawText("Tanggal Terbit : 20-08-2013", 912,195, titlePaint);
+
+        String ImageGraph = DIRECTORY+"Graph Battery Bank "+namaGT.getText().toString() + " " + unitBatt.getText().toString()+" "+dateFormat.format(dateTime)+".png";
+        Bitmap bitmapImageGraph = BitmapFactory.decodeFile(ImageGraph);
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(90);
+        Bitmap bitmapRotate = Bitmap.createBitmap(bitmapImageGraph, 0, 0, bitmapImageGraph.getWidth(), bitmapImageGraph.getHeight(), matrix, true);
+
+        canvas2.drawBitmap(Bitmap.createScaledBitmap(bitmapRotate,700,1700,false),200,250,paint );
+
+        pdfDocument.finishPage(page2);
+
+
         File file = new File(Environment.getExternalStorageDirectory(), "/"+judul+" "+namaGT.getText().toString()+" "+dateFormat.format(dateTime)+".pdf");
         try {
             pdfDocument.writeTo(new FileOutputStream(file));
@@ -1686,8 +1783,643 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         dateTime = new Date();
     }
 
-    public void chartBattery() {
+    // Custom Dialog Chart
+    public void DialogGraphBatt()
+    {
+        final String GT = namaGT.getText().toString();
+        final String Unit = unitBatt.getText().toString();
+        if (GT.isEmpty()){
+            namaGT.setError("Harus di isi ya");
+            namaGT.requestFocus();
+        }
+        else if (Unit.isEmpty()) {
+            unitBatt.setError("Harus di isi ya");
+            unitBatt.requestFocus();
+        }
+        else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            dialogCustom = new AlertDialog.Builder(BluetoothBattery.this);
+            inflater = getLayoutInflater();
+            dialogView = inflater.inflate(R.layout.dialog_graph_ble, null);
+            dialogCustom.setView(dialogView);
+            dialogCustom.setCancelable(false);
+            dialogCustom.setIcon(R.mipmap.ic_launcher);
+            dialogCustom.setTitle("APEM GRAPH SYSTEMS");
 
+            dateTime = new Date();
+            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+            chartBattery();
+
+            dialogCustom.setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
+            });
+
+            dialogCustom.setPositiveButton("SAVE", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //chartGraphBatt.saveToGallery("Graph Battery Bank "+ unitBatt.getText().toString()+ " " + dateFormat.format(dateTime), "/ApemGraphSystem/" + namaGT.getText().toString() + "/", "TEST", Bitmap.CompressFormat.PNG, 90);
+                    chartGraphBatt.saveToPath("Graph Battery Bank "+ namaGT.getText().toString() + " " + unitBatt.getText().toString()+ " " + dateFormat.format(dateTime), "/Signature/");
+                    chartGraphBatt.setSaveEnabled(true);
+                    Toast.makeText(BluetoothBattery.this, "Save Successfully", Toast.LENGTH_SHORT).show();
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // Default Potrait
+                }
+            });
+
+            dialogCustom.show();
+        }
+    }
+
+    public void chartBattery() {
+        chartGraphBatt = dialogView.findViewById(R.id.batteryGraph);
+
+        final String batt1 = Batt1.getText().toString();
+        final String batt2 = Batt2.getText().toString();
+        final String batt3 = Batt3.getText().toString();
+        final String batt4 = Batt4.getText().toString();
+        final String batt5 = Batt5.getText().toString();
+        final String batt6 = Batt6.getText().toString();
+        final String batt7 = Batt7.getText().toString();
+        final String batt8 = Batt8.getText().toString();
+        final String batt9 = Batt9.getText().toString();
+        final String batt10 = Batt10.getText().toString();
+        final String batt11 = Batt11.getText().toString();
+        final String batt12 = Batt12.getText().toString();
+        final String batt13 = Batt13.getText().toString();
+        final String batt14 = Batt14.getText().toString();
+        final String batt15 = Batt15.getText().toString();
+        final String batt16 = Batt16.getText().toString();
+        final String batt17 = Batt17.getText().toString();
+        final String batt18 = Batt18.getText().toString();
+        final String batt19 = Batt19.getText().toString();
+        final String batt20 = Batt20.getText().toString();
+        final String batt21 = Batt21.getText().toString();
+        final String batt22 = Batt22.getText().toString();
+        final String batt23 = Batt23.getText().toString();
+        final String batt24 = Batt24.getText().toString();
+        final String batt25 = Batt25.getText().toString();
+        final String batt26 = Batt26.getText().toString();
+        final String batt27 = Batt27.getText().toString();
+        final String batt28 = Batt28.getText().toString();
+        final String batt29 = Batt29.getText().toString();
+        final String batt30 = Batt30.getText().toString();
+        final String batt31 = Batt31.getText().toString();
+        final String batt32 = Batt32.getText().toString();
+        final String batt33 = Batt33.getText().toString();
+        final String batt34 = Batt34.getText().toString();
+        final String batt35 = Batt35.getText().toString();
+        final String batt36 = Batt36.getText().toString();
+        final String batt37 = Batt37.getText().toString();
+        final String batt38 = Batt38.getText().toString();
+        final String batt39 = Batt39.getText().toString();
+        final String batt40 = Batt40.getText().toString();
+        final String batt41 = Batt41.getText().toString();
+        final String batt42 = Batt42.getText().toString();
+        final String batt43 = Batt43.getText().toString();
+        final String batt44 = Batt44.getText().toString();
+        final String batt45 = Batt45.getText().toString();
+        final String batt46 = Batt46.getText().toString();
+        final String batt47 = Batt47.getText().toString();
+        final String batt48 = Batt48.getText().toString();
+        final String batt49 = Batt49.getText().toString();
+        final String batt50 = Batt50.getText().toString();
+        final String batt51 = Batt51.getText().toString();
+        final String batt52 = Batt52.getText().toString();
+        final String batt53 = Batt53.getText().toString();
+        final String batt54 = Batt54.getText().toString();
+        final String batt55 = Batt55.getText().toString();
+        final String batt56 = Batt56.getText().toString();
+        final String batt57 = Batt57.getText().toString();
+        final String batt58 = Batt58.getText().toString();
+        final String batt59 = Batt59.getText().toString();
+        final String batt60 = Batt60.getText().toString();
+        final String batt61 = Batt61.getText().toString();
+        final String batt62 = Batt62.getText().toString();
+        final String batt63 = Batt63.getText().toString();
+        final String batt64 = Batt64.getText().toString();
+        final String batt65 = Batt65.getText().toString();
+        final String batt66 = Batt66.getText().toString();
+        final String batt67 = Batt67.getText().toString();
+        final String batt68 = Batt68.getText().toString();
+        final String batt69 = Batt69.getText().toString();
+        final String batt70 = Batt70.getText().toString();
+        final String batt71 = Batt71.getText().toString();
+        final String batt72 = Batt72.getText().toString();
+        final String batt73 = Batt73.getText().toString();
+        final String batt74 = Batt74.getText().toString();
+        final String batt75 = Batt75.getText().toString();
+        final String batt76 = Batt76.getText().toString();
+        final String batt77 = Batt77.getText().toString();
+        final String batt78 = Batt78.getText().toString();
+        final String batt79 = Batt79.getText().toString();
+        final String batt80 = Batt80.getText().toString();
+        final String batt81 = Batt81.getText().toString();
+        final String batt82 = Batt82.getText().toString();
+        final String batt83 = Batt83.getText().toString();
+        final String batt84 = Batt84.getText().toString();
+        final String batt85 = Batt85.getText().toString();
+        final String batt86 = Batt86.getText().toString();
+        final String batt87 = Batt87.getText().toString();
+        final String batt88 = Batt88.getText().toString();
+        final String batt89 = Batt89.getText().toString();
+        final String batt90 = Batt90.getText().toString();
+        final String batt91 = Batt91.getText().toString();
+        final String batt92 = Batt92.getText().toString();
+        final String batt93 = Batt93.getText().toString();
+        final String batt94 = Batt94.getText().toString();
+        final String batt95 = Batt95.getText().toString();
+        final String batt96 = Batt96.getText().toString();
+        final String batt97 = Batt97.getText().toString();
+        final String batt98 = Batt98.getText().toString();
+        final String batt99 = Batt99.getText().toString();
+        final String batt100 = Batt100.getText().toString();
+        final String batt101 = Batt101.getText().toString();
+        final String batt102 = Batt102.getText().toString();
+        final String batt103 = Batt103.getText().toString();
+        final String batt104 = Batt104.getText().toString();
+        final String batt105 = Batt105.getText().toString();
+        final String batt106 = Batt106.getText().toString();
+        final String batt107 = Batt107.getText().toString();
+        final String batt108 = Batt108.getText().toString();
+
+        Batt1.setText(batt1);
+        Batt2.setText(batt2);
+        Batt3.setText(batt3);
+        Batt4.setText(batt4);
+        Batt5.setText(batt5);
+        Batt6.setText(batt6);
+        Batt7.setText(batt7);
+        Batt8.setText(batt8);
+        Batt9.setText(batt9);
+        Batt10.setText(batt10);
+        Batt11.setText(batt11);
+        Batt12.setText(batt12);
+        Batt13.setText(batt13);
+        Batt14.setText(batt14);
+        Batt15.setText(batt15);
+        Batt16.setText(batt16);
+        Batt17.setText(batt17);
+        Batt18.setText(batt18);
+        Batt19.setText(batt19);
+        Batt20.setText(batt20);
+        Batt21.setText(batt21);
+        Batt22.setText(batt22);
+        Batt23.setText(batt23);
+        Batt24.setText(batt24);
+        Batt25.setText(batt25);
+        Batt26.setText(batt26);
+        Batt27.setText(batt27);
+        Batt28.setText(batt28);
+        Batt29.setText(batt29);
+        Batt30.setText(batt30);
+        Batt31.setText(batt31);
+        Batt32.setText(batt32);
+        Batt33.setText(batt33);
+        Batt34.setText(batt34);
+        Batt35.setText(batt35);
+        Batt36.setText(batt36);
+        Batt37.setText(batt37);
+        Batt38.setText(batt38);
+        Batt39.setText(batt39);
+        Batt40.setText(batt40);
+        Batt41.setText(batt41);
+        Batt42.setText(batt42);
+        Batt43.setText(batt43);
+        Batt44.setText(batt44);
+        Batt45.setText(batt45);
+        Batt46.setText(batt46);
+        Batt47.setText(batt47);
+        Batt48.setText(batt48);
+        Batt49.setText(batt49);
+        Batt50.setText(batt50);
+        Batt51.setText(batt51);
+        Batt52.setText(batt52);
+        Batt53.setText(batt53);
+        Batt54.setText(batt54);
+        Batt55.setText(batt55);
+        Batt56.setText(batt56);
+        Batt57.setText(batt57);
+        Batt58.setText(batt58);
+        Batt59.setText(batt59);
+        Batt60.setText(batt60);
+        Batt61.setText(batt61);
+        Batt62.setText(batt62);
+        Batt63.setText(batt63);
+        Batt64.setText(batt64);
+        Batt65.setText(batt65);
+        Batt66.setText(batt66);
+        Batt67.setText(batt67);
+        Batt68.setText(batt68);
+        Batt69.setText(batt69);
+        Batt70.setText(batt70);
+        Batt71.setText(batt71);
+        Batt72.setText(batt72);
+        Batt73.setText(batt73);
+        Batt74.setText(batt74);
+        Batt75.setText(batt75);
+        Batt76.setText(batt76);
+        Batt77.setText(batt77);
+        Batt78.setText(batt78);
+        Batt79.setText(batt79);
+        Batt80.setText(batt80);
+        Batt81.setText(batt81);
+        Batt82.setText(batt82);
+        Batt83.setText(batt83);
+        Batt84.setText(batt84);
+        Batt85.setText(batt85);
+        Batt86.setText(batt86);
+        Batt87.setText(batt87);
+        Batt88.setText(batt88);
+        Batt89.setText(batt89);
+        Batt90.setText(batt90);
+        Batt91.setText(batt91);
+        Batt92.setText(batt92);
+        Batt93.setText(batt93);
+        Batt94.setText(batt94);
+        Batt95.setText(batt95);
+        Batt96.setText(batt96);
+        Batt97.setText(batt97);
+        Batt98.setText(batt98);
+        Batt99.setText(batt99);
+        Batt100.setText(batt100);
+        Batt101.setText(batt101);
+        Batt102.setText(batt102);
+        Batt103.setText(batt103);
+        Batt104.setText(batt104);
+        Batt105.setText(batt105);
+        Batt106.setText(batt106);
+        Batt107.setText(batt107);
+        Batt108.setText(batt108);
+
+        float ya1 = Float.parseFloat(Batt1.getText().toString());
+        float ya2 = Float.parseFloat(Batt2.getText().toString());
+        float ya3 = Float.parseFloat(Batt3.getText().toString());
+        float ya4 = Float.parseFloat(Batt4.getText().toString());
+        float ya5 = Float.parseFloat(Batt5.getText().toString());
+        float ya6 = Float.parseFloat(Batt6.getText().toString());
+        float ya7 = Float.parseFloat(Batt7.getText().toString());
+        float ya8 = Float.parseFloat(Batt8.getText().toString());
+        float ya9 = Float.parseFloat(Batt9.getText().toString());
+        float ya10 = Float.parseFloat(Batt10.getText().toString());
+        float yb1 = Float.parseFloat(Batt11.getText().toString());
+        float yb2 = Float.parseFloat(Batt12.getText().toString());
+        float yb3 = Float.parseFloat(Batt13.getText().toString());
+        float yb4 = Float.parseFloat(Batt14.getText().toString());
+        float yb5 = Float.parseFloat(Batt15.getText().toString());
+        float yb6 = Float.parseFloat(Batt16.getText().toString());
+        float yb7 = Float.parseFloat(Batt17.getText().toString());
+        float yb8 = Float.parseFloat(Batt18.getText().toString());
+        float yb9 = Float.parseFloat(Batt19.getText().toString());
+        float yb10 = Float.parseFloat(Batt20.getText().toString());
+        float yc1 = Float.parseFloat(Batt21.getText().toString());
+        float yc2 = Float.parseFloat(Batt22.getText().toString());
+        float yc3 = Float.parseFloat(Batt23.getText().toString());
+        float yc4 = Float.parseFloat(Batt24.getText().toString());
+        float yc5 = Float.parseFloat(Batt25.getText().toString());
+        float yc6 = Float.parseFloat(Batt26.getText().toString());
+        float yc7 = Float.parseFloat(Batt27.getText().toString());
+        float yc8 = Float.parseFloat(Batt28.getText().toString());
+        float yc9 = Float.parseFloat(Batt29.getText().toString());
+        float yc10 = Float.parseFloat(Batt30.getText().toString());
+        float yd1 = Float.parseFloat(Batt31.getText().toString());
+        float yd2 = Float.parseFloat(Batt32.getText().toString());
+        float yd3 = Float.parseFloat(Batt33.getText().toString());
+        float yd4 = Float.parseFloat(Batt34.getText().toString());
+        float yd5 = Float.parseFloat(Batt35.getText().toString());
+        float yd6 = Float.parseFloat(Batt36.getText().toString());
+        float yd7 = Float.parseFloat(Batt37.getText().toString());
+        float yd8 = Float.parseFloat(Batt38.getText().toString());
+        float yd9 = Float.parseFloat(Batt39.getText().toString());
+        float yd10 = Float.parseFloat(Batt40.getText().toString());
+        float ye1 = Float.parseFloat(Batt41.getText().toString());
+        float ye2 = Float.parseFloat(Batt42.getText().toString());
+        float ye3 = Float.parseFloat(Batt43.getText().toString());
+        float ye4 = Float.parseFloat(Batt44.getText().toString());
+        float ye5 = Float.parseFloat(Batt45.getText().toString());
+        float ye6 = Float.parseFloat(Batt46.getText().toString());
+        float ye7 = Float.parseFloat(Batt47.getText().toString());
+        float ye8 = Float.parseFloat(Batt48.getText().toString());
+        float ye9 = Float.parseFloat(Batt49.getText().toString());
+        float ye10 = Float.parseFloat(Batt50.getText().toString());
+        float yf1 = Float.parseFloat(Batt51.getText().toString());
+        float yf2 = Float.parseFloat(Batt52.getText().toString());
+        float yf3 = Float.parseFloat(Batt53.getText().toString());
+        float yf4 = Float.parseFloat(Batt54.getText().toString());
+        float yf5 = Float.parseFloat(Batt55.getText().toString());
+        float yf6 = Float.parseFloat(Batt56.getText().toString());
+        float yf7 = Float.parseFloat(Batt57.getText().toString());
+        float yf8 = Float.parseFloat(Batt58.getText().toString());
+        float yf9 = Float.parseFloat(Batt59.getText().toString());
+        float yf10 = Float.parseFloat(Batt60.getText().toString());
+        float yg1 = Float.parseFloat(Batt61.getText().toString());
+        float yg2 = Float.parseFloat(Batt62.getText().toString());
+        float yg3 = Float.parseFloat(Batt63.getText().toString());
+        float yg4 = Float.parseFloat(Batt64.getText().toString());
+        float yg5 = Float.parseFloat(Batt65.getText().toString());
+        float yg6 = Float.parseFloat(Batt66.getText().toString());
+        float yg7 = Float.parseFloat(Batt67.getText().toString());
+        float yg8 = Float.parseFloat(Batt68.getText().toString());
+        float yg9 = Float.parseFloat(Batt69.getText().toString());
+        float yg10 = Float.parseFloat(Batt70.getText().toString());
+        float yh1 = Float.parseFloat(Batt71.getText().toString());
+        float yh2 = Float.parseFloat(Batt72.getText().toString());
+        float yh3 = Float.parseFloat(Batt73.getText().toString());
+        float yh4 = Float.parseFloat(Batt74.getText().toString());
+        float yh5 = Float.parseFloat(Batt75.getText().toString());
+        float yh6 = Float.parseFloat(Batt76.getText().toString());
+        float yh7 = Float.parseFloat(Batt77.getText().toString());
+        float yh8 = Float.parseFloat(Batt78.getText().toString());
+        float yh9 = Float.parseFloat(Batt79.getText().toString());
+        float yh10 = Float.parseFloat(Batt80.getText().toString());
+        float yi1 = Float.parseFloat(Batt81.getText().toString());
+        float yi2 = Float.parseFloat(Batt82.getText().toString());
+        float yi3 = Float.parseFloat(Batt83.getText().toString());
+        float yi4 = Float.parseFloat(Batt84.getText().toString());
+        float yi5 = Float.parseFloat(Batt85.getText().toString());
+        float yi6 = Float.parseFloat(Batt86.getText().toString());
+        float yi7 = Float.parseFloat(Batt87.getText().toString());
+        float yi8 = Float.parseFloat(Batt88.getText().toString());
+        float yi9 = Float.parseFloat(Batt89.getText().toString());
+        float yi10 = Float.parseFloat(Batt90.getText().toString());
+        float yj1 = Float.parseFloat(Batt91.getText().toString());
+        float yj2 = Float.parseFloat(Batt92.getText().toString());
+        float yj3 = Float.parseFloat(Batt93.getText().toString());
+        float yj4 = Float.parseFloat(Batt94.getText().toString());
+        float yj5 = Float.parseFloat(Batt95.getText().toString());
+        float yj6 = Float.parseFloat(Batt96.getText().toString());
+        float yj7 = Float.parseFloat(Batt97.getText().toString());
+        float yj8 = Float.parseFloat(Batt98.getText().toString());
+        float yj9 = Float.parseFloat(Batt99.getText().toString());
+        float yj10 = Float.parseFloat(Batt100.getText().toString());
+        float yk1 = Float.parseFloat(Batt101.getText().toString());
+        float yk2 = Float.parseFloat(Batt102.getText().toString());
+        float yk3 = Float.parseFloat(Batt103.getText().toString());
+        float yk4 = Float.parseFloat(Batt104.getText().toString());
+        float yk5 = Float.parseFloat(Batt105.getText().toString());
+        float yk6 = Float.parseFloat(Batt106.getText().toString());
+        float yk7 = Float.parseFloat(Batt107.getText().toString());
+        float yk8 = Float.parseFloat(Batt108.getText().toString());
+
+        lineEntry = new ArrayList<Entry>();
+        lineLabels = new ArrayList<String>();
+
+        lineLabels.add(""); // Biarkan Kosong Index 0;
+        // Main Chart
+        lineEntry.add(new Entry(1, ya1));
+        lineLabels.add("No1");
+        lineEntry.add(new Entry(2, ya2));
+        lineLabels.add("No2");
+        lineEntry.add(new Entry(3, ya3));
+        lineLabels.add("No3");
+        lineEntry.add(new Entry(4, ya4));
+        lineLabels.add("No4");
+        lineEntry.add(new Entry(5, ya5));
+        lineLabels.add("No5");
+        lineEntry.add(new Entry(6, ya6));
+        lineLabels.add("No6");
+        lineEntry.add(new Entry(7, ya7));
+        lineLabels.add("No7");
+        lineEntry.add(new Entry(8, ya8));
+        lineLabels.add("No8");
+        lineEntry.add(new Entry(9, ya9));
+        lineLabels.add("No9");
+        lineEntry.add(new Entry(10, ya10));
+        lineLabels.add("No10");
+        // Main Chart
+        lineEntry.add(new Entry(11, yb1));
+        lineLabels.add("No11");
+        lineEntry.add(new Entry(12, yb2));
+        lineLabels.add("No12");
+        lineEntry.add(new Entry(13, yb3));
+        lineLabels.add("No13");
+        lineEntry.add(new Entry(14, yb4));
+        lineLabels.add("No14");
+        lineEntry.add(new Entry(15, yb5));
+        lineLabels.add("No15");
+        lineEntry.add(new Entry(16, yb6));
+        lineLabels.add("No16");
+        lineEntry.add(new Entry(17, yb7));
+        lineLabels.add("No17");
+        lineEntry.add(new Entry(18, yb8));
+        lineLabels.add("No18");
+        lineEntry.add(new Entry(19, yb9));
+        lineLabels.add("No19");
+        lineEntry.add(new Entry(20, yb10));
+        lineLabels.add("No20");
+        // Main Chart
+        lineEntry.add(new Entry(21, yc1));
+        lineLabels.add("No21");
+        lineEntry.add(new Entry(22, yc2));
+        lineLabels.add("No22");
+        lineEntry.add(new Entry(23, yc3));
+        lineLabels.add("No23");
+        lineEntry.add(new Entry(24, yc4));
+        lineLabels.add("No24");
+        lineEntry.add(new Entry(25, yc5));
+        lineLabels.add("No25");
+        lineEntry.add(new Entry(26, yc6));
+        lineLabels.add("No26");
+        lineEntry.add(new Entry(27, yc7));
+        lineLabels.add("No27");
+        lineEntry.add(new Entry(28, yc8));
+        lineLabels.add("No28");
+        lineEntry.add(new Entry(29, yc9));
+        lineLabels.add("No29");
+        lineEntry.add(new Entry(30, yc10));
+        lineLabels.add("No30");
+        // Main Chart
+        lineEntry.add(new Entry(31, yd1));
+        lineLabels.add("No31");
+        lineEntry.add(new Entry(32, yd2));
+        lineLabels.add("No32");
+        lineEntry.add(new Entry(33, yd3));
+        lineLabels.add("No33");
+        lineEntry.add(new Entry(34, yd4));
+        lineLabels.add("No34");
+        lineEntry.add(new Entry(35, yd5));
+        lineLabels.add("No35");
+        lineEntry.add(new Entry(36, yd6));
+        lineLabels.add("No36");
+        lineEntry.add(new Entry(37, yd7));
+        lineLabels.add("No37");
+        lineEntry.add(new Entry(38, yd8));
+        lineLabels.add("No38");
+        lineEntry.add(new Entry(39, yd9));
+        lineLabels.add("No39");
+        lineEntry.add(new Entry(40, yd10));
+        lineLabels.add("No40");
+        // Main Chart
+        lineEntry.add(new Entry(41, ye1));
+        lineLabels.add("No41");
+        lineEntry.add(new Entry(42, ye2));
+        lineLabels.add("No42");
+        lineEntry.add(new Entry(43, ye3));
+        lineLabels.add("No43");
+        lineEntry.add(new Entry(44, ye4));
+        lineLabels.add("No44");
+        lineEntry.add(new Entry(45, ye5));
+        lineLabels.add("No45");
+        lineEntry.add(new Entry(46, ye6));
+        lineLabels.add("No46");
+        lineEntry.add(new Entry(47, ye7));
+        lineLabels.add("No47");
+        lineEntry.add(new Entry(48, ye8));
+        lineLabels.add("No48");
+        lineEntry.add(new Entry(49, ye9));
+        lineLabels.add("No49");
+        lineEntry.add(new Entry(50, ye10));
+        lineLabels.add("No50");
+        // Main Chart
+        lineEntry.add(new Entry(51, yf1));
+        lineLabels.add("No51");
+        lineEntry.add(new Entry(52, yf2));
+        lineLabels.add("No52");
+        lineEntry.add(new Entry(53, yf3));
+        lineLabels.add("No53");
+        lineEntry.add(new Entry(54, yf4));
+        lineLabels.add("No54");
+        lineEntry.add(new Entry(55, yf5));
+        lineLabels.add("No55");
+        lineEntry.add(new Entry(56, yf6));
+        lineLabels.add("No56");
+        lineEntry.add(new Entry(57, yf7));
+        lineLabels.add("No57");
+        lineEntry.add(new Entry(58, yf8));
+        lineLabels.add("No58");
+        lineEntry.add(new Entry(59, yf9));
+        lineLabels.add("No59");
+        lineEntry.add(new Entry(60, yf10));
+        lineLabels.add("No60");
+        // Main Chart
+        lineEntry.add(new Entry(61, yg1));
+        lineLabels.add("No61");
+        lineEntry.add(new Entry(62, yg2));
+        lineLabels.add("No62");
+        lineEntry.add(new Entry(63, yg3));
+        lineLabels.add("No63");
+        lineEntry.add(new Entry(64, yg4));
+        lineLabels.add("No64");
+        lineEntry.add(new Entry(65, yg5));
+        lineLabels.add("No65");
+        lineEntry.add(new Entry(66, yg6));
+        lineLabels.add("No66");
+        lineEntry.add(new Entry(67, yg7));
+        lineLabels.add("No67");
+        lineEntry.add(new Entry(68, yg8));
+        lineLabels.add("No68");
+        lineEntry.add(new Entry(69, yg9));
+        lineLabels.add("No69");
+        lineEntry.add(new Entry(70, yg10));
+        lineLabels.add("No70");
+        // Main Chart
+        lineEntry.add(new Entry(71, yh1));
+        lineLabels.add("No71");
+        lineEntry.add(new Entry(72, yh2));
+        lineLabels.add("No72");
+        lineEntry.add(new Entry(73, yh3));
+        lineLabels.add("No73");
+        lineEntry.add(new Entry(74, yh4));
+        lineLabels.add("No74");
+        lineEntry.add(new Entry(75, yh5));
+        lineLabels.add("No75");
+        lineEntry.add(new Entry(76, yh6));
+        lineLabels.add("No76");
+        lineEntry.add(new Entry(77, yh7));
+        lineLabels.add("No77");
+        lineEntry.add(new Entry(78, yh8));
+        lineLabels.add("No78");
+        lineEntry.add(new Entry(79, yh9));
+        lineLabels.add("No79");
+        lineEntry.add(new Entry(80, yh10));
+        lineLabels.add("No80");
+        // Main Chart
+        lineEntry.add(new Entry(81, yi1));
+        lineLabels.add("No81");
+        lineEntry.add(new Entry(82, yi2));
+        lineLabels.add("No82");
+        lineEntry.add(new Entry(83, yi3));
+        lineLabels.add("No83");
+        lineEntry.add(new Entry(84, yi4));
+        lineLabels.add("No84");
+        lineEntry.add(new Entry(85, yi5));
+        lineLabels.add("No85");
+        lineEntry.add(new Entry(86, yi6));
+        lineLabels.add("No86");
+        lineEntry.add(new Entry(87, yi7));
+        lineLabels.add("No87");
+        lineEntry.add(new Entry(88, yi8));
+        lineLabels.add("No88");
+        lineEntry.add(new Entry(89, yi9));
+        lineLabels.add("No89");
+        lineEntry.add(new Entry(90, yi10));
+        lineLabels.add("No90");
+        // Main Chart
+        lineEntry.add(new Entry(91, yj1));
+        lineLabels.add("No91");
+        lineEntry.add(new Entry(92, yj2));
+        lineLabels.add("No92");
+        lineEntry.add(new Entry(93, yj3));
+        lineLabels.add("No93");
+        lineEntry.add(new Entry(94, yj4));
+        lineLabels.add("No94");
+        lineEntry.add(new Entry(95, yj5));
+        lineLabels.add("No95");
+        lineEntry.add(new Entry(96, yj6));
+        lineLabels.add("No96");
+        lineEntry.add(new Entry(97, yj7));
+        lineLabels.add("No97");
+        lineEntry.add(new Entry(98, yj8));
+        lineLabels.add("No98");
+        lineEntry.add(new Entry(99, yj9));
+        lineLabels.add("No99");
+        lineEntry.add(new Entry(100, yj10));
+        lineLabels.add("No100");
+        // Main Chart
+        lineEntry.add(new Entry(101, yk1));
+        lineLabels.add("No101");
+        lineEntry.add(new Entry(102, yk2));
+        lineLabels.add("No102");
+        lineEntry.add(new Entry(103, yk3));
+        lineLabels.add("No103");
+        lineEntry.add(new Entry(104, yk4));
+        lineLabels.add("No104");
+        lineEntry.add(new Entry(105, yk5));
+        lineLabels.add("No105");
+        lineEntry.add(new Entry(106, yk6));
+        lineLabels.add("No106");
+        lineEntry.add(new Entry(107, yk7));
+        lineLabels.add("No107");
+        lineEntry.add(new Entry(108, yk8));
+        lineLabels.add("No108");
+
+        lineDataSet = new LineDataSet(lineEntry, "Voltage Level");
+        lineData = new LineData(lineDataSet);
+        chartGraphBatt.animateY(1000);
+        chartGraphBatt.getXAxis().setValueFormatter(
+                new IndexAxisValueFormatter(lineLabels));
+        YAxis yAxis = chartGraphBatt.getAxisLeft();
+        yAxis.setAxisMinimum(1.5f); // start at zero
+        yAxis.setAxisMaximum(2.8f); // the axis maximum is 3 Volt
+        LimitLine limitA = new LimitLine(1.8f, "Minimum Voltage"); //garis batas
+        limitA.setLineWidth(1f);
+        limitA.setTextSize(5f);
+        limitA.setLabelPosition(LimitLine.LimitLabelPosition.LEFT_BOTTOM);
+        yAxis.addLimitLine(limitA);
+
+        chartGraphBatt.getAxisLeft().setDrawGridLines(false);
+        chartGraphBatt.getAxisRight().setDrawGridLines(false);
+        chartGraphBatt.getAxisRight().setEnabled(false);
+        chartGraphBatt.getAxisLeft().setEnabled(true);
+        chartGraphBatt.getXAxis().setDrawGridLines(false);
+        chartGraphBatt.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        chartGraphBatt.getDescription().setEnabled(false);
+
+        lineDataSet.setColors(ColorTemplate.getHoloBlue());
+        chartGraphBatt.setData(lineData);
     }
 
     //Fungsi Untuk Jam dan Tanggal
@@ -1695,7 +2427,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         @Override
         public void run() {
             Calendar c1 = Calendar.getInstance();
-            @SuppressLint("NewApi") SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/YYYY h:m:s a");
+            SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy h:m:s a");
             String strdate1 = sdf1.format(c1.getTime());
             TextView txtdate1 = findViewById(R.id.tanggalble2);
             txtdate1.setText(strdate1);
