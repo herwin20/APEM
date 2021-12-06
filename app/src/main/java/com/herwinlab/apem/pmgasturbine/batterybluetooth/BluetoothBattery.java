@@ -1,7 +1,5 @@
 package com.herwinlab.apem.pmgasturbine.batterybluetooth;
 
-import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -9,7 +7,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,13 +34,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -54,9 +49,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.herwinlab.apem.R;
-import com.herwinlab.apem.pmgasturbine.PmBattery12V;
-import com.herwinlab.apem.pmgasturbine.PmBatteryBTM;
-import com.herwinlab.apem.pmgasturbine.PmGenerator;
 import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
@@ -2429,7 +2421,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
             Calendar c1 = Calendar.getInstance();
             SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy h:m:s a");
             String strdate1 = sdf1.format(c1.getTime());
-            TextView txtdate1 = findViewById(R.id.tanggalble2);
+            TextView txtdate1 = findViewById(R.id.tanggalmccac);
             txtdate1.setText(strdate1);
 
             //Continue Running

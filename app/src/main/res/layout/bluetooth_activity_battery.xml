@@ -28,7 +28,7 @@
                 android:background="@color/frg2Color">
 
                 <TextView
-                    android:id="@+id/tanggalble2"
+                    android:id="@+id/tanggalmccac"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/product_sans_reguler"

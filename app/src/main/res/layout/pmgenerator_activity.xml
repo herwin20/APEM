@@ -14,7 +14,7 @@
         android:fontFamily="@font/product_sans_bold"
         android:text="Pemeliharaan Generator"
         android:textAlignment="center"
-        android:textColor="@color/penRoyalBlue"
+        android:textColor="@color/frg2Color"
         android:textSize="20dp" />
 
 

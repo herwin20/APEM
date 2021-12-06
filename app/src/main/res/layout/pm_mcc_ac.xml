@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/sfuidisplay_light"
+            android:text="PM MCC AC GT"
+            android:textColor="@color/frg2Color"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="150dp"
+            app:cardCornerRadius="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/frg2Color">
+
+                <TextView
+                    android:id="@+id/tanggalmccac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/product_sans_reguler"
+                    android:text="Tanggal"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.35"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/namaGT_MCCAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Nama GT"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:text="Breaker Utama"
+                    android:textColor="@color/frg2Color"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="5dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/frg2Color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:text="BJA Breaker"
+                    android:textColor="@color/frg2Color"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/view5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view5" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:text="Coupling to BFB"
+                    android:textColor="@color/frg2Color"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view5"
+                    app:layout_constraintTop_toTopOf="@+id/view5" />
+
+                <EditText
+                    android:id="@+id/voltage_mcc_ac_bja"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="Voltage"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/textView25"
+                    app:layout_constraintStart_toStartOf="@+id/textView25"
+                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+                <EditText
+                    android:id="@+id/voltage_mcc_ac_sst"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Voltage"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/voltage_mcc_ac_bja"
+                    app:layout_constraintEnd_toEndOf="@+id/textView26"
+                    app:layout_constraintStart_toStartOf="@+id/textView26"
+                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+                <EditText
+                    android:id="@+id/arus_mcc_ac_bja"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Arus"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="@+id/textView25"
+                    app:layout_constraintStart_toStartOf="@+id/textView25"
+                    app:layout_constraintTop_toBottomOf="@+id/voltage_mcc_ac_bja" />
+
+                <EditText
+                    android:id="@+id/arus_mcc_ac_sst"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Arus"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/arus_mcc_ac_bja"
+                    app:layout_constraintEnd_toEndOf="@+id/textView26"
+                    app:layout_constraintStart_toStartOf="@+id/textView26"
+                    app:layout_constraintTop_toBottomOf="@+id/voltage_mcc_ac_bja" />
+
+                <CheckBox
+                    android:id="@+id/kebersihan_mcc_ac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:minHeight="48dp"
+                    android:text="Kebersihan Breaker"
+                    app:layout_constraintEnd_toEndOf="@+id/arus_mcc_ac_bja"
+                    app:layout_constraintStart_toStartOf="@+id/arus_mcc_ac_bja"
+                    app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+                <CheckBox
+                    android:id="@+id/kontrol_visual_mcc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:minHeight="48dp"
+                    android:text="Kondisi Kontrol"
+                    app:layout_constraintEnd_toEndOf="@+id/arus_mcc_ac_sst"
+                    app:layout_constraintStart_toStartOf="@+id/arus_mcc_ac_sst"
+                    app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:text="Distribution BJA"
+                    android:textColor="@color/frg2Color"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView24"
+                    app:layout_constraintStart_toStartOf="@+id/textView24"
+                    app:layout_constraintTop_toBottomOf="@+id/kebersihan_mcc_ac" />
+
+                <EditText
+                    android:id="@+id/ket_bja_mccac"
+                    android:layout_width="400dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:lines="10"
+                    android:maxLines="15"
+                    android:minLines="5"
+                    app:layout_constraintEnd_toEndOf="@+id/textView20"
+                    app:layout_constraintHorizontal_bias="0.503"
+                    app:layout_constraintStart_toStartOf="@+id/textView20"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:text="Keterangan Distribution BJA10, 20, 30, 40, 50, 60"
+                    android:textColor="@color/frg2Color"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toTopOf="@+id/ket_bja_mccac"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/ket_bja_mccac"
+                    app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/sfuidisplay_thin"
+                    android:text="Panel Synchron"
+                    android:textColor="@color/frg2Color"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ket_bja_mccac" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:text="Posisi Selector :"
+                    android:textColor="@color/frg2Color"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+                <EditText
+                    android:id="@+id/editTextNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:ems="10"
+                    android:fontFamily="@font/sfuidisplay_light"
+                    android:hint="1 or 2"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView27"
+                    app:layout_constraintTop_toTopOf="@+id/textView27" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

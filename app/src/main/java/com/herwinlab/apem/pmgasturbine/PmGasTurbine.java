@@ -31,7 +31,7 @@ public class PmGasTurbine extends AppCompatActivity {
 
     LinearLayout btnBattery12, btnBattery2, btnBLE12, btnBLE2;
 
-    public CardView cardToPmGen, cardToPmBatt, cardToPmTrafo;
+    public CardView cardToPmGen, cardToPmBatt, cardToPmTrafo, cardMCCAC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +120,13 @@ public class PmGasTurbine extends AppCompatActivity {
                 Intent intent = new Intent(PmGasTurbine.this, MainPmTrafo.class);
                 startActivity(intent);
             }
+        });cardMCCAC =  findViewById(R.id.cardMCCAC);
+        cardMCCAC.setOnClickListener(v -> {
+            Intent intent = new Intent(PmGasTurbine.this, MCCAC.class);
+            startActivity(intent);
         });
+
+
 
 
     }
