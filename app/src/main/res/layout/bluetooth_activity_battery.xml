@@ -20,7 +20,7 @@
             app:cardCornerRadius="40dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView13"
             app:layout_constraintStart_toStartOf="@+id/condCard"
-            app:layout_constraintTop_toTopOf="@+id/textView13" >
+            app:layout_constraintTop_toTopOf="@+id/textView13">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -242,7 +242,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="1"
                         android:textSize="20sp" />
 
                     <TextView
@@ -252,7 +252,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="2"
                         android:textSize="20sp" />
 
                     <TextView
@@ -262,7 +262,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="3"
                         android:textSize="20sp" />
 
                     <TextView
@@ -272,7 +272,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="4"
                         android:textSize="20sp" />
 
                     <TextView
@@ -282,7 +282,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="5"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -306,7 +306,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="6"
                         android:textSize="20sp" />
 
                     <TextView
@@ -316,7 +316,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="7"
                         android:textSize="20sp" />
 
                     <TextView
@@ -326,7 +326,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="8"
                         android:textSize="20sp" />
 
                     <TextView
@@ -336,7 +336,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="9"
                         android:textSize="20sp" />
 
                     <TextView
@@ -346,7 +346,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="10"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -370,7 +370,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="11"
                         android:textSize="20sp" />
 
                     <TextView
@@ -380,7 +380,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="12"
                         android:textSize="20sp" />
 
                     <TextView
@@ -390,7 +390,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="13"
                         android:textSize="20sp" />
 
                     <TextView
@@ -400,7 +400,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="14"
                         android:textSize="20sp" />
 
                     <TextView
@@ -410,7 +410,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="15"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -434,7 +434,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="16"
                         android:textSize="20sp" />
 
                     <TextView
@@ -444,7 +444,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="17"
                         android:textSize="20sp" />
 
                     <TextView
@@ -454,7 +454,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="18"
                         android:textSize="20sp" />
 
                     <TextView
@@ -464,7 +464,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="19"
                         android:textSize="20sp" />
 
                     <TextView
@@ -474,7 +474,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="20"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -498,7 +498,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="21"
                         android:textSize="20sp" />
 
                     <TextView
@@ -508,7 +508,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="22"
                         android:textSize="20sp" />
 
                     <TextView
@@ -518,7 +518,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="23"
                         android:textSize="20sp" />
 
                     <TextView
@@ -528,7 +528,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="24"
                         android:textSize="20sp" />
 
                     <TextView
@@ -538,7 +538,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="25"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -562,7 +562,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="26"
                         android:textSize="20sp" />
 
                     <TextView
@@ -572,7 +572,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="27"
                         android:textSize="20sp" />
 
                     <TextView
@@ -582,7 +582,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="28"
                         android:textSize="20sp" />
 
                     <TextView
@@ -592,7 +592,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="29"
                         android:textSize="20sp" />
 
                     <TextView
@@ -602,7 +602,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="30"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -625,7 +625,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="31"
                         android:textSize="20sp" />
 
                     <TextView
@@ -635,7 +635,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="32"
                         android:textSize="20sp" />
 
                     <TextView
@@ -645,7 +645,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="33"
                         android:textSize="20sp" />
 
                     <TextView
@@ -655,7 +655,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="34"
                         android:textSize="20sp" />
 
                     <TextView
@@ -665,7 +665,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="35"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -688,7 +688,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="36"
                         android:textSize="20sp" />
 
                     <TextView
@@ -698,7 +698,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="37"
                         android:textSize="20sp" />
 
                     <TextView
@@ -708,7 +708,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="38"
                         android:textSize="20sp" />
 
                     <TextView
@@ -718,7 +718,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="39"
                         android:textSize="20sp" />
 
                     <TextView
@@ -728,10 +728,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="40"
                         android:textSize="20sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearLayout8"
                     android:layout_width="match_parent"
@@ -751,7 +752,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="41"
                         android:textSize="20sp" />
 
                     <TextView
@@ -761,7 +762,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="42"
                         android:textSize="20sp" />
 
                     <TextView
@@ -771,7 +772,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="43"
                         android:textSize="20sp" />
 
                     <TextView
@@ -781,7 +782,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="44"
                         android:textSize="20sp" />
 
                     <TextView
@@ -791,10 +792,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="45"
                         android:textSize="20sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearLayout9"
                     android:layout_width="match_parent"
@@ -814,7 +816,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="46"
                         android:textSize="20sp" />
 
                     <TextView
@@ -824,7 +826,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="47"
                         android:textSize="20sp" />
 
                     <TextView
@@ -834,7 +836,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="48"
                         android:textSize="20sp" />
 
                     <TextView
@@ -844,7 +846,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="49"
                         android:textSize="20sp" />
 
                     <TextView
@@ -854,7 +856,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="50"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -877,7 +879,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="51"
                         android:textSize="20sp" />
 
                     <TextView
@@ -887,7 +889,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="52"
                         android:textSize="20sp" />
 
                     <TextView
@@ -897,7 +899,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="53"
                         android:textSize="20sp" />
 
                     <TextView
@@ -907,7 +909,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="54"
                         android:textSize="20sp" />
 
                     <TextView
@@ -917,7 +919,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="55"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -941,7 +943,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="56"
                         android:textSize="20sp" />
 
                     <TextView
@@ -951,7 +953,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="57"
                         android:textSize="20sp" />
 
                     <TextView
@@ -961,7 +963,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="58"
                         android:textSize="20sp" />
 
                     <TextView
@@ -971,7 +973,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="59"
                         android:textSize="20sp" />
 
                     <TextView
@@ -981,7 +983,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="60"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1005,7 +1007,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="61"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1015,7 +1017,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="62"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1025,7 +1027,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="63"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1035,7 +1037,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="64"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1045,7 +1047,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="65"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1069,7 +1071,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="66"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1079,7 +1081,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="67"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1089,7 +1091,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="68"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1099,7 +1101,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="69"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1109,7 +1111,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="70"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1133,7 +1135,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="71"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1143,7 +1145,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="72"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1153,7 +1155,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="73"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1163,7 +1165,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="74"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1173,10 +1175,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="75"
                         android:textSize="20sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/linearLayout15"
                     android:layout_width="match_parent"
@@ -1196,7 +1199,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="76"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1206,7 +1209,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="77"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1216,7 +1219,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="78"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1226,7 +1229,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="79"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1236,7 +1239,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="80"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1259,7 +1262,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="81"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1269,7 +1272,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="82"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1279,7 +1282,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="83"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1289,7 +1292,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="84"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1299,7 +1302,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="85"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1322,7 +1325,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="86"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1332,7 +1335,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="87"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1342,7 +1345,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="88"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1352,7 +1355,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="89"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1362,7 +1365,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="90"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1385,7 +1388,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="91"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1395,7 +1398,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="92"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1405,7 +1408,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="93"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1415,7 +1418,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="94"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1425,7 +1428,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="95"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1448,7 +1451,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="96"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1458,7 +1461,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="97"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1468,7 +1471,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="98"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1478,7 +1481,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="99"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1488,7 +1491,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="100"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1511,7 +1514,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="101"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1521,7 +1524,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="102"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1531,7 +1534,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="103"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1541,7 +1544,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="104"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1551,7 +1554,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="105"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1575,7 +1578,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="106"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1585,7 +1588,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="107"
                         android:textSize="20sp" />
 
                     <TextView
@@ -1595,7 +1598,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/product_sans_bold"
-                        android:text="0.00"
+                        android:text="108"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -1758,7 +1761,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="50dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="#ffffff"

@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,7 +49,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.snackbar.Snackbar;
 import com.herwinlab.apem.R;
+import com.herwinlab.apem.pmgasturbine.PmGasTurbine;
 import com.kyanogen.signatureview.SignatureView;
 
 import java.io.ByteArrayOutputStream;
@@ -114,7 +117,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     public float tegangan_total;
     public EditText namaGT, orangPm1, orangPm2, orangPm3, operator, Catatan1, Catatan2, unitBatt;
 
-    public CardView graphVolage;
+    public CardView graphVolage, clearAll;
 
     public LinearLayout buttonSPVttd, buttonOPSttd, buttonCreatedPDF;
 
@@ -123,6 +126,28 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     LineDataSet lineDataSet;
     LineData lineData;
     protected LineChart chartGraphBatt;
+
+    private SharedPreferences prefs;
+    private final String Batt1KEY = "1", Batt2KEY = "2", Batt3KEY = "3", Batt4KEY = "4", Batt5KEY = "5", Batt6KEY = "6", Batt7KEY = "7", Batt8KEY = "8", Batt9KEY = "9", Batt10KEY = "10";
+    private final String Batt11KEY = "11", Batt12KEY = "12", Batt13KEY = "13", Batt14KEY = "14", Batt15KEY = "15", Batt16KEY = "16", Batt17KEY = "17", Batt18KEY = "18", Batt19KEY = "19", Batt20KEY = "20";
+    private final String Batt21KEY = "21", Batt22KEY = "22", Batt23KEY = "23", Batt24KEY = "24", Batt25KEY = "25", Batt26KEY = "26", Batt27KEY = "27", Batt28KEY = "28", Batt29KEY = "29", Batt30KEY = "30";
+    private final String Batt31KEY = "31", Batt32KEY = "32", Batt33KEY = "33", Batt34KEY = "34", Batt35KEY = "35", Batt36KEY = "36", Batt37KEY = "37", Batt38KEY = "38", Batt39KEY = "39", Batt40KEY = "40";
+    private final String Batt41KEY = "41", Batt42KEY = "42", Batt43KEY = "43", Batt44KEY = "44", Batt45KEY = "45", Batt46KEY = "46", Batt47KEY = "47", Batt48KEY = "48", Batt49KEY = "49", Batt50KEY = "50";
+    private final String Batt51KEY = "51", Batt52KEY = "52", Batt53KEY = "53", Batt54KEY = "54", Batt55KEY = "55", Batt56KEY = "56", Batt57KEY = "57", Batt58KEY = "58", Batt59KEY = "59", Batt60KEY = "60";
+    private final String Batt61KEY = "61", Batt62KEY = "62", Batt63KEY = "63", Batt64KEY = "64", Batt65KEY = "65", Batt66KEY = "66", Batt67KEY = "67", Batt68KEY = "68", Batt69KEY = "69", Batt70KEY = "70";
+    private final String Batt71KEY = "71", Batt72KEY = "72", Batt73KEY = "73", Batt74KEY = "74", Batt75KEY = "75", Batt76KEY = "76", Batt77KEY = "77", Batt78KEY = "78", Batt79KEY = "79", Batt80KEY = "80";
+    private final String Batt81KEY = "81", Batt82KEY = "82", Batt83KEY = "83", Batt84KEY = "84", Batt85KEY = "85", Batt86KEY = "86", Batt87KEY = "87", Batt88KEY = "88", Batt89KEY = "89", Batt90KEY = "90";
+    private final String Batt91KEY = "91", Batt92KEY = "92", Batt93KEY = "93", Batt94KEY = "94", Batt95KEY = "95", Batt96KEY = "96", Batt97KEY = "97", Batt98KEY = "98", Batt99KEY = "99", Batt100KEY = "100";
+    private final String Batt101KEY = "101", Batt102KEY = "102", Batt103KEY = "103", Batt104KEY = "104", Batt105KEY = "105", Batt106KEY = "106", Batt107KEY = "107", Batt108KEY = "108";
+    private final String VOLTAGE_KEY = "VOLTAGE";
+    private final String CAT1_KEY = "CAT1";
+    private final String CAT2_KEY = "CAT2";
+    private final String ORANG1_KEY = "ORANG1";
+    private final String ORANG2_KEY = "ORANG2";
+    private final String ORANG3_KEY = "ORANG3";
+    private final String OPERATOR_KEY = "OPERATOR";
+    private final String NAMAGT_KEY = "NAMAGT";
+    private final String NAMAUNIT_KEY = "NAMAUNIT";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -191,6 +216,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         buttonCreatedPDF = findViewById(R.id.buttonCreatepdfBLE);
         buttonCreatedPDF.setOnClickListener(v -> {
             createdPDF();
+            savedPrefs();
 
         });
 
@@ -211,9 +237,87 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         //Total_Clear();
         graphVolage =  findViewById(R.id.totalVoltage);
         graphVolage.setOnClickListener(view -> {
+            savedPrefs();
             DialogGraphBatt();
         });
 
+        // Shared Prefs
+        prefs = getPreferences(MODE_PRIVATE);
+
+        Batt1.setText(prefs.getString(Batt1KEY,"1")); Batt2.setText(prefs.getString(Batt2KEY,"2")); Batt3.setText(prefs.getString(Batt3KEY,"3")); Batt4.setText(prefs.getString(Batt4KEY,"4")); Batt5.setText(prefs.getString(Batt5KEY,"5"));
+        Batt6.setText(prefs.getString(Batt6KEY,"6")); Batt7.setText(prefs.getString(Batt7KEY,"7")); Batt8.setText(prefs.getString(Batt8KEY,"8")); Batt9.setText(prefs.getString(Batt9KEY,"9")); Batt10.setText(prefs.getString(Batt10KEY,"10"));
+        Batt11.setText(prefs.getString(Batt11KEY,"11")); Batt12.setText(prefs.getString(Batt12KEY,"12")); Batt13.setText(prefs.getString(Batt13KEY,"13")); Batt14.setText(prefs.getString(Batt14KEY,"14")); Batt15.setText(prefs.getString(Batt15KEY,"15"));
+        Batt16.setText(prefs.getString(Batt16KEY,"16")); Batt17.setText(prefs.getString(Batt17KEY,"17")); Batt18.setText(prefs.getString(Batt18KEY,"18")); Batt19.setText(prefs.getString(Batt19KEY,"19")); Batt20.setText(prefs.getString(Batt20KEY,"20"));
+        Batt21.setText(prefs.getString(Batt21KEY,"21")); Batt22.setText(prefs.getString(Batt22KEY,"22")); Batt23.setText(prefs.getString(Batt23KEY,"23")); Batt24.setText(prefs.getString(Batt24KEY,"24")); Batt25.setText(prefs.getString(Batt25KEY,"25"));
+        Batt26.setText(prefs.getString(Batt26KEY,"26")); Batt27.setText(prefs.getString(Batt27KEY,"27")); Batt28.setText(prefs.getString(Batt28KEY,"28")); Batt29.setText(prefs.getString(Batt29KEY,"29")); Batt30.setText(prefs.getString(Batt30KEY,"30"));
+        Batt31.setText(prefs.getString(Batt31KEY,"31")); Batt32.setText(prefs.getString(Batt32KEY,"32")); Batt33.setText(prefs.getString(Batt33KEY,"33")); Batt34.setText(prefs.getString(Batt34KEY,"34")); Batt35.setText(prefs.getString(Batt35KEY,"35"));
+        Batt36.setText(prefs.getString(Batt36KEY,"36")); Batt37.setText(prefs.getString(Batt37KEY,"37")); Batt38.setText(prefs.getString(Batt38KEY,"38")); Batt39.setText(prefs.getString(Batt39KEY,"39")); Batt40.setText(prefs.getString(Batt40KEY,"40"));
+        Batt41.setText(prefs.getString(Batt41KEY,"41")); Batt42.setText(prefs.getString(Batt42KEY,"42")); Batt43.setText(prefs.getString(Batt43KEY,"43")); Batt44.setText(prefs.getString(Batt44KEY,"44")); Batt45.setText(prefs.getString(Batt45KEY,"45"));
+        Batt46.setText(prefs.getString(Batt46KEY,"46")); Batt47.setText(prefs.getString(Batt47KEY,"47")); Batt48.setText(prefs.getString(Batt48KEY,"48")); Batt49.setText(prefs.getString(Batt49KEY,"49")); Batt50.setText(prefs.getString(Batt50KEY,"50"));
+        Batt51.setText(prefs.getString(Batt51KEY,"51")); Batt52.setText(prefs.getString(Batt52KEY,"52")); Batt53.setText(prefs.getString(Batt53KEY,"53")); Batt54.setText(prefs.getString(Batt54KEY,"54")); Batt55.setText(prefs.getString(Batt55KEY,"55"));
+        Batt56.setText(prefs.getString(Batt56KEY,"56")); Batt57.setText(prefs.getString(Batt57KEY,"57")); Batt58.setText(prefs.getString(Batt58KEY,"58")); Batt59.setText(prefs.getString(Batt59KEY,"59")); Batt60.setText(prefs.getString(Batt60KEY,"60"));
+        Batt61.setText(prefs.getString(Batt61KEY,"61")); Batt62.setText(prefs.getString(Batt62KEY,"62")); Batt63.setText(prefs.getString(Batt63KEY,"63")); Batt64.setText(prefs.getString(Batt64KEY,"64")); Batt65.setText(prefs.getString(Batt65KEY,"65"));
+        Batt66.setText(prefs.getString(Batt66KEY,"66")); Batt67.setText(prefs.getString(Batt67KEY,"67")); Batt68.setText(prefs.getString(Batt68KEY,"68")); Batt69.setText(prefs.getString(Batt69KEY,"69")); Batt70.setText(prefs.getString(Batt70KEY,"70"));
+        Batt71.setText(prefs.getString(Batt71KEY,"71")); Batt72.setText(prefs.getString(Batt72KEY,"72")); Batt73.setText(prefs.getString(Batt73KEY,"73")); Batt74.setText(prefs.getString(Batt74KEY,"74")); Batt75.setText(prefs.getString(Batt75KEY,"75"));
+        Batt76.setText(prefs.getString(Batt76KEY,"76")); Batt77.setText(prefs.getString(Batt77KEY,"77")); Batt78.setText(prefs.getString(Batt78KEY,"78")); Batt79.setText(prefs.getString(Batt79KEY,"79")); Batt80.setText(prefs.getString(Batt80KEY,"80"));
+        Batt81.setText(prefs.getString(Batt81KEY,"81")); Batt82.setText(prefs.getString(Batt82KEY,"82")); Batt83.setText(prefs.getString(Batt83KEY,"83")); Batt84.setText(prefs.getString(Batt84KEY,"84")); Batt85.setText(prefs.getString(Batt85KEY,"85"));
+        Batt86.setText(prefs.getString(Batt86KEY,"86")); Batt87.setText(prefs.getString(Batt87KEY,"87")); Batt88.setText(prefs.getString(Batt88KEY,"88")); Batt89.setText(prefs.getString(Batt89KEY,"89")); Batt90.setText(prefs.getString(Batt90KEY,"90"));
+        Batt91.setText(prefs.getString(Batt91KEY,"91")); Batt92.setText(prefs.getString(Batt92KEY,"92")); Batt93.setText(prefs.getString(Batt93KEY,"93")); Batt94.setText(prefs.getString(Batt94KEY,"94")); Batt95.setText(prefs.getString(Batt95KEY,"95"));
+        Batt96.setText(prefs.getString(Batt96KEY,"96")); Batt97.setText(prefs.getString(Batt97KEY,"97")); Batt98.setText(prefs.getString(Batt98KEY,"98")); Batt99.setText(prefs.getString(Batt99KEY,"99")); Batt100.setText(prefs.getString(Batt100KEY,"100"));
+        Batt101.setText(prefs.getString(Batt101KEY,"101")); Batt102.setText(prefs.getString(Batt102KEY,"102")); Batt103.setText(prefs.getString(Batt103KEY,"103")); Batt104.setText(prefs.getString(Batt104KEY,"104")); Batt105.setText(prefs.getString(Batt105KEY,"105"));
+        Batt106.setText(prefs.getString(Batt106KEY,"106")); Batt107.setText(prefs.getString(Batt107KEY,"107")); Batt108.setText(prefs.getString(Batt108KEY,"108"));
+
+        Catatan1.setText(prefs.getString(CAT1_KEY, ""));
+        Catatan2.setText(prefs.getString(CAT2_KEY, ""));
+        orangPm1.setText(prefs.getString(ORANG1_KEY, ""));
+        orangPm2.setText(prefs.getString(ORANG2_KEY, ""));
+        orangPm3.setText(prefs.getString(ORANG3_KEY, ""));
+        operator.setText(prefs.getString(OPERATOR_KEY, ""));
+        namaGT.setText(prefs.getString(NAMAGT_KEY,""));
+        unitBatt.setText(prefs.getString(NAMAUNIT_KEY, ""));
+
+    }
+
+    public void savedPrefs()
+    {
+        prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(Batt1KEY, Batt1.getText().toString()); editor.putString(Batt2KEY, Batt2.getText().toString()); editor.putString(Batt3KEY, Batt3.getText().toString()); editor.putString(Batt4KEY, Batt4.getText().toString()); editor.putString(Batt5KEY, Batt5.getText().toString());
+        editor.putString(Batt6KEY, Batt6.getText().toString()); editor.putString(Batt7KEY, Batt7.getText().toString()); editor.putString(Batt8KEY, Batt8.getText().toString()); editor.putString(Batt9KEY, Batt9.getText().toString()); editor.putString(Batt10KEY, Batt10.getText().toString());
+        editor.putString(Batt11KEY, Batt11.getText().toString()); editor.putString(Batt12KEY, Batt12.getText().toString()); editor.putString(Batt13KEY, Batt13.getText().toString()); editor.putString(Batt14KEY, Batt14.getText().toString()); editor.putString(Batt15KEY, Batt15.getText().toString());
+        editor.putString(Batt16KEY, Batt16.getText().toString()); editor.putString(Batt17KEY, Batt17.getText().toString()); editor.putString(Batt18KEY, Batt18.getText().toString()); editor.putString(Batt19KEY, Batt19.getText().toString()); editor.putString(Batt20KEY, Batt20.getText().toString());
+        editor.putString(Batt21KEY, Batt21.getText().toString()); editor.putString(Batt22KEY, Batt22.getText().toString()); editor.putString(Batt23KEY, Batt23.getText().toString()); editor.putString(Batt24KEY, Batt24.getText().toString()); editor.putString(Batt25KEY, Batt25.getText().toString());
+
+        editor.putString(Batt26KEY, Batt26.getText().toString()); editor.putString(Batt27KEY, Batt27.getText().toString()); editor.putString(Batt28KEY, Batt28.getText().toString()); editor.putString(Batt29KEY, Batt29.getText().toString()); editor.putString(Batt30KEY, Batt30.getText().toString());
+        editor.putString(Batt31KEY, Batt31.getText().toString()); editor.putString(Batt32KEY, Batt32.getText().toString()); editor.putString(Batt33KEY, Batt33.getText().toString()); editor.putString(Batt34KEY, Batt34.getText().toString()); editor.putString(Batt35KEY, Batt35.getText().toString());
+        editor.putString(Batt36KEY, Batt36.getText().toString()); editor.putString(Batt37KEY, Batt37.getText().toString()); editor.putString(Batt38KEY, Batt38.getText().toString()); editor.putString(Batt39KEY, Batt39.getText().toString()); editor.putString(Batt40KEY, Batt40.getText().toString());
+        editor.putString(Batt41KEY, Batt41.getText().toString()); editor.putString(Batt42KEY, Batt42.getText().toString()); editor.putString(Batt43KEY, Batt43.getText().toString()); editor.putString(Batt44KEY, Batt44.getText().toString()); editor.putString(Batt45KEY, Batt45.getText().toString());
+        editor.putString(Batt46KEY, Batt46.getText().toString()); editor.putString(Batt47KEY, Batt47.getText().toString()); editor.putString(Batt48KEY, Batt48.getText().toString()); editor.putString(Batt49KEY, Batt49.getText().toString()); editor.putString(Batt50KEY, Batt50.getText().toString());
+
+        editor.putString(Batt51KEY, Batt51.getText().toString()); editor.putString(Batt52KEY, Batt52.getText().toString()); editor.putString(Batt53KEY, Batt53.getText().toString()); editor.putString(Batt54KEY, Batt54.getText().toString()); editor.putString(Batt55KEY, Batt55.getText().toString());
+        editor.putString(Batt56KEY, Batt56.getText().toString()); editor.putString(Batt57KEY, Batt57.getText().toString()); editor.putString(Batt58KEY, Batt58.getText().toString()); editor.putString(Batt59KEY, Batt59.getText().toString()); editor.putString(Batt60KEY, Batt60.getText().toString());
+        editor.putString(Batt61KEY, Batt61.getText().toString()); editor.putString(Batt62KEY, Batt62.getText().toString()); editor.putString(Batt63KEY, Batt63.getText().toString()); editor.putString(Batt64KEY, Batt64.getText().toString()); editor.putString(Batt65KEY, Batt65.getText().toString());
+        editor.putString(Batt66KEY, Batt66.getText().toString()); editor.putString(Batt67KEY, Batt67.getText().toString()); editor.putString(Batt68KEY, Batt68.getText().toString()); editor.putString(Batt69KEY, Batt69.getText().toString()); editor.putString(Batt70KEY, Batt70.getText().toString());
+        editor.putString(Batt71KEY, Batt71.getText().toString()); editor.putString(Batt72KEY, Batt72.getText().toString()); editor.putString(Batt73KEY, Batt73.getText().toString()); editor.putString(Batt74KEY, Batt74.getText().toString()); editor.putString(Batt75KEY, Batt75.getText().toString());
+
+        editor.putString(Batt76KEY, Batt76.getText().toString()); editor.putString(Batt77KEY, Batt77.getText().toString()); editor.putString(Batt78KEY, Batt78.getText().toString()); editor.putString(Batt79KEY, Batt79.getText().toString()); editor.putString(Batt80KEY, Batt80.getText().toString());
+        editor.putString(Batt81KEY, Batt81.getText().toString()); editor.putString(Batt82KEY, Batt82.getText().toString()); editor.putString(Batt83KEY, Batt83.getText().toString()); editor.putString(Batt84KEY, Batt84.getText().toString()); editor.putString(Batt85KEY, Batt85.getText().toString());
+        editor.putString(Batt86KEY, Batt86.getText().toString()); editor.putString(Batt87KEY, Batt87.getText().toString()); editor.putString(Batt88KEY, Batt88.getText().toString()); editor.putString(Batt89KEY, Batt89.getText().toString()); editor.putString(Batt90KEY, Batt90.getText().toString());
+        editor.putString(Batt91KEY, Batt91.getText().toString()); editor.putString(Batt92KEY, Batt92.getText().toString()); editor.putString(Batt93KEY, Batt93.getText().toString()); editor.putString(Batt94KEY, Batt94.getText().toString()); editor.putString(Batt95KEY, Batt95.getText().toString());
+        editor.putString(Batt96KEY, Batt96.getText().toString()); editor.putString(Batt97KEY, Batt97.getText().toString()); editor.putString(Batt98KEY, Batt98.getText().toString()); editor.putString(Batt99KEY, Batt99.getText().toString()); editor.putString(Batt100KEY, Batt100.getText().toString());
+
+        editor.putString(Batt101KEY, Batt101.getText().toString()); editor.putString(Batt102KEY, Batt102.getText().toString()); editor.putString(Batt103KEY, Batt103.getText().toString()); editor.putString(Batt104KEY, Batt104.getText().toString()); editor.putString(Batt105KEY, Batt105.getText().toString());
+        editor.putString(Batt106KEY, Batt106.getText().toString()); editor.putString(Batt107KEY, Batt107.getText().toString()); editor.putString(Batt108KEY, Batt108.getText().toString());
+        editor.putString(CAT1_KEY, Catatan1.getText().toString());
+        editor.putString(CAT2_KEY, Catatan2.getText().toString());
+        editor.putString(ORANG1_KEY, orangPm1.getText().toString());
+        editor.putString(ORANG2_KEY, orangPm2.getText().toString());
+        editor.putString(ORANG3_KEY, orangPm3.getText().toString());
+        editor.putString(OPERATOR_KEY, operator.getText().toString());
+        editor.putString(NAMAGT_KEY, namaGT.getText().toString());
+        editor.putString(NAMAUNIT_KEY, unitBatt.getText().toString());
+
+        editor.apply();
     }
 
     @Override
@@ -297,7 +401,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
                 }, 2000);
                 btActivity.removeCommunicationCallback();
                 btActivity.disconnect();
-                //btActivity.disableBluetooth(); // untuk turn OFF Bluetooth
+                btActivity.disableBluetooth(); // untuk turn OFF Bluetooth
                 Toast.makeText(BluetoothBattery.this, "Bluetooth Not Connected (Error)", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(BluetoothBattery.this, SelectBLEbatt.class);
                 startActivity(intent);
@@ -2430,4 +2534,41 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
             handler.postDelayed(this, 1000);
         }
     };
+
+    // Press Back Saved it !!
+    @Override
+    public void onBackPressed()
+    {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Keluar dari PM Battery");
+        // set pesan dari dialog
+        alertDialogBuilder
+                .setMessage("Klik Ya untuk keluar! Bluetooth Turn Off Auto")
+                .setCancelable(false)
+                .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // jika tombol diklik, maka akan menutup activity ini
+                        savedPrefs();
+                        Intent intent = new Intent(BluetoothBattery.this, SelectBLEbatt.class);
+                        startActivity(intent);
+                        btActivity.disconnect();
+                        btActivity.disableBluetooth();
+                        BluetoothBattery.this.finish();
+                    }
+                })
+                .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // jika tombol ini diklik, akan menutup dialog
+                        // dan tidak terjadi apa2
+                        dialog.cancel();
+                    }
+                });
+
+        // membuat alert dialog dari builder
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // menampilkan alert dialog
+        alertDialog.show();
+    }
 }

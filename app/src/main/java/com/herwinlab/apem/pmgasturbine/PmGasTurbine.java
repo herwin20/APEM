@@ -120,10 +120,11 @@ public class PmGasTurbine extends AppCompatActivity {
                 Intent intent = new Intent(PmGasTurbine.this, MainPmTrafo.class);
                 startActivity(intent);
             }
-        });cardMCCAC =  findViewById(R.id.cardMCCAC);
+        });
+        cardMCCAC =  findViewById(R.id.cardMCCAC);
         cardMCCAC.setOnClickListener(v -> {
-            Intent intent = new Intent(PmGasTurbine.this, MCCAC.class);
-            startActivity(intent);
+            //Intent intent = new Intent(PmGasTurbine.this, MCCAC.class);
+            //startActivity(intent);
         });
 
 
