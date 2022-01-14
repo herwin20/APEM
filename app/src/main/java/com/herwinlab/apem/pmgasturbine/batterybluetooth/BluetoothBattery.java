@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,7 +72,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
     public String name;
     public Bluetooth btActivity;
-    TextView ReadVoltage, ConditionBattery;
+    TextView ReadVoltage, ConditionBattery, InternalRest, DeviceVolt;
     boolean registered=false;
     CardView cardCondition;
 
@@ -149,6 +151,13 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     private final String NAMAGT_KEY = "NAMAGT";
     private final String NAMAUNIT_KEY = "NAMAUNIT";
 
+    // Calibrated Function
+    public ImageView calibratedImage;
+    public EditText voltageAVO, voltageAlat;
+    public TextView selesihVolt, errorVolt;
+    public LinearLayout sendDataCalibrated;
+    public Button calcButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +173,8 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         ReadVoltage = findViewById(R.id.read_voltage);
         ConditionBattery = findViewById(R.id.condition_batt);
         cardCondition = findViewById(R.id.condCard);
+        InternalRest = findViewById(R.id.internal_ohm);
+        DeviceVolt = findViewById(R.id.battery_alat);
 
         TotalVoltage = findViewById(R.id.totalvoltageble2);
 
@@ -276,6 +287,10 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         namaGT.setText(prefs.getString(NAMAGT_KEY,""));
         unitBatt.setText(prefs.getString(NAMAUNIT_KEY, ""));
 
+        calibratedImage = findViewById(R.id.calimage);
+        calibratedImage.setOnClickListener(view ->{
+            dialogCalibrated();
+        });
     }
 
     public void savedPrefs()
@@ -334,9 +349,16 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ReadVoltage.setText(data);
+                String data_masuk = data;
+                String[] separated = data_masuk.split(",");
+                // separated[0] -> Tegangan
+                // separated[1] -> hambatan internal
+                // separated[2] -> teg. alatnya
+                ReadVoltage.setText(separated[0]);
+                InternalRest.setText(separated[1]);
+                DeviceVolt.setText(separated[2]);
 
-                float Voltage = Float.parseFloat(data);
+                float Voltage = Float.parseFloat(separated[0]);
                 if (Voltage == 0) {
                     ConditionBattery.setText("Not Connect!");
                 }
@@ -471,31 +493,31 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
         Batt1 = findViewById(R.id.batt1);
         Batt1.setOnClickListener(v -> {
-            String batt1 = ReadVoltage.getText().toString();
+            String batt1 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt1.setText(batt1);
         });
 
         Batt2 = findViewById(R.id.batt2);
         Batt2.setOnClickListener(v -> {
-            String batt2 = ReadVoltage.getText().toString();
+            String batt2 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt2.setText(batt2);
         });
 
         Batt3 = findViewById(R.id.batt3);
         Batt3.setOnClickListener(v -> {
-            String batt3 = ReadVoltage.getText().toString();
+            String batt3 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt3.setText(batt3);
         });
 
         Batt4 = findViewById(R.id.batt4);
         Batt4.setOnClickListener(v -> {
-            String batt4 = ReadVoltage.getText().toString();
+            String batt4 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt4.setText(batt4);
         });
 
         Batt5 = findViewById(R.id.batt5);
         Batt5.setOnClickListener(v -> {
-            String batt5 = ReadVoltage.getText().toString();
+            String batt5 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt5.setText(batt5);
         });
 
@@ -1140,6 +1162,18 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void Total_Clear() {
+
+        /*String dataVoltage1 = Batt1.getText().toString();
+        String[] pjb1 = dataVoltage1.split(",");
+        String dataVoltage2 = Batt1.getText().toString();
+        String[] pjb2 = dataVoltage2.split(",");
+        String dataVoltage3 = Batt1.getText().toString();
+        String[] pjb3 = dataVoltage3.split(",");
+        String dataVoltage4 = Batt1.getText().toString();
+        String[] pjb4 = dataVoltage4.split(",");
+        String dataVoltage5 = Batt1.getText().toString();
+        String[] pjb5 = dataVoltage5.split(",");*/
+
         float a1 = Float.parseFloat(Batt1.getText().toString());
         float a2 = Float.parseFloat(Batt2.getText().toString());
         float a3 = Float.parseFloat(Batt3.getText().toString());
@@ -2516,6 +2550,59 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
         lineDataSet.setColors(ColorTemplate.getHoloBlue());
         chartGraphBatt.setData(lineData);
+    }
+
+    public void dialogCalibrated() {
+        dialogCustom = new AlertDialog.Builder(BluetoothBattery.this);
+        inflater = getLayoutInflater();
+        dialogView = inflater.inflate(R.layout.dialog_calibrated_ble, null);
+        dialogCustom.setView(dialogView);
+        dialogCustom.setCancelable(false);
+        dialogCustom.setIcon(R.mipmap.ic_launcher);
+
+        voltageAVO = dialogView.findViewById(R.id.tegAVO);
+        voltageAlat = dialogView.findViewById(R.id.tegAlat);
+        selesihVolt = dialogView.findViewById(R.id.selisihVolt);
+        errorVolt = dialogView.findViewById(R.id.errorCal);
+        sendDataCalibrated = dialogView.findViewById(R.id.buttonSendCalibrated);
+        calcButton = dialogView.findViewById(R.id.buttonCalculated);
+
+        calcButton.setOnClickListener(view ->{
+            String AVO = voltageAVO.getText().toString();
+            String BLE = voltageAlat.getText().toString();
+            if (AVO.isEmpty()){
+                voltageAVO.setError("Field Empty!");voltageAVO.requestFocus();
+            }
+            else if (BLE.isEmpty()) {
+                voltageAlat.setError("Field Empty");voltageAlat.requestFocus();
+            }
+            else {
+                float AVO1 = Float.parseFloat(voltageAVO.getText().toString());
+                float BLE1 = Float.parseFloat(voltageAlat.getText().toString());
+                //float Selisih1 = Float.parseFloat(Selisih);
+                //float Error1 = Float.parseFloat(Error);
+
+                float selisih1 = AVO1 - BLE1;
+                float percentError = ((AVO1 - BLE1) / AVO1) * 100;
+                selesihVolt.setText(String.format("%.2f", Math.abs(selisih1)));
+                errorVolt.setText(String.format("%.2f", Math.abs(percentError)));
+            }
+        });
+
+        sendDataCalibrated.setOnClickListener(view ->{
+            //String sendData = selesihVolt.getText().toString();
+            btActivity.send(selesihVolt.getText().toString());
+        });
+
+
+        dialogCustom.setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        dialogCustom.show();
     }
 
     //Fungsi Untuk Jam dan Tanggal
