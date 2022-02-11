@@ -155,7 +155,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     public ImageView calibratedImage;
     public EditText voltageAVO, voltageAlat;
     public TextView selesihVolt, errorVolt;
-    public LinearLayout sendDataCalibrated;
+    public LinearLayout sendDataCalibrated, buttonZeroCalibrated;
     public Button calcButton;
 
     @Override
@@ -2565,6 +2565,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         selesihVolt = dialogView.findViewById(R.id.selisihVolt);
         errorVolt = dialogView.findViewById(R.id.errorCal);
         sendDataCalibrated = dialogView.findViewById(R.id.buttonSendCalibrated);
+        buttonZeroCalibrated = dialogView.findViewById(R.id.buttonZeroCalibrated);
         calcButton = dialogView.findViewById(R.id.buttonCalculated);
 
         calcButton.setOnClickListener(view ->{
@@ -2584,7 +2585,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
                 float selisih1 = AVO1 - BLE1;
                 float percentError = ((AVO1 - BLE1) / AVO1) * 100;
-                selesihVolt.setText(String.format("%.2f", Math.abs(selisih1)));
+                selesihVolt.setText(String.format("%.2f", selisih1));
                 errorVolt.setText(String.format("%.2f", Math.abs(percentError)));
             }
         });
@@ -2592,6 +2593,12 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         sendDataCalibrated.setOnClickListener(view ->{
             //String sendData = selesihVolt.getText().toString();
             btActivity.send(selesihVolt.getText().toString());
+            Toast.makeText(this, "Data calibrated has sent", Toast.LENGTH_SHORT).show();
+        });
+
+        buttonZeroCalibrated.setOnClickListener(view->{
+            btActivity.send("0.00");
+            Toast.makeText(this, "Zero calibrated has sent", Toast.LENGTH_SHORT).show();
         });
 
 
