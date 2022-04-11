@@ -18,6 +18,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
 import android.media.MediaScannerConnection;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -56,15 +57,36 @@ import com.herwinlab.apem.R;
 import com.herwinlab.apem.pmgasturbine.PmGasTurbine;
 import com.kyanogen.signatureview.SignatureView;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import me.aflak.bluetooth.Bluetooth;
 
@@ -158,6 +180,9 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
     public LinearLayout sendDataCalibrated, buttonZeroCalibrated;
     public Button calcButton;
 
+    //Google SpreadSheet
+    public String time, unit, nomor, tegangan, kondisi;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,6 +252,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         buttonCreatedPDF = findViewById(R.id.buttonCreatepdfBLE);
         buttonCreatedPDF.setOnClickListener(v -> {
             createdPDF();
+            createdExcel();
             savedPrefs();
 
         });
@@ -491,64 +517,128 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
     private void Measure_Battery1() {
 
+        dateTime = new Date();
+        dateFormat = new SimpleDateFormat("dd-MM-yy");
+
         Batt1 = findViewById(R.id.batt1);
         Batt1.setOnClickListener(v -> {
             String batt1 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt1.setText(batt1);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "1";
+            tegangan = ReadVoltage.getText().toString();
+            kondisi = ConditionBattery.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt2 = findViewById(R.id.batt2);
         Batt2.setOnClickListener(v -> {
             String batt2 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt2.setText(batt2);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "2";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt3 = findViewById(R.id.batt3);
         Batt3.setOnClickListener(v -> {
             String batt3 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt3.setText(batt3);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "3";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt4 = findViewById(R.id.batt4);
         Batt4.setOnClickListener(v -> {
             String batt4 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt4.setText(batt4);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "4";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt5 = findViewById(R.id.batt5);
         Batt5.setOnClickListener(v -> {
             String batt5 = ReadVoltage.getText().toString();// + "," + "\n" + InternalRest.getText().toString() +" \u2126";
             Batt5.setText(batt5);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "5";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt6 = findViewById(R.id.batt7);
         Batt6.setOnClickListener(v -> {
             String batt6 = ReadVoltage.getText().toString();
             Batt6.setText(batt6);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "6";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt7 = findViewById(R.id.batt8);
         Batt7.setOnClickListener(v -> {
             String batt7 = ReadVoltage.getText().toString();
             Batt7.setText(batt7);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "7";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt8 = findViewById(R.id.batt9);
         Batt8.setOnClickListener(v -> {
             String batt8 = ReadVoltage.getText().toString();
             Batt8.setText(batt8);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "8";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt9 = findViewById(R.id.batt10);
         Batt9.setOnClickListener(v -> {
             String batt9 = ReadVoltage.getText().toString();
             Batt9.setText(batt9);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "9";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt10 = findViewById(R.id.batt11);
         Batt10.setOnClickListener(v -> {
             String batt10 = ReadVoltage.getText().toString();
             Batt10.setText(batt10);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "10";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery2() {
@@ -557,60 +647,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt11.setOnClickListener(v -> {
             String batt11 = ReadVoltage.getText().toString();
             Batt11.setText(batt11);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "11";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt12 = findViewById(R.id.batt14);
         Batt12.setOnClickListener(v -> {
             String batt12 = ReadVoltage.getText().toString();
             Batt12.setText(batt12);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "12";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt13 = findViewById(R.id.batt15);
         Batt13.setOnClickListener(v -> {
             String batt13 = ReadVoltage.getText().toString();
             Batt13.setText(batt13);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "13";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt14 = findViewById(R.id.batt16);
         Batt14.setOnClickListener(v -> {
             String batt14 = ReadVoltage.getText().toString();
             Batt14.setText(batt14);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "14";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt15 = findViewById(R.id.batt17);
         Batt15.setOnClickListener(v -> {
             String batt15 = ReadVoltage.getText().toString();
             Batt15.setText(batt15);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "15";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt16 = findViewById(R.id.batt19);
         Batt16.setOnClickListener(v -> {
             String batt16 = ReadVoltage.getText().toString();
             Batt16.setText(batt16);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "16";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt17 = findViewById(R.id.batt20);
         Batt17.setOnClickListener(v -> {
             String batt17 = ReadVoltage.getText().toString();
             Batt17.setText(batt17);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "17";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt18 = findViewById(R.id.batt21);
         Batt18.setOnClickListener(v -> {
             String batt18 = ReadVoltage.getText().toString();
             Batt18.setText(batt18);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "18";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt19 = findViewById(R.id.batt22);
         Batt19.setOnClickListener(v -> {
             String batt19 = ReadVoltage.getText().toString();
             Batt19.setText(batt19);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "19";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt20 = findViewById(R.id.batt23);
         Batt20.setOnClickListener(v -> {
             String batt20 = ReadVoltage.getText().toString();
             Batt20.setText(batt20);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "20";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery3() {
@@ -619,60 +769,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt21.setOnClickListener(v -> {
             String batt21 = ReadVoltage.getText().toString();
             Batt21.setText(batt21);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "21";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt22 = findViewById(R.id.batt26);
         Batt22.setOnClickListener(v -> {
             String batt22 = ReadVoltage.getText().toString();
             Batt22.setText(batt22);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "22";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt23 = findViewById(R.id.batt27);
         Batt23.setOnClickListener(v -> {
-            String batt13 = ReadVoltage.getText().toString();
-            Batt23.setText(batt13);
+            String batt23 = ReadVoltage.getText().toString();
+            Batt23.setText(batt23);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "23";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt24 = findViewById(R.id.batt28);
         Batt24.setOnClickListener(v -> {
             String batt24 = ReadVoltage.getText().toString();
             Batt24.setText(batt24);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "24";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt25 = findViewById(R.id.batt29);
         Batt25.setOnClickListener(v -> {
             String batt25 = ReadVoltage.getText().toString();
             Batt25.setText(batt25);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "25";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt26 = findViewById(R.id.batt31);
         Batt26.setOnClickListener(v -> {
             String batt26 = ReadVoltage.getText().toString();
             Batt26.setText(batt26);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "26";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt27 = findViewById(R.id.batt32);
         Batt27.setOnClickListener(v -> {
             String batt27 = ReadVoltage.getText().toString();
             Batt27.setText(batt27);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "27";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt28 = findViewById(R.id.batt33);
         Batt28.setOnClickListener(v -> {
             String batt28 = ReadVoltage.getText().toString();
             Batt28.setText(batt28);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "28";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt29 = findViewById(R.id.batt34);
         Batt29.setOnClickListener(v -> {
             String batt29 = ReadVoltage.getText().toString();
             Batt29.setText(batt29);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "29";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt30 = findViewById(R.id.batt35);
         Batt30.setOnClickListener(v -> {
             String batt30 = ReadVoltage.getText().toString();
             Batt30.setText(batt30);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "30";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery4() {
@@ -681,60 +891,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt31.setOnClickListener(v -> {
             String batt31 = ReadVoltage.getText().toString();
             Batt31.setText(batt31);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "31";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt32 = findViewById(R.id.batt37);
         Batt32.setOnClickListener(v -> {
             String batt32 = ReadVoltage.getText().toString();
             Batt32.setText(batt32);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "32";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt33 = findViewById(R.id.batt38);
         Batt33.setOnClickListener(v -> {
             String batt33 = ReadVoltage.getText().toString();
             Batt33.setText(batt33);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "33";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt34 = findViewById(R.id.batt39);
         Batt34.setOnClickListener(v -> {
             String batt34 = ReadVoltage.getText().toString();
             Batt34.setText(batt34);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "34";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt35 = findViewById(R.id.batt40);
         Batt35.setOnClickListener(v -> {
             String batt35 = ReadVoltage.getText().toString();
             Batt35.setText(batt35);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "35";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt36 = findViewById(R.id.batt41);
         Batt36.setOnClickListener(v -> {
             String batt36 = ReadVoltage.getText().toString();
             Batt36.setText(batt36);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "36";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt37 = findViewById(R.id.batt42);
         Batt37.setOnClickListener(v -> {
             String batt37 = ReadVoltage.getText().toString();
             Batt37.setText(batt37);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "37";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt38 = findViewById(R.id.batt43);
         Batt38.setOnClickListener(v -> {
             String batt38 = ReadVoltage.getText().toString();
             Batt38.setText(batt38);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "38";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt39 = findViewById(R.id.batt44);
         Batt39.setOnClickListener(v -> {
             String batt39 = ReadVoltage.getText().toString();
             Batt39.setText(batt39);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "39";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt40 = findViewById(R.id.batt45);
         Batt40.setOnClickListener(v -> {
             String batt40 = ReadVoltage.getText().toString();
             Batt40.setText(batt40);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "40";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery5() {
@@ -743,60 +1013,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt41.setOnClickListener(v -> {
             String batt41 = ReadVoltage.getText().toString();
             Batt41.setText(batt41);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "41";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt42 = findViewById(R.id.batt47);
         Batt42.setOnClickListener(v -> {
             String batt42 = ReadVoltage.getText().toString();
             Batt42.setText(batt42);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "42";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt43 = findViewById(R.id.batt48);
         Batt43.setOnClickListener(v -> {
             String batt43 = ReadVoltage.getText().toString();
             Batt43.setText(batt43);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "43";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt44 = findViewById(R.id.batt49);
         Batt44.setOnClickListener(v -> {
             String batt44 = ReadVoltage.getText().toString();
             Batt44.setText(batt44);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "44";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt45 = findViewById(R.id.batt50);
         Batt45.setOnClickListener(v -> {
             String batt45 = ReadVoltage.getText().toString();
             Batt45.setText(batt45);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "45";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt46 = findViewById(R.id.batt51);
         Batt46.setOnClickListener(v -> {
             String batt46 = ReadVoltage.getText().toString();
             Batt46.setText(batt46);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "46";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt47 = findViewById(R.id.batt52);
         Batt47.setOnClickListener(v -> {
             String batt47 = ReadVoltage.getText().toString();
             Batt47.setText(batt47);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "47";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt48 = findViewById(R.id.batt53);
         Batt48.setOnClickListener(v -> {
             String batt48 = ReadVoltage.getText().toString();
             Batt48.setText(batt48);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "48";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt49 = findViewById(R.id.batt54);
         Batt49.setOnClickListener(v -> {
             String batt49 = ReadVoltage.getText().toString();
             Batt49.setText(batt49);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "49";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt50 = findViewById(R.id.batt55);
         Batt50.setOnClickListener(v -> {
             String batt50 = ReadVoltage.getText().toString();
             Batt50.setText(batt50);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "50";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery6() {
@@ -805,60 +1135,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt51.setOnClickListener(v -> {
             String batt51 = ReadVoltage.getText().toString();
             Batt51.setText(batt51);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "51";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt52 = findViewById(R.id.batt57);
         Batt52.setOnClickListener(v -> {
             String batt52 = ReadVoltage.getText().toString();
             Batt52.setText(batt52);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "52";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt53 = findViewById(R.id.batt58);
         Batt53.setOnClickListener(v -> {
             String batt53 = ReadVoltage.getText().toString();
             Batt53.setText(batt53);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "53";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt54 = findViewById(R.id.batt59);
         Batt54.setOnClickListener(v -> {
             String batt54 = ReadVoltage.getText().toString();
             Batt54.setText(batt54);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "54";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt55 = findViewById(R.id.batt60);
         Batt55.setOnClickListener(v -> {
             String batt55 = ReadVoltage.getText().toString();
             Batt55.setText(batt55);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "55";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt56 = findViewById(R.id.batt61);
         Batt56.setOnClickListener(v -> {
             String batt56 = ReadVoltage.getText().toString();
             Batt56.setText(batt56);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "56";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt57 = findViewById(R.id.batt62);
         Batt57.setOnClickListener(v -> {
             String batt57 = ReadVoltage.getText().toString();
             Batt57.setText(batt57);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "57";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt58 = findViewById(R.id.batt63);
         Batt58.setOnClickListener(v -> {
             String batt58 = ReadVoltage.getText().toString();
             Batt58.setText(batt58);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "58";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt59 = findViewById(R.id.batt64);
         Batt59.setOnClickListener(v -> {
             String batt59 = ReadVoltage.getText().toString();
             Batt59.setText(batt59);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "59";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt60 = findViewById(R.id.batt65);
         Batt60.setOnClickListener(v -> {
             String batt60 = ReadVoltage.getText().toString();
             Batt60.setText(batt60);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "60";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery7() {
@@ -867,60 +1257,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt61.setOnClickListener(v -> {
             String batt61 = ReadVoltage.getText().toString();
             Batt61.setText(batt61);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "61";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt62 = findViewById(R.id.batt67);
         Batt62.setOnClickListener(v -> {
             String batt62 = ReadVoltage.getText().toString();
             Batt62.setText(batt62);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "62";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt63 = findViewById(R.id.batt68);
         Batt63.setOnClickListener(v -> {
             String batt63 = ReadVoltage.getText().toString();
             Batt63.setText(batt63);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "63";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt64 = findViewById(R.id.batt69);
         Batt64.setOnClickListener(v -> {
             String batt64 = ReadVoltage.getText().toString();
             Batt64.setText(batt64);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "64";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt65 = findViewById(R.id.batt70);
         Batt65.setOnClickListener(v -> {
             String batt65 = ReadVoltage.getText().toString();
             Batt65.setText(batt65);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "65";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt66 = findViewById(R.id.batt71);
         Batt66.setOnClickListener(v -> {
             String batt66 = ReadVoltage.getText().toString();
             Batt66.setText(batt66);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "66";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt67 = findViewById(R.id.batt72);
         Batt67.setOnClickListener(v -> {
             String batt67 = ReadVoltage.getText().toString();
             Batt67.setText(batt67);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "67";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt68 = findViewById(R.id.batt73);
         Batt68.setOnClickListener(v -> {
             String batt68 = ReadVoltage.getText().toString();
             Batt68.setText(batt68);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "68";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt69 = findViewById(R.id.batt74);
         Batt69.setOnClickListener(v -> {
             String batt69 = ReadVoltage.getText().toString();
             Batt69.setText(batt69);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "69";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt70 = findViewById(R.id.batt75);
         Batt70.setOnClickListener(v -> {
             String batt70 = ReadVoltage.getText().toString();
             Batt70.setText(batt70);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "70";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery8() {
@@ -929,60 +1379,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt71.setOnClickListener(v -> {
             String batt71 = ReadVoltage.getText().toString();
             Batt71.setText(batt71);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "71";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt72 = findViewById(R.id.batt77);
         Batt72.setOnClickListener(v -> {
             String batt72 = ReadVoltage.getText().toString();
             Batt72.setText(batt72);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "72";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt73 = findViewById(R.id.batt78);
         Batt73.setOnClickListener(v -> {
             String batt73 = ReadVoltage.getText().toString();
             Batt73.setText(batt73);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "73";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt74 = findViewById(R.id.batt79);
         Batt74.setOnClickListener(v -> {
             String batt74 = ReadVoltage.getText().toString();
             Batt74.setText(batt74);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "74";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt75 = findViewById(R.id.batt80);
         Batt75.setOnClickListener(v -> {
             String batt75 = ReadVoltage.getText().toString();
             Batt75.setText(batt75);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "75";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt76 = findViewById(R.id.batt81);
         Batt76.setOnClickListener(v -> {
             String batt76 = ReadVoltage.getText().toString();
             Batt76.setText(batt76);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "76";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt77 = findViewById(R.id.batt82);
         Batt77.setOnClickListener(v -> {
             String batt77 = ReadVoltage.getText().toString();
             Batt77.setText(batt77);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "77";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt78 = findViewById(R.id.batt83);
         Batt78.setOnClickListener(v -> {
             String batt78 = ReadVoltage.getText().toString();
             Batt78.setText(batt78);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "78";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt79 = findViewById(R.id.batt84);
         Batt79.setOnClickListener(v -> {
             String batt79 = ReadVoltage.getText().toString();
             Batt79.setText(batt79);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "79";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt80 = findViewById(R.id.batt85);
         Batt80.setOnClickListener(v -> {
             String batt80 = ReadVoltage.getText().toString();
             Batt80.setText(batt80);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "80";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery9() {
@@ -991,60 +1501,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt81.setOnClickListener(v -> {
             String batt81 = ReadVoltage.getText().toString();
             Batt81.setText(batt81);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "81";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt82 = findViewById(R.id.batt87);
         Batt82.setOnClickListener(v -> {
             String batt82 = ReadVoltage.getText().toString();
             Batt82.setText(batt82);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "82";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt83 = findViewById(R.id.batt88);
         Batt83.setOnClickListener(v -> {
             String batt83 = ReadVoltage.getText().toString();
             Batt83.setText(batt83);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "83";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt84 = findViewById(R.id.batt89);
         Batt84.setOnClickListener(v -> {
             String batt84 = ReadVoltage.getText().toString();
             Batt84.setText(batt84);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "84";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt85 = findViewById(R.id.batt90);
         Batt85.setOnClickListener(v -> {
             String batt85 = ReadVoltage.getText().toString();
             Batt85.setText(batt85);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "85";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt86 = findViewById(R.id.batt91);
         Batt86.setOnClickListener(v -> {
             String batt86 = ReadVoltage.getText().toString();
             Batt86.setText(batt86);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "86";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt87 = findViewById(R.id.batt92);
         Batt87.setOnClickListener(v -> {
             String batt87 = ReadVoltage.getText().toString();
             Batt87.setText(batt87);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "87";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt88 = findViewById(R.id.batt93);
         Batt88.setOnClickListener(v -> {
             String batt88 = ReadVoltage.getText().toString();
             Batt88.setText(batt88);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "88";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt89 = findViewById(R.id.batt94);
         Batt89.setOnClickListener(v -> {
             String batt89 = ReadVoltage.getText().toString();
             Batt89.setText(batt89);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "89";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt90 = findViewById(R.id.batt95);
         Batt90.setOnClickListener(v -> {
             String batt90 = ReadVoltage.getText().toString();
             Batt90.setText(batt90);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "90";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery10() {
@@ -1053,60 +1623,120 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt91.setOnClickListener(v -> {
             String batt91 = ReadVoltage.getText().toString();
             Batt91.setText(batt91);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "91";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt92 = findViewById(R.id.batt97);
         Batt92.setOnClickListener(v -> {
             String batt92 = ReadVoltage.getText().toString();
             Batt92.setText(batt92);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "92";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt93 = findViewById(R.id.batt98);
         Batt93.setOnClickListener(v -> {
             String batt93 = ReadVoltage.getText().toString();
             Batt93.setText(batt93);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "93";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt94 = findViewById(R.id.batt99);
         Batt94.setOnClickListener(v -> {
             String batt94 = ReadVoltage.getText().toString();
             Batt94.setText(batt94);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "94";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt95 = findViewById(R.id.batt100);
         Batt95.setOnClickListener(v -> {
             String batt95 = ReadVoltage.getText().toString();
             Batt95.setText(batt95);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "95";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt96 = findViewById(R.id.batt101);
         Batt96.setOnClickListener(v -> {
             String batt96 = ReadVoltage.getText().toString();
             Batt96.setText(batt96);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "96";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt97 = findViewById(R.id.batt102);
         Batt97.setOnClickListener(v -> {
             String batt97 = ReadVoltage.getText().toString();
             Batt97.setText(batt97);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "97";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt98 = findViewById(R.id.batt103);
         Batt98.setOnClickListener(v -> {
             String batt98 = ReadVoltage.getText().toString();
             Batt98.setText(batt98);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "98";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt99 = findViewById(R.id.batt104);
         Batt99.setOnClickListener(v -> {
             String batt99 = ReadVoltage.getText().toString();
             Batt99.setText(batt99);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "99";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt100 = findViewById(R.id.batt105);
         Batt100.setOnClickListener(v -> {
             String batt100 = ReadVoltage.getText().toString();
             Batt100.setText(batt100);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "100";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
     private void Measure_Battery11() {
@@ -1115,48 +1745,96 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         Batt101.setOnClickListener(v -> {
             String batt101 = ReadVoltage.getText().toString();
             Batt101.setText(batt101);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "101";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt102 = findViewById(R.id.batt107);
         Batt102.setOnClickListener(v -> {
             String batt102 = ReadVoltage.getText().toString();
             Batt102.setText(batt102);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "102";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt103 = findViewById(R.id.batt108);
         Batt103.setOnClickListener(v -> {
             String batt103 = ReadVoltage.getText().toString();
             Batt103.setText(batt103);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "103";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt104 = findViewById(R.id.batt109);
         Batt104.setOnClickListener(v -> {
             String batt104 = ReadVoltage.getText().toString();
             Batt104.setText(batt104);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "104";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt105 = findViewById(R.id.batt110);
         Batt105.setOnClickListener(v -> {
             String batt105 = ReadVoltage.getText().toString();
             Batt105.setText(batt105);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "105";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt106 = findViewById(R.id.batt111);
         Batt106.setOnClickListener(v -> {
             String batt106 = ReadVoltage.getText().toString();
             Batt106.setText(batt106);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "107";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt107 = findViewById(R.id.batt112);
         Batt107.setOnClickListener(v -> {
             String batt107 = ReadVoltage.getText().toString();
             Batt107.setText(batt107);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "107";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
 
         Batt108 = findViewById(R.id.batt113);
         Batt108.setOnClickListener(v -> {
             String batt108 = ReadVoltage.getText().toString();
             Batt108.setText(batt108);
+            // Send to SpreadSheet
+            time = dateFormat.format(dateTime);
+            unit = namaGT.getText().toString();
+            nomor = "108";
+            tegangan = ReadVoltage.getText().toString();
+            new SendRequest().execute();
         });
     }
 
@@ -1762,6 +2440,22 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         canvas.drawText("99. ", 880, 1120, paint);
         canvas.drawText("100. ", 880, 1160, paint);
 
+        /*if (ConditionBattery.getText().toString().equals("Good !"))
+        {
+            paint.setColor(Color.BLACK);
+        }
+        else if (ConditionBattery.getText().toString().equals("Bad !"))
+        {
+            paint.setColor(Color.RED);
+        }
+        else if (ConditionBattery.getText().toString().equals("Over !"))
+        {
+            paint.setColor(Color.YELLOW);
+        }
+        else {
+            paint.setColor(Color.BLACK);
+        } */
+
         //Tegangan Battery
         canvas.drawText(Batt1.getText().toString()+" V", 140, 400, paint); canvas.drawText(Batt21.getText().toString()+" V", 340, 400, paint);
         canvas.drawText(Batt2.getText().toString()+" V", 140, 440, paint); canvas.drawText(Batt22.getText().toString()+" V", 340, 440, paint);
@@ -1825,6 +2519,7 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
         canvas.drawText(Batt98.getText().toString()+" V", 940, 1080, paint);
         canvas.drawText(Batt99.getText().toString()+" V", 940, 1120, paint);
         canvas.drawText(Batt100.getText().toString()+" V", 950, 1160, paint);
+
 
         //Total Voltage
         paint.setColor(Color.RED);
@@ -1911,6 +2606,254 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
 
         dateTime = new Date();
+    }
+
+    public void createdExcel() {
+        // Untuk Tanggal
+     /*   dateTime = new Date();
+        dateFormat = new SimpleDateFormat("dd-MM-yy");
+
+        // Main Core Excel
+        Workbook workbook= new HSSFWorkbook();
+        Sheet sheet = workbook.createSheet(namaGT.getText().toString()+" "+unitBatt.getText().toString()+" "+dateFormat.format(dateTime));
+
+        // Header Judul
+        Row row0 = sheet.createRow(0);
+        Row row1 = sheet.createRow(0);
+        Cell cell0 = row0.createCell(0);
+        Cell cell1 = row1.createCell(1);
+        cell0.setCellValue("No Battery");
+        cell1.setCellValue("Tegangan Battery");
+
+        //Main Content
+        Row row1A = sheet.createRow(1);
+        Row row1B = sheet.createRow(1);
+        Cell cell1A = row1A.createCell(0);
+        Cell cell1B = row1B.createCell(1);
+        cell1A.setCellValue("1");
+        cell1B.setCellValue(Batt1.getText().toString());
+
+        Row row2A = sheet.createRow(2);
+        Row row2B = sheet.createRow(2);
+        Cell cell2A = row2A.createCell(0);
+        Cell cell2B = row2B.createCell(1);
+        cell2A.setCellValue("2");
+        cell2B.setCellValue(Batt2.getText().toString());
+
+        Row row3A = sheet.createRow(3);
+        Row row3B = sheet.createRow(3);
+        Cell cell3A = row3A.createCell(0);
+        Cell cell3B = row3B.createCell(1);
+        cell3A.setCellValue("3");
+        cell3B.setCellValue(Batt3.getText().toString());
+
+        Row row4A = sheet.createRow(4);
+        Row row4B = sheet.createRow(4);
+        Cell cell4A = row4A.createCell(0);
+        Cell cell4B = row4B.createCell(1);
+        cell4A.setCellValue("4");
+        cell4B.setCellValue(Batt4.getText().toString());
+
+        Row row5A = sheet.createRow(5);
+        Row row5B = sheet.createRow(5);
+        Cell cell5A = row5A.createCell(0);
+        Cell cell5B = row5B.createCell(1);
+        cell5A.setCellValue("5");
+        cell5B.setCellValue(Batt5.getText().toString());
+
+        Row row6A = sheet.createRow(6);
+        Row row6B = sheet.createRow(6);
+        Cell cell6A = row6A.createCell(0);
+        Cell cell6B = row6B.createCell(1);
+        cell6A.setCellValue("6");
+        cell6B.setCellValue(Batt6.getText().toString());
+
+        Row row7A = sheet.createRow(7);
+        Row row7B = sheet.createRow(7);
+        Cell cell7A = row7A.createCell(0);
+        Cell cell7B = row7B.createCell(1);
+        cell7A.setCellValue("7");
+        cell7B.setCellValue(Batt7.getText().toString());
+
+        Row row8A = sheet.createRow(8);
+        Row row8B = sheet.createRow(8);
+        Cell cell8A = row8A.createCell(0);
+        Cell cell8B = row8B.createCell(1);
+        cell8A.setCellValue("8");
+        cell8B.setCellValue(Batt8.getText().toString());
+
+        Row row9A = sheet.createRow(9);
+        Row row9B = sheet.createRow(9);
+        Cell cell9A = row9A.createCell(0);
+        Cell cell9B = row9B.createCell(1);
+        cell9A.setCellValue("9");
+        cell9B.setCellValue(Batt9.getText().toString());
+
+        Row row10A = sheet.createRow(10);
+        Row row10B = sheet.createRow(10);
+        Cell cell10A = row10A.createCell(0);
+        Cell cell10B = row10B.createCell(1);
+        cell10A.setCellValue("10");
+        cell10B.setCellValue(Batt10.getText().toString());
+
+        Row row11A = sheet.createRow(11);
+        Row row11B = sheet.createRow(11);
+        Cell cell11A = row11A.createCell(0);
+        Cell cell11B = row11B.createCell(1);
+        cell11A.setCellValue("11");
+        cell11B.setCellValue(Batt11.getText().toString());
+
+        Row row12A = sheet.createRow(12);
+        Row row12B = sheet.createRow(12);
+        Cell cell12A = row12A.createCell(0);
+        Cell cell12B = row12B.createCell(1);
+        cell12A.setCellValue("12");
+        cell12B.setCellValue(Batt12.getText().toString());
+
+        Row row13A = sheet.createRow(13);
+        Row row13B = sheet.createRow(13);
+        Cell cell13A = row13A.createCell(0);
+        Cell cell13B = row13B.createCell(1);
+        cell13A.setCellValue("13");
+        cell13B.setCellValue(Batt13.getText().toString());
+
+        Row row14A = sheet.createRow(14);
+        Row row14B = sheet.createRow(14);
+        Cell cell14A = row14A.createCell(0);
+        Cell cell14B = row14B.createCell(1);
+        cell14A.setCellValue("14");
+        cell14B.setCellValue(Batt14.getText().toString());
+
+        Row row15A = sheet.createRow(15);
+        Row row15B = sheet.createRow(15);
+        Cell cell15A = row15A.createCell(0);
+        Cell cell15B = row15B.createCell(1);
+        cell15A.setCellValue("15");
+        cell15B.setCellValue(Batt15.getText().toString());
+
+        Row row16A = sheet.createRow(16);
+        Row row16B = sheet.createRow(16);
+        Cell cell16A = row16A.createCell(0);
+        Cell cell16B = row16B.createCell(1);
+        cell16A.setCellValue("16");
+        cell16B.setCellValue(Batt16.getText().toString());
+
+        Row row17A = sheet.createRow(17);
+        Row row17B = sheet.createRow(17);
+        Cell cell17A = row17A.createCell(0);
+        Cell cell17B = row17B.createCell(1);
+        cell17A.setCellValue("17");
+        cell17B.setCellValue(Batt17.getText().toString());
+
+        Row row18A = sheet.createRow(18);
+        Row row18B = sheet.createRow(18);
+        Cell cell18A = row18A.createCell(0);
+        Cell cell18B = row18B.createCell(1);
+        cell18A.setCellValue("18");
+        cell18B.setCellValue(Batt18.getText().toString());
+
+        Row row19A = sheet.createRow(19);
+        Row row19B = sheet.createRow(19);
+        Cell cell19A = row19A.createCell(0);
+        Cell cell19B = row19B.createCell(1);
+        cell19A.setCellValue("19");
+        cell19B.setCellValue(Batt19.getText().toString());
+
+        Row row20A = sheet.createRow(20);
+        Row row20B = sheet.createRow(20);
+        Cell cell20A = row20A.createCell(0);
+        Cell cell20B = row20B.createCell(1);
+        cell20A.setCellValue("20");
+        cell20B.setCellValue(Batt20.getText().toString());
+
+        Row row21A = sheet.createRow(21);
+        Row row21B = sheet.createRow(21);
+        Cell cell21A = row21A.createCell(0);
+        Cell cell21B = row21B.createCell(1);
+        cell21A.setCellValue("21");
+        cell21B.setCellValue(Batt21.getText().toString());
+
+        Row row22A = sheet.createRow(22);
+        Row row22B = sheet.createRow(22);
+        Cell cell22A = row22A.createCell(0);
+        Cell cell22B = row22B.createCell(1);
+        cell22A.setCellValue("22");
+        cell22B.setCellValue(Batt22.getText().toString());
+
+        Row row23A = sheet.createRow(23);
+        Row row23B = sheet.createRow(23);
+        Cell cell23A = row23A.createCell(0);
+        Cell cell23B = row23B.createCell(1);
+        cell23A.setCellValue("23");
+        cell23B.setCellValue(Batt23.getText().toString());
+
+        Row row24A = sheet.createRow(24);
+        Row row24B = sheet.createRow(24);
+        Cell cell24A = row24A.createCell(0);
+        Cell cell24B = row24B.createCell(1);
+        cell24A.setCellValue("24");
+        cell24B.setCellValue(Batt24.getText().toString());
+
+        Row row25A = sheet.createRow(25);
+        Row row25B = sheet.createRow(25);
+        Cell cell25A = row25A.createCell(0);
+        Cell cell25B = row25B.createCell(1);
+        cell25A.setCellValue("25");
+        cell25B.setCellValue(Batt25.getText().toString());
+
+        Row row26A = sheet.createRow(26);
+        Row row26B = sheet.createRow(26);
+        Cell cell26A = row26A.createCell(0);
+        Cell cell26B = row26B.createCell(1);
+        cell26A.setCellValue("26");
+        cell26B.setCellValue(Batt26.getText().toString());
+
+        Row row27A = sheet.createRow(27);
+        Row row27B = sheet.createRow(27);
+        Cell cell27A = row27A.createCell(0);
+        Cell cell27B = row27B.createCell(1);
+        cell27A.setCellValue("27");
+        cell27B.setCellValue(Batt27.getText().toString());
+
+        Row row28A = sheet.createRow(28);
+        Row row28B = sheet.createRow(28);
+        Cell cell28A = row28A.createCell(0);
+        Cell cell28B = row28B.createCell(1);
+        cell28A.setCellValue("28");
+        cell28B.setCellValue(Batt28.getText().toString());
+
+        Row row29A = sheet.createRow(29);
+        Row row29B = sheet.createRow(29);
+        Cell cell29A = row29A.createCell(0);
+        Cell cell29B = row29B.createCell(1);
+        cell29A.setCellValue("29");
+        cell29B.setCellValue(Batt29.getText().toString());
+
+        Row row30A = sheet.createRow(30);
+        Row row30B = sheet.createRow(30);
+        Cell cell30A = row30A.createCell(0);
+        Cell cell30B = row30B.createCell(1);
+        cell30A.setCellValue("30");
+        cell30B.setCellValue(Batt30.getText().toString());
+
+        File file = new File(Environment.getExternalStorageDirectory(), "battery.xls");
+        try {
+            if (!file.exists()){
+                file.createNewFile();
+            }
+
+            FileOutputStream fileOutputStream= new FileOutputStream(file);
+            workbook.write(fileOutputStream);
+
+            if (fileOutputStream!=null){
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+*/
     }
 
     // Custom Dialog Chart
@@ -2664,5 +3607,88 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
 
         // menampilkan alert dialog
         alertDialog.show();
+    }
+
+    public class SendRequest extends AsyncTask<String, Void, String> {
+
+        protected void onPreExecute(){}
+        protected String doInBackground(String... arg0) {
+            try{
+                URL url = new URL("https://script.google.com/macros/s/AKfycbzxH41GfnBkml4u8ZDSi7v20wTuRY0BFwBHfRe0qM6sIJnNEs90iOoXVkjYs7DgmFCf/exec");
+                JSONObject postDataParams = new JSONObject();
+                String id= "1sjVe5hv_zxTz3iOk__718kItXSOPD51dSE2-aafLnAA";
+
+                postDataParams.put("time",time);
+                postDataParams.put("unit",unit);
+                postDataParams.put("nomor",nomor);
+                postDataParams.put("tegangan",tegangan);
+                postDataParams.put("kondisi",kondisi);
+                postDataParams.put("id",id);
+
+                Log.e("params",postDataParams.toString());
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(15000 /* milliseconds */);
+                conn.setConnectTimeout(15000 /* milliseconds */);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(getPostDataString(postDataParams));
+
+                writer.flush();
+                writer.close();
+                os.close();
+
+                int responseCode=conn.getResponseCode();
+
+                if (responseCode == HttpsURLConnection.HTTP_OK) {
+
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuffer sb = new StringBuffer("");
+                    String line = "";
+
+                    while ((line = in.readLine()) != null) {
+
+                        sb.append(line);
+                        break;
+                    }
+                    in.close();
+                    return sb.toString();
+                }
+                else {
+                    return new String("false : "+responseCode);
+                }
+            }
+            catch(Exception e){
+                return new String("Exception: " + e.getMessage());
+            }
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getApplicationContext(), result,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public String getPostDataString(JSONObject params) throws Exception {
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+        Iterator<String> itr = params.keys();
+        while(itr.hasNext()){
+            String key= itr.next();
+            Object value = params.get(key);
+            if (first)
+                first = false;
+            else
+                result.append("&");
+            result.append(URLEncoder.encode(key, "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
+        }
+        return result.toString();
     }
 }

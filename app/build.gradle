@@ -65,4 +65,7 @@ dependencies {
     // Bluetooth
     implementation 'me.aflak.libraries:bluetooth:1.2.4'
     implementation 'me.aflak.libraries:pulltorefresh:1.0'
+
+    //Excel Third Party
+    implementation 'org.apache.poi:poi:3.17'
 }
