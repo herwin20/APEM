@@ -23,7 +23,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,19 +51,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.material.snackbar.Snackbar;
 import com.herwinlab.apem.R;
-import com.herwinlab.apem.pmgasturbine.PmGasTurbine;
 import com.kyanogen.signatureview.SignatureView;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -382,8 +371,17 @@ public class BluetoothBattery extends AppCompatActivity implements Bluetooth.Com
                 // separated[2] -> teg. alatnya
                 ReadVoltage.setText(separated[0]);
                 InternalRest.setText(separated[1]);
-                DeviceVolt.setText(separated[2]);
+                //DeviceVolt.setText(separated[2]);
+                float par = Float.parseFloat(separated[2]);
+                double persen_volt = (par / 4.2)*100;
 
+                if (persen_volt > 100) {
+                    persen_volt = 100;
+                    DeviceVolt.setText(String.format("%.0f", persen_volt));
+                }
+                else {
+                    DeviceVolt.setText(String.format("%.0f", persen_volt));
+                }
                 float Voltage = Float.parseFloat(separated[0]);
                 if (Voltage == 0) {
                     ConditionBattery.setText("Not Connect!");

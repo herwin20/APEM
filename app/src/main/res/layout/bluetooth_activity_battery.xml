@@ -248,7 +248,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/product_sans_bold"
-            android:text="V"
+            android:text="%"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/battery_alat"
             app:layout_constraintStart_toEndOf="@+id/battery_alat"
